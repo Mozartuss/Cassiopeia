@@ -11,8 +11,8 @@
     2. `cd cassiopeia`
     3. `git checkout -b teil1_a4`  *erstellt neue branch ausgehend von master*
     4. `cp /home/patrick/a-4_gravitation.md notes/teil_1/`  *fügt die datei hinzu*
-    5. `git add notes/teil_1/a-4_gravitation.md`  *staged (vormerken) deiner Änderungen*
-    6. `git commit -m "Added aufgabe 1, A4`
+    5. `git add notes/teil_1/a-4_gravitation.md`  *staging (vormerken) deiner #nderungen*
+    6. `git commit -m "Added aufgabe 1, A4"`
     7. `git push origin teil1_a4`
     8. *Merge request* erstellen in dem du uns deine Änderungen erklärst
 * Unsere `master-branch` enthält nur sogenannten *production-ready*-Code, also Code 
