@@ -1,3 +1,3 @@
 # Cassiopeia
 
-![Image](cassiopeia_logo.jpg "Cassiopeia-Logo")
+![Image](cassiopeia_logo.gif "Cassiopeia-Logo")
