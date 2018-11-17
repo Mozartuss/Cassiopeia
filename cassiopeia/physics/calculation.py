@@ -20,8 +20,6 @@ def open_json():
     current_dir = path.dirname(__file__)
     upper_dir = path.realpath(path.join(current_dir, ".."))
     templates_dir = path.join(upper_dir, "templates")
-    print(templates_dir)
-    return
     with open(path.join(templates_dir, "earth_sun.json")) as f:
         planet_dict = json.load(f)
     return planet_dict
