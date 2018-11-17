@@ -24,8 +24,8 @@ import sys
 import time
 import math
 import numpy as np
-
 from rendering.simulation_constants import END_MESSAGE
+from physics.calculation import Calculation
 
 __FPS = 60
 __DELTA_ALPHA = 0.01
@@ -60,6 +60,7 @@ def startup(sim_pipe, nr_of_bodies, delta_t):
             nr_of_bodies (int): Number of bodies to be created and updated.
             delta_t (float): Simulation step width.
     """
+    positions = Calculation().cal_uni_new_pos(10000)
     bodies = _initialise_bodies(nr_of_bodies)
     while True:
         if sim_pipe.poll():
