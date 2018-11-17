@@ -2,11 +2,11 @@
 The Calculation part
 """
 import json
-
 import numpy
 import scipy
 import scipy.constants
 import scipy.spatial
+from os import path
 
 GRAVITATION = scipy.constants.G
 
@@ -16,7 +16,13 @@ def open_json():
     The open_json load the json data from the src directory
     :return: A dictionary of the planet data
     """
-    with open('planets.json', 'r') as f:
+    # We have to work with abosulte paths, that's why we're using __file__
+    current_dir = path.dirname(__file__)
+    upper_dir = path.realpath(path.join(current_dir, ".."))
+    templates_dir = path.join(upper_dir, "templates")
+    print(templates_dir)
+    return
+    with open(path.join(templates_dir, "earth_sun.json")) as f:
         planet_dict = json.load(f)
     return planet_dict
 
@@ -27,7 +33,7 @@ def write_to_json(data):
     :param data: the data you want to write
     :return: none
     """
-    with open('planets.json', 'w') as f:
+    with open('./planets.json', 'w') as f:
         json.dump(data, f)
 
 
