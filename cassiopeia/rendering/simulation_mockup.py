@@ -25,7 +25,7 @@ import time
 import math
 import numpy as np
 
-from simulation_constants import END_MESSAGE
+from rendering.simulation_constants import END_MESSAGE
 
 __FPS = 60
 __DELTA_ALPHA = 0.01
