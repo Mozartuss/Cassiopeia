@@ -10,6 +10,8 @@ from os import path
 
 GRAVITATION = scipy.constants.G
 
+X_INDEX = 0
+Y_INDEX = 1
 
 def open_json():
     """
@@ -50,6 +52,8 @@ class Calculation:
 
     def __init__(self):
         self.planets = open_json()
+        # flag determining if new frames should be calculated
+        self._is_running = True 
 
     @staticmethod
     def dist(planet2, planet1):
@@ -118,17 +122,25 @@ class Calculation:
 
         return mass_focus_without_planet_x
 
-    def cal_uni_new_pos(self, steps):
+    def calc_uni_new_pos(self):
         """
         call the calc_obj_new_pos as often steps said
-        :param steps: how often call,
+        :param frames: the number of frames to be calculated
         :return: an list of all position vectors of calc_obj_new_pos
         """
-        positions = list()
-        for _ in range(steps):
-            positions.append(self.calc_obj_new_pos(1))
-
-        return positions
+        # Shape defines the dimensions:
+        # E.g. shape = 100, 10, 4 creates an numpy-array 
+        # with 100 elements, where each of those 100 elements 
+        # is itself an array with 10 elements, where each of these
+        # elements contains 4 values (x, y, z, radius, e.g.)
+        while self._is_running:
+            # One planet with 4 values (x, y, z, scale)
+            positions_in_frame = numpy.zeros((1, 4), dtype=numpy.float64)
+            for planet in range(positions_in_frame.shape[0]): # shape[1] contains 
+                new_pos = self.calc_obj_new_pos(planet+1) # IDs start from 1
+                positions_in_frame[planet][X_INDEX] = new_pos[X_INDEX]
+                positions_in_frame[planet][Y_INDEX] = new_pos[Y_INDEX]
+            yield positions_in_frame
 
     def calc_obj_new_pos(self, actual_planet):
         """
@@ -148,3 +160,7 @@ class Calculation:
         self.planets[actual_planet]["Velocity"] += d_t * actual_planet_acceleration
 
         return new_pos
+
+    def stop(self):
+        """ Stops the calculation of new frames """
+        self._is_running = False
