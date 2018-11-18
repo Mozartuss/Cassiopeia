@@ -95,3 +95,6 @@ fabric.properties
 
 # Python cache
 __pycache__/
+
+# Visual-studio-code settings
+.vscode/
