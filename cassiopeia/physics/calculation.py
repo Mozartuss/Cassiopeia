@@ -42,7 +42,7 @@ def delta_t():
     a fixed delta_t (a hour in sec)
     :return:
     """
-    return 3600
+    return 3600*20
 
 
 class Calculation:
