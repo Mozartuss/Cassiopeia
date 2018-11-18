@@ -36,6 +36,8 @@ _WINDOW_SIZE = (512, 512)
 _WINDOW_POSITION = (100, 100)
 _LIGHT_POSITION = (2, 2, 3)
 _CAMERA_POSITION = (0, 0, 2)
+_SCALE_FACTOR = 1
+X_INDEX, Y_INDEX, Z_INDEX = 0, 1, 2
 
 class GalaxyRenderer:
     """
@@ -120,10 +122,10 @@ class GalaxyRenderer:
                         -_CAMERA_POSITION[2])
         self.mouse_interactor.apply_transformation()
         for body_index in range(self.bodies.shape[0]):
-            body = self.bodies[body_index, :]
+            body = self.bodies[body_index] * _SCALE_FACTOR
             GL.glPushMatrix()
-            GL.glTranslatef(body[0], body[1], body[2])
-            GL.glScalef(body[3], body[3], body[3])
+            GL.glTranslatef(body[X_INDEX], body[Y_INDEX], body[Z_INDEX])
+            GL.glScalef(0.5, 0.5, 0.5) # body[3] can be used
             GL.glCallList(self.sphere)
             GL.glPopMatrix()
         GLUT.glutSwapBuffers()
@@ -139,17 +141,22 @@ class GalaxyRenderer:
         """
             Read new object positions from pipe.
         """
+        global _SCALE_FACTOR
         if self.render_pipe.poll():
             pipe_input = self.render_pipe.recv()
             if isinstance(pipe_input, str) and pipe_input == END_MESSAGE:
-                self.do_exit = True
+                print("Stopping renderer...")
+                sys.exit(0)
+            elif isinstance(pipe_input, float):
+                if _SCALE_FACTOR is 1: 
+                    _SCALE_FACTOR = pipe_input
             else:
                 self.bodies = pipe_input
                 GLUT.glutPostRedisplay()
         else:
             time.sleep(1/self.fps)
 
-def startup(render_pipe, fps):
+def startup(render_pipe, fps, debug_mode=False):
     """
         Create GalaxyRenderer instance and start rendering
 
