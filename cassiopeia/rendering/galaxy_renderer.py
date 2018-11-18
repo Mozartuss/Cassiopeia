@@ -157,6 +157,16 @@ def startup(render_pipe, fps):
             render_pipe (multiprocessing.Pipe): Pipe to read positions from
             fps (float): Number of frames per second
     """
+    if debug_mode:
+        try:
+            import ptvsd
+            ptvsd.enable_attach(address=("0.0.0.0", 5679))
+            print("Renderer waiting for debugger attach on port 5679")
+            ptvsd.wait_for_attach()
+            breakpoint()
+        except ImportError:
+            print("Please install the package 'ptvsd' in order to use debug-mode!")
+            print("Example: pip install ptvsd")
     print('creating renderer')
     galaxy_renderer = GalaxyRenderer(render_pipe, fps)
     print('starting renderer')
