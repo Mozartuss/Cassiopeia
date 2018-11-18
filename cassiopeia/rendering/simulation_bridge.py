@@ -29,27 +29,8 @@ from physics.calculation import Calculation
 
 __FPS = 60
 __DELTA_ALPHA = 0.01
-def _move_bodies(bodies, delta_t):
-    for body_index, body in enumerate(bodies):
-        j = len(bodies) - body_index
-        sin_a = math.sin(__DELTA_ALPHA * j * delta_t)
-        cos_a = math.cos(__DELTA_ALPHA * j * delta_t)
-        pos_x = body[0]
-        pos_y = body[1]
-        body[0] = pos_x * cos_a - pos_y * sin_a
-        body[1] = pos_x * sin_a + pos_y * cos_a
-    time.sleep(1/__FPS)
 
-
-def _initialise_bodies(nr_of_bodies):
-    body_array = np.zeros((nr_of_bodies, 4), dtype=np.float64)
-    for body_index in range(nr_of_bodies):
-        body_array[body_index][0] = 0.9/(nr_of_bodies-body_index)
-        body_array[body_index][3] = 0.1 *  body_array[body_index][0]
-    return body_array
-
-
-def startup(sim_pipe, nr_of_bodies, delta_t):
+def startup(sim_pipe, nr_of_bodies, delta_t, debug_mode=False):
     """
         Initialise and continuously update a position list.
 
@@ -60,13 +41,29 @@ def startup(sim_pipe, nr_of_bodies, delta_t):
             nr_of_bodies (int): Number of bodies to be created and updated.
             delta_t (float): Simulation step width.
     """
-    positions = Calculation().cal_uni_new_pos(10000)
-    bodies = _initialise_bodies(nr_of_bodies)
-    while True:
+    if debug_mode:
+        try:
+            import ptvsd
+            ptvsd.enable_attach(address=("0.0.0.0", 5678))
+            print("Physics waiting for debugger attach on port 5678")
+            ptvsd.wait_for_attach()
+            breakpoint()
+        except ImportError:
+            print("Please install the package 'ptvsd' in order to use debug-mode!")
+            print("Example: pip install ptvsd")
+    # set the dimensions according to our values
+    # this will place the planets in our view-range
+    # Rendering will scale the big Coordindates to fit into the -1/1-room
+    calc = Calculation()
+    for frame in calc.calc_uni_new_pos():
+        # Send the scale-factor, so that the positions are in viewport
+        if frame.max() != 0:
+            sim_pipe.send(1/frame.max()) 
+        # Send the positions of the frame
+        sim_pipe.send(frame)
         if sim_pipe.poll():
-            message = sim_pipe.recv()
-            if isinstance(message, str) and message == END_MESSAGE:
-                print('simulation exiting ...')
-                sys.exit(0)
-        _move_bodies(bodies, delta_t)
-        sim_pipe.send(bodies)
+            msg = sim_pipe.recv()
+            if isinstance(msg, str) and msg == END_MESSAGE:
+                print("Stopping calculations...")
+                calc.stop()
+    sys.exit(0)
