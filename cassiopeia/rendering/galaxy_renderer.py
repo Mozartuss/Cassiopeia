@@ -21,6 +21,7 @@ OpenGL output for gravity simulation
 #
 import sys
 import time
+import numpy as np
 try:
     from OpenGL import GLUT
     from OpenGL import GL
@@ -35,8 +36,9 @@ from rendering.simulation_constants import END_MESSAGE
 _WINDOW_SIZE = (512, 512)
 _WINDOW_POSITION = (100, 100)
 _LIGHT_POSITION = (2, 2, 3)
-_CAMERA_POSITION = (0, 0, 2)
+_CAMERA_POSITION = [0, 0, 2]
 _SCALE_FACTOR = 1
+_CAMER_MOTION_STEPSIZE = 0.05
 X_INDEX, Y_INDEX, Z_INDEX = 0, 1, 2
 
 class GalaxyRenderer:
@@ -53,6 +55,12 @@ class GalaxyRenderer:
         self.init_gl()
         self.mouse_interactor = MouseInteractor(0.01, 1)
         self.mouse_interactor.register_callbacks()
+        self._motion_vector_by_key = {
+            "w": np.array([0, 0, -_CAMER_MOTION_STEPSIZE]),
+            "a": np.array([-_CAMER_MOTION_STEPSIZE, 0, 0]),
+            "s": np.array([0, 0, _CAMER_MOTION_STEPSIZE]),
+            "d": np.array([_CAMER_MOTION_STEPSIZE, 0, 0])
+            }
 
     def init_glut(self):
         """
@@ -65,6 +73,7 @@ class GalaxyRenderer:
         GLUT.glutCreateWindow(str.encode("Galaxy Renderer"))
         GLUT.glutDisplayFunc(self.render)
         GLUT.glutIdleFunc(self.update_positions)
+        GLUT.glutKeyboardFunc(self.key_pressed_handler)
 
     def init_gl(self):
         """
@@ -125,7 +134,7 @@ class GalaxyRenderer:
             body = self.bodies[body_index] * _SCALE_FACTOR
             GL.glPushMatrix()
             GL.glTranslatef(body[X_INDEX], body[Y_INDEX], body[Z_INDEX])
-            GL.glScalef(0.5, 0.5, 0.5) # body[3] can be used
+            GL.glScalef(0.01, 0.01, 0.01) # body[3] can be used
             GL.glCallList(self.sphere)
             GL.glPopMatrix()
         GLUT.glutSwapBuffers()
@@ -155,6 +164,11 @@ class GalaxyRenderer:
                 GLUT.glutPostRedisplay()
         else:
             time.sleep(1/self.fps)
+
+    def key_pressed_handler(self, key, x, y):
+        global _CAMERA_POSITION
+        key = bytes.decode(key)
+        _CAMERA_POSITION = _CAMERA_POSITION + self._motion_vector_by_key[key]
 
 def startup(render_pipe, fps, debug_mode=False):
     """
