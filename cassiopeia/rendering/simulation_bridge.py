@@ -55,7 +55,7 @@ def startup(sim_pipe, nr_of_bodies, delta_t, debug_mode=False):
     # this will place the planets in our view-range
     # Rendering will scale the big Coordindates to fit into the -1/1-room
     calc = Calculation()
-    for frame in calc.calc_uni_new_pos():
+    for frame in calc.calc_frame_positions():
         # Send the scale-factor, so that the positions are in viewport
         if frame.max() != 0:
             sim_pipe.send(1/frame.max()) 

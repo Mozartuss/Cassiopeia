@@ -122,7 +122,7 @@ class Calculation:
 
         return mass_focus_without_planet_x
 
-    def calc_uni_new_pos(self):
+    def calc_frame_positions(self):
         """
         call the calc_obj_new_pos as often steps said
         :param frames: the number of frames to be calculated
