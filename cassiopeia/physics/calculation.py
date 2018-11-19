@@ -22,7 +22,7 @@ def open_json():
     current_dir = path.dirname(__file__)
     upper_dir = path.realpath(path.join(current_dir, ".."))
     templates_dir = path.join(upper_dir, "templates")
-    with open(path.join(templates_dir, "earth_sun.json")) as f:
+    with open(path.join(templates_dir, "solar_system.json")) as f:
         planet_dict = json.load(f)
     return planet_dict
 
@@ -42,7 +42,7 @@ def delta_t():
     a fixed delta_t (a hour in sec)
     :return:
     """
-    return 3600*20
+    return 3600*40
 
 
 class Calculation:
@@ -135,9 +135,9 @@ class Calculation:
         # elements contains 4 values (x, y, z, radius, e.g.)
         while self._is_running:
             # One planet with 4 values (x, y, z, scale)
-            positions_in_frame = numpy.zeros((1, 4), dtype=numpy.float64)
+            positions_in_frame = numpy.zeros((len(self.planets), 4), dtype=numpy.float64)
             for planet in range(positions_in_frame.shape[0]): # shape[1] contains 
-                new_pos = self.calc_obj_new_pos(planet+1) # IDs start from 1
+                new_pos = self.calc_obj_new_pos(planet) # IDs start from 1
                 positions_in_frame[planet][X_INDEX] = new_pos[X_INDEX]
                 positions_in_frame[planet][Y_INDEX] = new_pos[Y_INDEX]
             yield positions_in_frame
@@ -159,6 +159,8 @@ class Calculation:
         self.planets[actual_planet]["Pos"] = new_pos
         self.planets[actual_planet]["Velocity"] += d_t * actual_planet_acceleration
 
+        if actual_planet == 0:
+            return numpy.array([0,0,0,0])
         return new_pos
 
     def stop(self):
