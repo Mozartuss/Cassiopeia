@@ -20,18 +20,21 @@ Start simulation and renderer in separate processes connected by a pipe.
 # or open http://www.fsf.org/licensing/licenses/gpl.html
 #
 import multiprocessing
-import time
-from rendering import simulation_bridge, galaxy_renderer
-from rendering.simulation_constants import END_MESSAGE
+
+from cassiopeia.rendering import simulation_bridge, galaxy_renderer
+from cassiopeia.rendering.simulation_constants import END_MESSAGE
 from signal import SIGINT, signal
 from sys import argv, exit
+
 
 def _startup():
     renderer_conn, simulation_conn = multiprocessing.Pipe()
     physics_debug_mode, render_debug_mode = False, False
     if len(argv) > 1:
-        if argv[1] == "--debug-physics": physics_debug_mode = True
-        elif argv[1] == "--debug-rendering": render_debug_mode = True
+        if argv[1] == "--debug-physics":
+            physics_debug_mode = True
+        elif argv[1] == "--debug-rendering":
+            render_debug_mode = True
     simulation_process = \
         multiprocessing.Process(target=simulation_bridge.startup,
                                 args=(simulation_conn, 16, 1, physics_debug_mode))
@@ -46,13 +49,14 @@ def _startup():
         print("Interrupt detected, simulation shutting down...")
         simulation_conn.send(END_MESSAGE)
         render_process.send(END_MESSAGE)
-        simulation_process.join() # Dunno what that does...
+        simulation_process.join()  # Dunno what that does...
         render_process.join()
-        render_process.terminate() # Rendering needs to be killed explicitly
+        render_process.terminate()  # Rendering needs to be killed explicitly
         exit(0)
 
     signal(SIGINT, handle_sigint)
-    while True: pass
+    while True:
+        pass
 
 
 if __name__ == '__main__':
