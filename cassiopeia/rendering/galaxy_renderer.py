@@ -22,6 +22,9 @@ OpenGL output for gravity simulation
 import sys
 import time
 import numpy as np
+import os
+import platform
+
 try:
     from OpenGL import GLUT
     from OpenGL import GL
@@ -29,8 +32,8 @@ try:
 except ImportError:
     print(' Error: Software not installed properly !!')
     sys.exit()
-from rendering.mouse_interactor import MouseInteractor
-from rendering.simulation_constants import END_MESSAGE
+from cassiopeia.rendering.mouse_interactor import MouseInteractor
+from cassiopeia.rendering.simulation_constants import END_MESSAGE
 
 # initial window parameters
 _WINDOW_SIZE = (512, 512)
@@ -41,10 +44,12 @@ _SCALE_FACTOR = 1
 _CAMER_MOTION_STEPSIZE = 0.05
 X_INDEX, Y_INDEX, Z_INDEX = 0, 1, 2
 
+
 class GalaxyRenderer:
     """
         Class containing OpenGL code
     """
+
     def __init__(self, render_pipe, fps):
         self.render_pipe = render_pipe
         self.fps = fps
@@ -60,7 +65,7 @@ class GalaxyRenderer:
             "a": np.array([-_CAMER_MOTION_STEPSIZE, 0, 0]),
             "s": np.array([0, 0, _CAMER_MOTION_STEPSIZE]),
             "d": np.array([_CAMER_MOTION_STEPSIZE, 0, 0])
-            }
+        }
 
     def init_glut(self):
         """
@@ -101,7 +106,7 @@ class GalaxyRenderer:
         GL.glMaterialfv(GL.GL_FRONT, GL.GL_AMBIENT, [0.2, .2, .2, 1])
         GL.glMaterialfv(GL.GL_FRONT, GL.GL_DIFFUSE, [0.7, 0.7, 0.7, 1])
         GL.glMaterialfv(GL.GL_FRONT, GL.GL_SPECULAR, [0.1, 0.1, 0.1, 1])
-        GL.glMaterialf(GL.GL_FRONT, GL.GL_SHININESS, 20)
+        GL.glMaterialf(GL.GL_FRONT, GL.GL_SHININESS, 1)
         GL.glMatrixMode(GL.GL_PROJECTION)
         GL.glLoadIdentity()
         GLU.gluPerspective(60, 1, .01, 10)
@@ -116,7 +121,7 @@ class GalaxyRenderer:
             # glut event loop needs hard exit ...
             sys.exit(0)
         if self.bodies is None:
-            time.sleep(1/self.fps)
+            time.sleep(1 / self.fps)
             return
         GL.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT)
         GL.glMatrixMode(GL.GL_PROJECTION)
@@ -134,7 +139,11 @@ class GalaxyRenderer:
             body = self.bodies[body_index] * _SCALE_FACTOR
             GL.glPushMatrix()
             GL.glTranslatef(body[X_INDEX], body[Y_INDEX], body[Z_INDEX])
-            GL.glScalef(0.01, 0.01, 0.01) # body[3] can be used
+            if body_index == 0:
+                GL.glScalef(0.05, 0.05, 0.05)  # body[3] can be used
+            else:
+                # TODO Größe in Abhängigkeit vom Radius
+                GL.glScalef(0.02, 0.02, 0.02)
             GL.glCallList(self.sphere)
             GL.glPopMatrix()
         GLUT.glutSwapBuffers()
@@ -145,6 +154,18 @@ class GalaxyRenderer:
             Start the GLUT event loop.
         """
         GLUT.glutMainLoop()
+
+    @staticmethod
+    def exit_prog():
+        """
+            Kill all python process
+        """
+        print("Stopping renderer...")
+        os_name = platform.system()
+        if os_name == "Windows":
+            os.system("taskkill /IM python.exe /F")
+        if os_name == "Linux":
+            os.system("killall -9 python")
 
     def update_positions(self):
         """
@@ -157,18 +178,24 @@ class GalaxyRenderer:
                 print("Stopping renderer...")
                 sys.exit(0)
             elif isinstance(pipe_input, float):
-                if _SCALE_FACTOR is 1: 
+                if _SCALE_FACTOR is 1:
                     _SCALE_FACTOR = pipe_input
             else:
                 self.bodies = pipe_input
                 GLUT.glutPostRedisplay()
         else:
-            time.sleep(1/self.fps)
+            time.sleep(1 / self.fps)
 
     def key_pressed_handler(self, key, x, y):
         global _CAMERA_POSITION
-        key = bytes.decode(key)
-        _CAMERA_POSITION = _CAMERA_POSITION + self._motion_vector_by_key[key]
+        if key == b"w" or key == b"s" or key == b"a" or key == b"d":
+            key = bytes.decode(key)
+            _CAMERA_POSITION = _CAMERA_POSITION + self._motion_vector_by_key[key]
+        elif key == b'\x1b':
+            self.exit_prog()
+        else:
+            pass
+
 
 def startup(render_pipe, fps, debug_mode=False):
     """
