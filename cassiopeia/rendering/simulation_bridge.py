@@ -22,13 +22,12 @@
 #
 import sys
 import time
-import math
-import numpy as np
-from rendering.simulation_constants import END_MESSAGE
-from physics.calculation import Calculation
+from cassiopeia.rendering.simulation_constants import END_MESSAGE
+from cassiopeia.physics.calculation import Calculation
 
 __FPS = 60
 __DELTA_ALPHA = 0.01
+
 
 def startup(sim_pipe, nr_of_bodies, delta_t, debug_mode=False):
     """
@@ -53,17 +52,18 @@ def startup(sim_pipe, nr_of_bodies, delta_t, debug_mode=False):
             print("Example: pip install ptvsd")
     # set the dimensions according to our values
     # this will place the planets in our view-range
-    # Rendering will scale the big Coordindates to fit into the -1/1-room
+    # Rendering will scale the big Coordinates to fit into the -1/1-room
     calc = Calculation()
     for frame in calc.calc_frame_positions():
         # Send the scale-factor, so that the positions are in viewport
         if frame.max() != 0:
-            sim_pipe.send(1/frame.max()) 
-        # Send the positions of the frame
+            sim_pipe.send(1 / frame.max())
+            # Send the positions of the frame
         sim_pipe.send(frame)
         if sim_pipe.poll():
             msg = sim_pipe.recv()
             if isinstance(msg, str) and msg == END_MESSAGE:
                 print("Stopping calculations...")
                 calc.stop()
+        time.sleep(1 / __FPS)
     sys.exit(0)
