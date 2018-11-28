@@ -204,6 +204,9 @@ def startup(render_pipe, fps, debug_mode=False):
         Args:
             render_pipe (multiprocessing.Pipe): Pipe to read positions from
             fps (float): Number of frames per second
+            :param fps:
+            :param render_pipe:
+            :param debug_mode:
     """
     if debug_mode:
         try:

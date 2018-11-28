@@ -115,7 +115,7 @@ class Calculation:
         """
         sum_mass_pos = 0
         for planet in self.planets:
-            sum_mass_pos += numpy.multiply(planet["Mass"] * planet["Pos"])
+            sum_mass_pos += numpy.multiply(planet["Mass"], planet["Pos"])
 
         mass_focus = ((1 / self.total_mass()) * sum_mass_pos)
 
@@ -148,7 +148,7 @@ class Calculation:
         """
 
         distance = numpy.subtract(self.planets[current_planet]["Pos"], self.mass_focus_without_planet_x(current_planet))
-        z_direction = numpy.array(0, 0, 1)
+        z_direction = numpy.array([0, 0, 1])
         velocity = numpy.cross(distance, z_direction)
         velocity_abs = numpy.linalg.norm(velocity)
 
@@ -194,7 +194,6 @@ class Calculation:
     def calc_frame_positions(self):
         """
         call the calc_obj_new_pos as often steps said
-        :param frames: the number of frames to be calculated
         :return: an list of all position vectors of calc_obj_new_pos
         """
         # Shape defines the dimensions:
