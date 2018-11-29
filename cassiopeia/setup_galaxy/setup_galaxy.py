@@ -1,17 +1,19 @@
 import json
 import random
 import string
+import math
 
 from numpy import zeros, float64, linalg
 from numpy.random import randint, uniform
 
-PLANET_AMOUNT = 50
+PLANET_AMOUNT = 500
 PLANET_MASS_VECTOR = (1, 10)  # times 10**24 (min, max)
 PLANET_RADIUS_VECTOR = (4, 24)  # times 1000 (min, max)
 BLACK_HOLE_MASS = 0  # times 10**24
 BLACK_HOLE_RADIUS = 100
-POSITIONS_MAX = [100000000000, 0, 0]
+POSITIONS_MAX = [100000000000, 100000000000, 0]
 POSITIONS = list()
+COUNT = 0
 
 
 def write_to_json(data):
@@ -59,17 +61,37 @@ def setup():
 
 
 def get_pos():
+    """
+    generate a random position
+    :return: a unique position
+    """
     pos = zeros(3, float64)
+    global COUNT
 
     pos[0] = int(random.uniform(-POSITIONS_MAX[0], POSITIONS_MAX[0]))
     pos[1] = int(random.uniform(-POSITIONS_MAX[1], POSITIONS_MAX[1]))
     pos[2] = int(random.uniform(-POSITIONS_MAX[2], POSITIONS_MAX[2]))
-
-    if set(pos) != POSITIONS and linalg.norm(pos) >= 1 * 10 ** 9:
+    if len(POSITIONS) < 1:
+        POSITIONS.append(pos)
+        return pos
+    elif set(pos) != POSITIONS and linalg.norm(pos) >= 1 * 10 ** 9 and distance(pos):
         POSITIONS.append(pos)
         return pos
     else:
+        print("new Pos", COUNT)
+        COUNT += 1
         get_pos()
+
+
+def distance(new_pos):
+    for pos in POSITIONS:
+        dist = math.sqrt(
+            ((pos[0] - new_pos[0]) ** 2)
+            + ((pos[1] - new_pos[1]) ** 2)
+            + ((pos[2] - new_pos[2]) ** 2))
+        if dist <= POSITIONS_MAX[0] / PLANET_AMOUNT:
+            return False
+    return True
 
 
 if __name__ == '__main__':

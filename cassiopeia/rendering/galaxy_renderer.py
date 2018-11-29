@@ -140,10 +140,10 @@ class GalaxyRenderer:
             GL.glPushMatrix()
             GL.glTranslatef(body[X_INDEX], body[Y_INDEX], body[Z_INDEX])
             if body_index == 0:
-                GL.glScalef(0.05, 0.05, 0.05)  # body[3] can be used
+                GL.glScalef(0.03, 0.03, 0.03)  # body[3] can be used
             else:
                 # TODO Größe in Abhängigkeit vom Radius
-                GL.glScalef(0.02, 0.02, 0.02)
+                GL.glScalef(0.01, 0.01, 0.01)
             GL.glCallList(self.sphere)
             GL.glPopMatrix()
         GLUT.glutSwapBuffers()
@@ -154,18 +154,6 @@ class GalaxyRenderer:
             Start the GLUT event loop.
         """
         GLUT.glutMainLoop()
-
-    @staticmethod
-    def exit_prog():
-        """
-            Kill all python process
-        """
-        print("Stopping renderer...")
-        os_name = platform.system()
-        if os_name == "Windows":
-            os.system("taskkill /IM python.exe /F")
-        if os_name == "Linux":
-            os.system("killall -9 python")
 
     def update_positions(self):
         """
@@ -191,8 +179,6 @@ class GalaxyRenderer:
         if key == b"w" or key == b"s" or key == b"a" or key == b"d":
             key = bytes.decode(key)
             _CAMERA_POSITION = _CAMERA_POSITION + self._motion_vector_by_key[key]
-        elif key == b'\x1b':
-            self.exit_prog()
         else:
             pass
 
