@@ -61,30 +61,31 @@ class Calculation:
         if "random" in JSON_PATH:
             for i in range(len(self.planets)):
                 if i != 0:
-                    velocity = self.abs_velocity(self.total_mass(), i)
-                    self.planets[i]["Velocity"] = numpy.array([0.0, velocity, 0.0])
-                    '''print("{:7}, {:>52}, {:>36}".format(
-                        self.planets[i]["Name"], str(self.planets[i]["Velocity"]), str(self.planets[i]["Pos"])))'''
+                    velocity = self.velocity_direction(i)
+                    self.planets[i]["Velocity"] = velocity
+                    print("{:7}, {:>52}, {:>36}".format(
+                        self.planets[i]["Name"], str(self.planets[i]["Velocity"]), str(self.planets[i]["Pos"])))
                 else:
                     velocity = numpy.array([0.0, 0.0, 0.0])
                     self.planets[i]["Velocity"] = velocity
-                    '''print("{:7}, {:>52}, {:>36}".format(
-                        self.planets[i]["Name"], str(self.planets[i]["Velocity"]), str(self.planets[i]["Pos"])))'''
+                    print("{:7}, {:>52}, {:>36}".format(
+                        self.planets[i]["Name"], str(self.planets[i]["Velocity"]), str(self.planets[i]["Pos"])))
 
         self._is_running = True
 
     @staticmethod
-    def dist(planet2, planet1):
+    def dist(planet_1, planet_2):
         """
         Calculate the distance between two vectors
-        :param planet2: the position of the planet2
-        :param planet1: the position ot the planet1
+        :param planet_1: the position of the planet2
+        :param planet_2: the position ot the planet1
         :return: the distance as vector and as absolute value
         """
 
         dist_abs = math.sqrt(
-            ((planet2[0] - planet1[0]) ** 2) + ((planet2[1] - planet1[1]) ** 2) + ((planet2[2] - planet1[2]) ** 2))
-        dist_vec = numpy.subtract(planet2, planet1)
+            ((planet_1[0] - planet_2[0]) ** 2) + ((planet_1[1] - planet_2[1]) ** 2) + (
+                        (planet_1[2] - planet_2[2]) ** 2))
+        dist_vec = numpy.array(planet_1) - numpy.array(planet_2)
 
         return dist_abs, dist_vec
 
@@ -142,19 +143,21 @@ class Calculation:
 
     def velocity_direction(self, current_planet):
         """
-        Calculate the velocity in Z-direction
+        Calculate the velocity_direction in Z-direction
         :param current_planet:
         :return:
         """
 
-        distance = numpy.subtract(self.planets[current_planet]["Pos"], self.mass_focus_without_planet_x(current_planet))
-        z_direction = numpy.array([0, 0, 1])
-        velocity = numpy.cross(distance, z_direction)
-        velocity_abs = numpy.linalg.norm(velocity)
+        distance = numpy.array((self.planets[current_planet]["Pos"] -
+                                self.mass_focus_without_planet_x(current_planet)), numpy.float64)
+        z_direction = numpy.array((0, 0, 1), numpy.float64)
+        velocity_direction = numpy.cross(distance, z_direction)
+        velocity_direction_abs = numpy.linalg.norm(velocity_direction)
+        abs_velocity = self.abs_velocity(self.total_mass(), current_planet)
 
-        velocity_direction = velocity / velocity_abs
+        velocity = (velocity_direction / velocity_direction_abs) * abs_velocity
 
-        return velocity_direction
+        return velocity
 
     def mass_focus_without_planet_x(self, planet_index):
         """
@@ -173,29 +176,12 @@ class Calculation:
 
         return mass_focus_without_planet_x
 
-    def calc_universe_new_pos(self, steps):
-        """
-        call the calc_obj_new_pos as often steps said
-        :param steps: how often call,
-        :return: an list of all position vectors of calc_obj_new_pos
-        """
-        positions = list()
-        for i in range(len(self.planets)):
-            positions.append(list())
-            if i == 0:
-                for _ in range(steps):
-                    positions[i].append(numpy.array(self.planets[i]["Pos"]))
-            else:
-                for _ in range(steps):
-                    positions[i].append(self.calc_obj_new_pos(i))
-
-        return numpy.array(positions)
-
     def calc_frame_positions(self):
         """
         call the calc_obj_new_pos as often steps said
         :return: an list of all position vectors of calc_obj_new_pos
         """
+
         # Shape defines the dimensions:
         # E.g. shape = 100, 10, 4 creates an numpy-array
         # with 100 elements, where each of those 100 elements
@@ -217,6 +203,7 @@ class Calculation:
         :param current_planet: the planet we want to calculate
         :return: a new position vector
         """
+
         current_planet_acceleration = self.calc_acceleration(current_planet)
         current_planet_velocity = self.planets[current_planet]["Velocity"]
         d_t = delta_t()
