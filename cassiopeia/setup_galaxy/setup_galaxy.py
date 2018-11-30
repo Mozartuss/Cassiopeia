@@ -6,12 +6,14 @@ import math
 from numpy import zeros, float64, linalg
 from numpy.random import randint, uniform
 
-PLANET_AMOUNT = 500
+PLANET_AMOUNT = 17
 PLANET_MASS_VECTOR = (1, 10)  # times 10**24 (min, max)
 PLANET_RADIUS_VECTOR = (4, 24)  # times 1000 (min, max)
 BLACK_HOLE_MASS = 0  # times 10**24
 BLACK_HOLE_RADIUS = 100
-POSITIONS_MAX = [100000000000, 100000000000, 0]
+POSITIONS_MAX = [100, 100, 0]
+
+
 POSITIONS = list()
 COUNT = 0
 
@@ -66,11 +68,16 @@ def get_pos():
     :return: a unique position
     """
     pos = zeros(3, float64)
-    global COUNT
+    global COUNT, POSITIONS_MAX
+
+    POSITIONS_MAX[0] = POSITIONS_MAX[0] * 10 * 9
+    POSITIONS_MAX[1] = POSITIONS_MAX[1] * 10 * 9
+    POSITIONS_MAX[2] = POSITIONS_MAX[2] * 10 * 9
 
     pos[0] = int(random.uniform(-POSITIONS_MAX[0], POSITIONS_MAX[0]))
     pos[1] = int(random.uniform(-POSITIONS_MAX[1], POSITIONS_MAX[1]))
     pos[2] = int(random.uniform(-POSITIONS_MAX[2], POSITIONS_MAX[2]))
+
     if len(POSITIONS) < 1:
         POSITIONS.append(pos)
         return pos

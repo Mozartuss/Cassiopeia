@@ -22,8 +22,6 @@ OpenGL output for gravity simulation
 import sys
 import time
 import numpy as np
-import os
-import platform
 
 try:
     from OpenGL import GLUT
@@ -36,8 +34,8 @@ from cassiopeia.rendering.mouse_interactor import MouseInteractor
 from cassiopeia.rendering.simulation_constants import END_MESSAGE
 
 # initial window parameters
-_WINDOW_SIZE = (512, 512)
-_WINDOW_POSITION = (100, 100)
+_WINDOW_SIZE = (1400, 750)
+_WINDOW_POSITION = (0, 0)
 _LIGHT_POSITION = (2, 2, 3)
 _CAMERA_POSITION = [0, 0, 2]
 _SCALE_FACTOR = 1
@@ -89,7 +87,7 @@ class GalaxyRenderer:
         quad_obj = GLU.gluNewQuadric()
         GLU.gluQuadricDrawStyle(quad_obj, GLU.GLU_FILL)
         GLU.gluQuadricNormals(quad_obj, GLU.GLU_SMOOTH)
-        GLU.gluSphere(quad_obj, 1, 16, 16)
+        GLU.gluSphere(quad_obj, 0.8, 16, 16)
         GL.glEndList()
         GL.glShadeModel(GL.GL_SMOOTH)
         GL.glEnable(GL.GL_DEPTH_TEST)

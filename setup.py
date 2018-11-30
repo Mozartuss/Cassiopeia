@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='cassiopeia',
-    version='0.1.0',
+    version='0.1.5b',
     description='Course project for prog3',
     author='Patrick Kostas, Hanne Beuter, Dejan Pekez, Benjamin Altmiks, Lukas Kleybolte',
     author_email='patrick.kostas@hs-augsburg.de,'
