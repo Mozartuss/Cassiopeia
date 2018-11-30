@@ -30,8 +30,8 @@ try:
 except ImportError:
     print(' Error: Software not installed properly !!')
     sys.exit()
-from cassiopeia.rendering.mouse_interactor import MouseInteractor
-from cassiopeia.rendering.simulation_constants import END_MESSAGE
+from rendering.mouse_interactor import MouseInteractor
+from rendering.simulation_constants import END_MESSAGE
 
 # initial window parameters
 _WINDOW_SIZE = (1400, 750)

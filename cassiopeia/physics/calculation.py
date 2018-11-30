@@ -10,7 +10,7 @@ GRAVITATION = 6.6742 * 10 ** -11
 X_INDEX = 0
 Y_INDEX = 1
 
-JSON_PATH = "random_planets_x18.json"
+JSON_PATH = "random_planets_x21.json"
 
 
 # JSON_PATH = "solar_system.json"

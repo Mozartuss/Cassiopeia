@@ -21,8 +21,8 @@ Start simulation and renderer in separate processes connected by a pipe.
 #
 import multiprocessing
 
-from cassiopeia.rendering import simulation_bridge, galaxy_renderer
-from cassiopeia.rendering.simulation_constants import END_MESSAGE
+from rendering import simulation_bridge, galaxy_renderer
+from rendering.simulation_constants import END_MESSAGE
 from signal import SIGINT, signal
 from sys import argv, exit
 
