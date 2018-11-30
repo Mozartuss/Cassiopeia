@@ -22,8 +22,8 @@
 #
 import sys
 import time
-from cassiopeia.rendering.simulation_constants import END_MESSAGE
-from cassiopeia.physics.calculation import Calculation
+from rendering.simulation_constants import END_MESSAGE
+from physics.calculation import Calculation
 
 __FPS = 60
 __DELTA_ALPHA = 0.01
