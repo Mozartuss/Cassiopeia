@@ -21,7 +21,11 @@ OpenGL output for gravity simulation
 #
 import sys
 import time
+
 import numpy as np
+
+from rendering.mouse_interactor import MouseInteractor
+from rendering.simulation_constants import END_MESSAGE
 
 try:
     from OpenGL import GLUT
@@ -30,11 +34,9 @@ try:
 except ImportError:
     print(' Error: Software not installed properly !!')
     sys.exit()
-from rendering.mouse_interactor import MouseInteractor
-from rendering.simulation_constants import END_MESSAGE
 
 # initial window parameters
-_WINDOW_SIZE = (1400, 750)
+_WINDOW_SIZE = (500, 500)
 _WINDOW_POSITION = (0, 0)
 _LIGHT_POSITION = (2, 2, 3)
 _CAMERA_POSITION = [0, 0, 2]
@@ -177,6 +179,8 @@ class GalaxyRenderer:
         if key == b"w" or key == b"s" or key == b"a" or key == b"d":
             key = bytes.decode(key)
             _CAMERA_POSITION = _CAMERA_POSITION + self._motion_vector_by_key[key]
+        elif key == b"\x1b":
+            pass
         else:
             pass
 
