@@ -20,14 +20,14 @@ Start simulation and renderer in separate processes connected by a pipe.
 # or open http://www.fsf.org/licensing/licenses/gpl.html
 #
 import multiprocessing
-
-from rendering import simulation_bridge, galaxy_renderer
-from rendering.simulation_constants import END_MESSAGE
 from signal import SIGINT, signal
 from sys import argv, exit
 
+from rendering import simulation_bridge, galaxy_renderer
+from rendering.simulation_constants import END_MESSAGE
 
-def _startup():
+
+def _startup(json_path, delta_t):
     renderer_conn, simulation_conn = multiprocessing.Pipe()
     physics_debug_mode, render_debug_mode = False, False
     if len(argv) > 1:
@@ -37,12 +37,18 @@ def _startup():
             render_debug_mode = True
     simulation_process = \
         multiprocessing.Process(target=simulation_bridge.startup,
-                                args=(simulation_conn, 16, 1, physics_debug_mode))
+                                args=(simulation_conn, json_path, delta_t, physics_debug_mode))
     render_process = \
         multiprocessing.Process(target=galaxy_renderer.startup,
                                 args=(renderer_conn, 60, render_debug_mode))
     simulation_process.start()
     render_process.start()
+
+    def exit_programm():
+        simulation_conn.send(END_MESSAGE)
+        renderer_conn.send(END_MESSAGE)
+        simulation_process.join()
+        render_process.join()
 
     # Gets called on SIGINT (CTRL+C) and exits the program
     def handle_sigint(signum, x):
@@ -60,4 +66,7 @@ def _startup():
 
 
 if __name__ == '__main__':
-    _startup()
+    """
+    json_path, delta_t
+    """
+    _startup("random_planets_x18.json", 60 * 60)

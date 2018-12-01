@@ -22,23 +22,25 @@
 #
 import sys
 import time
-from rendering.simulation_constants import END_MESSAGE
+
 from physics.calculation import Calculation
+from rendering.simulation_constants import END_MESSAGE
 
 __FPS = 60
 __DELTA_ALPHA = 0.01
 
 
-def startup(sim_pipe, nr_of_bodies, delta_t, debug_mode=False):
+def startup(sim_pipe, json_path, delta_t, debug_mode=False):
     """
         Initialise and continuously update a position list.
 
         Results are sent through a pipe after each update step
 
         Args:
-            sim_pipe (multiprocessing.Pipe): Pipe to send results
-            nr_of_bodies (int): Number of bodies to be created and updated.
-            delta_t (float): Simulation step width.
+            :param delta_t:
+            :param sim_pipe: (multiprocessing.Pipe): Pipe to send results
+            :param debug_mode:
+            :param json_path:
     """
     if debug_mode:
         try:
@@ -53,7 +55,7 @@ def startup(sim_pipe, nr_of_bodies, delta_t, debug_mode=False):
     # set the dimensions according to our values
     # this will place the planets in our view-range
     # Rendering will scale the big Coordinates to fit into the -1/1-room
-    calc = Calculation()
+    calc = Calculation(json_path, delta_t)
     for frame in calc.calc_frame_positions():
         # Send the scale-factor, so that the positions are in viewport
         if frame.max() != 0:
