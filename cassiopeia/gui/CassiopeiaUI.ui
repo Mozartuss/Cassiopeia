@@ -722,6 +722,9 @@
               </property>
           </widget>
           <widget class="QLineEdit" name="lineEdit">
+              <property name="enabled">
+                  <bool>true</bool>
+              </property>
               <property name="geometry">
                   <rect>
                       <x>380</x>
@@ -747,15 +750,6 @@
 
                       QLineEdit:hover{
                       border: 3px solid #eee;
-                      }
-
-                      QLineEdit:disabled {
-                      color: #555;
-                      border: 3px solid #555;
-                      border-radius: 4px;
-                      background-color: #111;
-                      min-height: 20px;
-                      min-width: 20px;
                       }
                   </string>
               </property>

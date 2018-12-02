@@ -177,8 +177,7 @@ class Calculation:
         # is itself an array with 10 elements, where each of these
         # elements contains 4 values (x, y, z, radius, e.g.)
         i = 0
-        while i < 1000:
-            i = i + 1
+        while self._is_running:
             # One planet with 4 values (x, y, z, scale)
             positions_in_frame = numpy.zeros((len(self.planets), 4), dtype=numpy.float64)
             for planet in range(positions_in_frame.shape[0]):  # shape[1] contains
