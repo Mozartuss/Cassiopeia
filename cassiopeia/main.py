@@ -20,6 +20,8 @@ Start simulation and renderer in separate processes connected by a pipe.
 # or open http://www.fsf.org/licensing/licenses/gpl.html
 #
 import multiprocessing
+import threading
+import time
 from signal import SIGINT, signal
 from sys import argv, exit
 
@@ -28,6 +30,7 @@ from rendering.simulation_constants import END_MESSAGE
 
 
 def _startup(json_path, delta_t):
+    currentthread = threading.currentThread()
     renderer_conn, simulation_conn = multiprocessing.Pipe()
     physics_debug_mode, render_debug_mode = False, False
     if len(argv) > 1:
@@ -35,34 +38,27 @@ def _startup(json_path, delta_t):
             physics_debug_mode = True
         elif argv[1] == "--debug-rendering":
             render_debug_mode = True
+
     simulation_process = \
         multiprocessing.Process(target=simulation_bridge.startup,
-                                args=(simulation_conn, json_path, delta_t, physics_debug_mode))
+            args=(simulation_conn, json_path, delta_t, physics_debug_mode))
+
     render_process = \
         multiprocessing.Process(target=galaxy_renderer.startup,
-                                args=(renderer_conn, 60, render_debug_mode))
+            args=(renderer_conn, 60, render_debug_mode))
+
     simulation_process.start()
     render_process.start()
 
-    def exit_programm():
-        simulation_conn.send(END_MESSAGE)
-        renderer_conn.send(END_MESSAGE)
-        simulation_process.join()
-        render_process.join()
+    while getattr(currentthread, "do_run", True):
+        time.sleep(1)
 
-    # Gets called on SIGINT (CTRL+C) and exits the program
-    def handle_sigint(signum, x):
-        print("Interrupt detected, simulation shutting down...")
-        simulation_conn.send(END_MESSAGE)
-        render_process.send(END_MESSAGE)
-        simulation_process.join()  # Dunno what that does...
-        render_process.join()
-        render_process.terminate()  # Rendering needs to be killed explicitly
-        exit(0)
+    print("exit signal received")
 
-    signal(SIGINT, handle_sigint)
-    while True:
-        pass
+    simulation_conn.send(END_MESSAGE)
+    renderer_conn.send(END_MESSAGE)
+    simulation_process.join()
+    render_process.join()
 
 
 if __name__ == '__main__':
