@@ -69,4 +69,4 @@ if __name__ == '__main__':
     """
     json_path, delta_t
     """
-    _startup("random_planets_x18.json", 60 * 60)
+    _startup("random_planets_x61.json", 60 * 60)

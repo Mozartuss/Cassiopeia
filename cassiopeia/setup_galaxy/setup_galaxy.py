@@ -1,21 +1,10 @@
 import json
+import math
 import random
 import string
-import math
 
 from numpy import zeros, float64, linalg
 from numpy.random import randint, uniform
-
-PLANET_AMOUNT = 17
-PLANET_MASS_VECTOR = (1, 10)  # times 10**24 (min, max)
-PLANET_RADIUS_VECTOR = (4, 24)  # times 1000 (min, max)
-BLACK_HOLE_MASS = 0  # times 10**24
-BLACK_HOLE_RADIUS = 100
-POSITIONS_MAX = [100, 100, 0]
-
-
-POSITIONS = list()
-COUNT = 0
 
 
 def write_to_json(data):
@@ -30,76 +19,105 @@ def write_to_json(data):
         json.dump(data, file, indent=2, sort_keys=True)
 
 
-def setup():
-    global BLACK_HOLE_MASS
-    planet_system = [{
-        "ID": 0,
-        "Name": "Black_hole",
-        "Radius": BLACK_HOLE_RADIUS,
-        "Pos": [
-            0.0,
-            0.0,
-            0.0
-        ]
-    }]
-    for planet in range(PLANET_AMOUNT):
-        planet_dict = dict()
-        planet_mass = round(uniform(PLANET_MASS_VECTOR[0], PLANET_MASS_VECTOR[1]), 4)
-        planet_dict["ID"] = planet + 1
-        planet_dict["Name"] = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
-        planet_dict["Mass"] = planet_mass
-        planet_dict["Radius"] = randint(PLANET_RADIUS_VECTOR[0], PLANET_RADIUS_VECTOR[1])
-        planet_dict["Pos"] = list(get_pos())
-        BLACK_HOLE_MASS += planet_mass
-        planet_system.append(planet_dict)
-    BLACK_HOLE_MASS = BLACK_HOLE_MASS * 100000
+class SetupGalaxy:
+    def __init__(self,
+                 planet_amount,
+                 black_hole_mass,
+                 min_planet_radius,
+                 max_planet_radius,
+                 min_planet_mass,
+                 max_planet_mass,
+                 space_x,
+                 space_y,
+                 space_z
+                 ):
+        self.planet_amount = planet_amount
+        self.black_hole_mass = black_hole_mass * 100000
+        self.calculate_black_hole_mass = 0
+        self.min_planet_radius = min_planet_radius
+        self.max_planet_radius = max_planet_radius
+        self.min_planet_mass = min_planet_mass
+        self.max_planet_mass = max_planet_mass
+        self.space_x = space_x
+        self.space_y = space_y
+        self.space_z = space_z
+        self.positions = list()
 
-    if int(BLACK_HOLE_MASS) <= 1989100:
-        planet_system[0]["Mass"] = int(BLACK_HOLE_MASS)
-    else:
-        planet_system[0]["Mass"] = 1989100
+    def setup(self):
+        planet_system = [{
+            "ID": 0,
+            "Name": "Black_hole",
+            "Radius": 100,
+            "Pos": [
+                0.0,
+                0.0,
+                0.0
+            ]
+        }]
+        for planet in range(self.planet_amount):
+            planet_dict = dict()
+            planet_mass = round(uniform(self.min_planet_mass, self.max_planet_mass), 4)
+            planet_dict["ID"] = planet + 1
+            planet_dict["Name"] = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+            planet_dict["Mass"] = planet_mass
+            planet_dict["Radius"] = randint(self.min_planet_radius, self.max_planet_radius)
+            planet_dict["Pos"] = list(self.get_pos())
+            self.calculate_black_hole_mass += planet_mass
+            planet_system.append(planet_dict)
 
-    write_to_json(planet_system)
+        calculate_black_hole_mass = self.calculate_black_hole_mass * 100000
 
+        if calculate_black_hole_mass >= self.black_hole_mass:
+            if int(calculate_black_hole_mass) <= 1989100:
+                planet_system[0]["Mass"] = int(calculate_black_hole_mass)
+            else:
+                planet_system[0]["Mass"] = 1989100
+        else:
+            planet_system[0]["Mass"] = self.black_hole_mass
 
-def get_pos():
-    """
-    generate a random position
-    :return: a unique position
-    """
-    pos = zeros(3, float64)
-    global COUNT, POSITIONS_MAX
+        write_to_json(planet_system)
 
-    POSITIONS_MAX[0] = POSITIONS_MAX[0] * 10 * 9
-    POSITIONS_MAX[1] = POSITIONS_MAX[1] * 10 * 9
-    POSITIONS_MAX[2] = POSITIONS_MAX[2] * 10 * 9
+    def get_pos(self):
+        """
+        generate a random position
+        :return: a unique position
+        """
+        pos = zeros(3, float64)
+        positions_max = [self.space_x * 10 ** 9, self.space_y * 10 ** 9, self.space_z]
 
-    pos[0] = int(random.uniform(-POSITIONS_MAX[0], POSITIONS_MAX[0]))
-    pos[1] = int(random.uniform(-POSITIONS_MAX[1], POSITIONS_MAX[1]))
-    pos[2] = int(random.uniform(-POSITIONS_MAX[2], POSITIONS_MAX[2]))
+        pos[0] = int(random.uniform(-positions_max[0], positions_max[0]))
+        pos[1] = int(random.uniform(-positions_max[1], positions_max[1]))
+        pos[2] = int(random.uniform(-positions_max[2], positions_max[2]))
 
-    if len(POSITIONS) < 1:
-        POSITIONS.append(pos)
-        return pos
-    elif set(pos) != POSITIONS and linalg.norm(pos) >= 1 * 10 ** 9 and distance(pos):
-        POSITIONS.append(pos)
-        return pos
-    else:
-        print("new Pos", COUNT)
-        COUNT += 1
-        get_pos()
+        if len(self.positions) < 1:
+            self.positions.append(pos)
+            return pos
+        elif set(pos) != self.positions and linalg.norm(pos) > 1 * 10 ** 9 and self.distance(pos):
+            self.positions.append(pos)
+            return pos
+        else:
+            self.get_pos()
 
-
-def distance(new_pos):
-    for pos in POSITIONS:
-        dist = math.sqrt(
-            ((pos[0] - new_pos[0]) ** 2)
-            + ((pos[1] - new_pos[1]) ** 2)
-            + ((pos[2] - new_pos[2]) ** 2))
-        if dist <= POSITIONS_MAX[0] / PLANET_AMOUNT:
-            return False
-    return True
+    def distance(self, new_pos):
+        for pos in self.positions:
+            dist = math.sqrt(
+                ((pos[0] - new_pos[0]) ** 2)
+                + ((pos[1] - new_pos[1]) ** 2)
+                + ((pos[2] - new_pos[2]) ** 2))
+            if dist <= self.space_x / self.planet_amount:
+                return False
+        return True
 
 
 if __name__ == '__main__':
-    setup()
+    init = SetupGalaxy(60,  # planet_amount
+                       100,  # black_hole_mass
+                       4,  # min_planet_radius
+                       24,  # max_planet_radius
+                       1,  # min_planet_mass
+                       10,  # max_planet_mass
+                       100,  # space_x
+                       100,  # space_y
+                       0  # space_z
+                       )
+    init.setup()
