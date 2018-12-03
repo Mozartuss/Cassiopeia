@@ -2,6 +2,7 @@ import json
 import math
 import random
 import string
+import os
 
 from numpy import zeros, float64, linalg
 from numpy.random import randint, uniform
@@ -13,10 +14,11 @@ def write_to_json(data):
     :param data: the data you want to write
     :return: none
     """
-    path = "../templates/random_planets_x%d.json" % len(data)
+    path = os.path.join(os.getcwd(),"templates/random_planets_x%d.json" % len(data))
 
     with open(path, 'w') as file:
         json.dump(data, file, indent=2, sort_keys=True)
+    print("Data has been written.")
 
 
 class SetupGalaxy:
@@ -42,6 +44,7 @@ class SetupGalaxy:
         self.space_y = space_y
         self.space_z = space_z
         self.positions = list()
+        print(self.planet_amount)
 
     def setup(self):
         planet_system = [{
