@@ -29,7 +29,7 @@ from rendering import simulation_bridge, galaxy_renderer
 from rendering.simulation_constants import END_MESSAGE
 
 
-def _startup(json_path, delta_t):
+def _startup(json_path ="random_planets_x18.json", delta_t = 3600):
     currentthread = threading.currentThread()
     renderer_conn, simulation_conn = multiprocessing.Pipe()
     physics_debug_mode, render_debug_mode = False, False
@@ -65,4 +65,4 @@ if __name__ == '__main__':
     """
     json_path, delta_t
     """
-    _startup("random_planets_x61.json", 60 * 60)
+    #_startup("random_planets_x18.json", 60 * 60)
