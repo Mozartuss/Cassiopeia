@@ -2,50 +2,50 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
-     <property name="enabled">
-         <bool>true</bool>
-     </property>
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-       <width>567</width>
-       <height>660</height>
+    <width>567</width>
+    <height>660</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Cassiopeia</string>
   </property>
   <property name="styleSheet">
-      <string notr="true">background-color: #111;
+   <string notr="true">background-color: #111;
       </string>
   </property>
   <widget class="QWidget" name="centralwidget">
-      <property name="enabled">
-          <bool>true</bool>
-      </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="styleSheet">
     <string notr="true"/>
    </property>
-      <widget class="QGroupBox" name="groupBox_4">
-          <property name="enabled">
-              <bool>true</bool>
-          </property>
+   <widget class="QGroupBox" name="gbSimPam">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
-         <x>1</x>
-         <y>1</y>
-         <width>559</width>
-         <height>224</height>
+      <x>1</x>
+      <y>1</y>
+      <width>559</width>
+      <height>224</height>
      </rect>
     </property>
-          <property name="font">
-              <font>
-                  <family>8514oem</family>
-              </font>
-          </property>
-          <property name="styleSheet">
-              <string notr="true">QGroupBox {
+    <property name="font">
+     <font>
+      <family>8514oem</family>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox {
                   color: #eee;
                   border: none;
                   border-radius: 4px;
@@ -54,29 +54,29 @@
                   min-width: 20px;
                   }
               </string>
-          </property>
-          <property name="title">
-              <string>Simulation Parameters</string>
-          </property>
-          <property name="alignment">
-              <set>Qt::AlignCenter</set>
-          </property>
-          <widget class="QLabel" name="label_11">
-              <property name="geometry">
-                  <rect>
-                      <x>1</x>
-                      <y>186</y>
-                      <width>106</width>
-                      <height>26</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLabel {
+    </property>
+    <property name="title">
+     <string>Simulation Parameters</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <widget class="QLabel" name="lbZ">
+     <property name="geometry">
+      <rect>
+       <x>1</x>
+       <y>186</y>
+       <width>106</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -98,36 +98,36 @@
                       min-width: 20px;
                       }
                   </string>
-              </property>
-              <property name="text">
-                  <string>Space Z</string>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-          <widget class="QLabel" name="label_8">
-              <property name="geometry">
-                  <rect>
-                      <x>1</x>
-                      <y>66</y>
-                      <width>106</width>
-                      <height>26</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="layoutDirection">
-                  <enum>Qt::LeftToRight</enum>
-              </property>
-              <property name="autoFillBackground">
-                  <bool>false</bool>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLabel {
+     </property>
+     <property name="text">
+      <string>Space Z</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>1</x>
+       <y>66</y>
+       <width>106</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -140,30 +140,30 @@
                       border: 3px solid #eee;
                       }
                   </string>
-              </property>
-              <property name="text">
-                  <string>Step</string>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-          <widget class="QLabel" name="label_9">
-              <property name="geometry">
-                  <rect>
-                      <x>1</x>
-                      <y>106</y>
-                      <width>106</width>
-                      <height>26</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLabel {
+     </property>
+     <property name="text">
+      <string>Step</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lbX">
+     <property name="geometry">
+      <rect>
+       <x>1</x>
+       <y>106</y>
+       <width>106</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -185,33 +185,33 @@
                       min-width: 20px;
                       }
                   </string>
-              </property>
-              <property name="text">
-                  <string>Space X</string>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-          <widget class="QSlider" name="hsStep">
-              <property name="enabled">
-                  <bool>true</bool>
-              </property>
-              <property name="geometry">
-                  <rect>
-                      <x>114</x>
-                      <y>69</y>
-                      <width>259</width>
-                      <height>22</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QSlider::groove:horizontal {
+     </property>
+     <property name="text">
+      <string>Space X</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QSlider" name="hsStep">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>114</x>
+       <y>69</y>
+       <width>259</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QSlider::groove:horizontal {
                       border: 1px solid #bbb;
                       background: black;
                       height: 10px;
@@ -253,39 +253,39 @@
                       border-radius: 4px;
                       }
                   </string>
-              </property>
-              <property name="minimum">
-                  <number>1</number>
-              </property>
-              <property name="maximum">
-                  <number>10000</number>
-              </property>
-              <property name="value">
-                  <number>3600</number>
-              </property>
-              <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-              </property>
-          </widget>
-          <widget class="QSpinBox" name="sbSpaceZ">
-              <property name="enabled">
-                  <bool>true</bool>
-              </property>
-              <property name="geometry">
-                  <rect>
-                      <x>114</x>
-                      <y>186</y>
-                      <width>259</width>
-                      <height>28</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QSpinBox {
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>10000</number>
+     </property>
+     <property name="value">
+      <number>3600</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="sbSpaceZ">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>114</x>
+       <y>186</y>
+       <width>259</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QSpinBox {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -362,27 +362,30 @@
                       background-color: #111;
                       }
                   </string>
-              </property>
-          </widget>
-          <widget class="QSpinBox" name="sbSpaceX">
-              <property name="enabled">
-                  <bool>true</bool>
-              </property>
-              <property name="geometry">
-                  <rect>
-                      <x>114</x>
-                      <y>106</y>
-                      <width>259</width>
-                      <height>28</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QSpinBox {
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="sbSpaceX">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>114</x>
+       <y>106</y>
+       <width>259</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QSpinBox {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -459,27 +462,36 @@
                       background-color: #111;
                       }
                   </string>
-              </property>
-              <property name="suffix">
-                  <string/>
-              </property>
-          </widget>
-          <widget class="QSpinBox" name="sbSpaceY">
-              <property name="geometry">
-                  <rect>
-                      <x>114</x>
-                      <y>146</y>
-                      <width>259</width>
-                      <height>28</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QSpinBox {
+     </property>
+     <property name="suffix">
+      <string/>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="value">
+      <number>100</number>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="sbSpaceY">
+     <property name="geometry">
+      <rect>
+       <x>114</x>
+       <y>146</y>
+       <width>259</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QSpinBox {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -556,24 +568,33 @@
                       background-color: #111;
                       }
                   </string>
-              </property>
-          </widget>
-          <widget class="QLabel" name="label_12">
-              <property name="geometry">
-                  <rect>
-                      <x>1</x>
-                      <y>26</y>
-                      <width>106</width>
-                      <height>26</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLabel {
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="value">
+      <number>100</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_12">
+     <property name="geometry">
+      <rect>
+       <x>1</x>
+       <y>26</y>
+       <width>106</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -586,45 +607,45 @@
                       border: 3px solid #eee;
                       }
                   </string>
-              </property>
-              <property name="text">
-                  <string>Template</string>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-          <widget class="QCheckBox" name="cbTemplate">
-              <property name="geometry">
-                  <rect>
-                      <x>380</x>
-                      <y>28</y>
-                      <width>180</width>
-                      <height>24</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="cursor">
-                  <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="tabletTracking">
-                  <bool>false</bool>
-              </property>
-              <property name="focusPolicy">
-                  <enum>Qt::NoFocus</enum>
-              </property>
-              <property name="layoutDirection">
-                  <enum>Qt::LeftToRight</enum>
-              </property>
-              <property name="autoFillBackground">
-                  <bool>false</bool>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QCheckBox {
+     </property>
+     <property name="text">
+      <string>Template</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="cbTemplate">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>28</y>
+       <width>180</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="tabletTracking">
+      <bool>false</bool>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QCheckBox {
                       width: 20px;
                       height: 20px;
                       background-color: #111;
@@ -634,36 +655,36 @@
                       border: none;
                       }
                   </string>
-              </property>
-              <property name="text">
-                  <string>Use Template</string>
-              </property>
-              <property name="checked">
-                  <bool>false</bool>
-              </property>
-              <property name="autoRepeat">
-                  <bool>false</bool>
-              </property>
-              <property name="tristate">
-                  <bool>false</bool>
-              </property>
-          </widget>
-          <widget class="QComboBox" name="cmbTemplate">
-              <property name="geometry">
-                  <rect>
-                      <x>114</x>
-                      <y>26</y>
-                      <width>259</width>
-                      <height>28</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QComboBox {
+     </property>
+     <property name="text">
+      <string>Use Template</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <property name="autoRepeat">
+      <bool>false</bool>
+     </property>
+     <property name="tristate">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="cmbTemplate">
+     <property name="geometry">
+      <rect>
+       <x>114</x>
+       <y>26</y>
+       <width>259</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -707,39 +728,36 @@
                       border-top: 7px solid #eee;
                       }
                   </string>
-              </property>
-              <property name="editable">
-                  <bool>false</bool>
-              </property>
-              <property name="currentText">
-                  <string/>
-              </property>
-              <property name="currentIndex">
-                  <number>-1</number>
-              </property>
-              <property name="modelColumn">
-                  <number>-1</number>
-              </property>
-          </widget>
-          <widget class="QLineEdit" name="lineEdit">
-              <property name="enabled">
-                  <bool>true</bool>
-              </property>
-              <property name="geometry">
-                  <rect>
-                      <x>380</x>
-                      <y>66</y>
-                      <width>180</width>
-                      <height>28</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLineEdit {
+     </property>
+     <property name="editable">
+      <bool>false</bool>
+     </property>
+     <property name="currentText">
+      <string/>
+     </property>
+     <property name="currentIndex">
+      <number>-1</number>
+     </property>
+     <property name="modelColumn">
+      <number>-1</number>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="leStep">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>66</y>
+       <width>180</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -751,31 +769,40 @@
                       QLineEdit:hover{
                       border: 3px solid #eee;
                       }
+
+                      QLineEdit:disabled {
+                      color: #555;
+                      border: 3px solid #555;
+                      border-radius: 4px;
+                      background-color: #111;
+                      min-height: 20px;
+                      min-width: 20px;
+                      }
                   </string>
-              </property>
-              <property name="text">
-                  <string>3600</string>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-          <widget class="QLabel" name="label_10">
-              <property name="geometry">
-                  <rect>
-                      <x>1</x>
-                      <y>146</y>
-                      <width>106</width>
-                      <height>26</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLabel {
+     </property>
+     <property name="text">
+      <string>3600</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lbY">
+     <property name="geometry">
+      <rect>
+       <x>1</x>
+       <y>146</y>
+       <width>106</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -797,34 +824,34 @@
                       min-width: 20px;
                       }
                   </string>
-              </property>
-              <property name="text">
-                  <string>Space Y</string>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-      </widget>
-      <widget class="QGroupBox" name="groupBox_3">
-          <property name="enabled">
-              <bool>true</bool>
-          </property>
-          <property name="geometry">
-              <rect>
-                  <x>1</x>
-                  <y>232</y>
-                  <width>559</width>
-                  <height>71</height>
-              </rect>
-          </property>
-          <property name="font">
-              <font>
-                  <family>8514oem</family>
-              </font>
-          </property>
-          <property name="styleSheet">
-              <string notr="true">QGroupBox {
+     </property>
+     <property name="text">
+      <string>Space Y</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="gbCentralPam">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>1</x>
+      <y>232</y>
+      <width>559</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>8514oem</family>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox {
                   color: #eee;
                   border: none;
                   border-radius: 4px;
@@ -839,35 +866,35 @@
                   min-width: 20px;
                   }
               </string>
-          </property>
-          <property name="title">
-              <string>Central Mass Parameter</string>
-          </property>
-          <property name="alignment">
-              <set>Qt::AlignCenter</set>
-          </property>
-          <widget class="QLineEdit" name="leMass">
-              <property name="geometry">
-                  <rect>
-                      <x>380</x>
-                      <y>30</y>
-                      <width>180</width>
-                      <height>28</height>
-                  </rect>
-              </property>
-              <property name="sizePolicy">
-                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                  </sizepolicy>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLineEdit {
+    </property>
+    <property name="title">
+     <string>Central Mass Parameter</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <widget class="QLineEdit" name="leCentralMass">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>30</y>
+       <width>180</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -889,30 +916,30 @@
                       min-width: 20px;
                       }
                   </string>
-              </property>
-              <property name="text">
-                  <string>0</string>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-          <widget class="QLabel" name="label_6">
-              <property name="geometry">
-                  <rect>
-                      <x>1</x>
-                      <y>30</y>
-                      <width>106</width>
-                      <height>26</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLabel {
+     </property>
+     <property name="text">
+      <string>100</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>1</x>
+       <y>30</y>
+       <width>106</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -934,25 +961,25 @@
                       min-width: 20px;
                       }
                   </string>
-              </property>
-              <property name="text">
-                  <string>Mass</string>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-          <widget class="QSlider" name="hsCentralMass">
-              <property name="geometry">
-                  <rect>
-                      <x>114</x>
-                      <y>30</y>
-                      <width>259</width>
-                      <height>28</height>
-                  </rect>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QSlider::groove:horizontal {
+     </property>
+     <property name="text">
+      <string>Mass</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QSlider" name="hsCentralMass">
+     <property name="geometry">
+      <rect>
+       <x>114</x>
+       <y>30</y>
+       <width>259</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QSlider::groove:horizontal {
                       border: 1px solid #bbb;
                       background: black;
                       height: 10px;
@@ -1020,40 +1047,40 @@
                       border-radius: 4px;
                       }
                   </string>
-              </property>
-              <property name="minimum">
-                  <number>1000000</number>
-              </property>
-              <property name="maximum">
-                  <number>1000000000</number>
-              </property>
-              <property name="value">
-                  <number>1989100</number>
-              </property>
-              <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-              </property>
-          </widget>
-      </widget>
-      <widget class="QGroupBox" name="groupBox_2">
-          <property name="geometry">
-              <rect>
-                  <x>1</x>
-                  <y>320</y>
-                  <width>559</width>
-                  <height>224</height>
-              </rect>
-          </property>
-          <property name="font">
-              <font>
-                  <family>8514oem</family>
-              </font>
-          </property>
-          <property name="layoutDirection">
-              <enum>Qt::LeftToRight</enum>
-          </property>
-          <property name="styleSheet">
-              <string notr="true">QGroupBox {
+     </property>
+     <property name="minimum">
+      <number>100</number>
+     </property>
+     <property name="maximum">
+      <number>10000000</number>
+     </property>
+     <property name="value">
+      <number>1000000</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="gbPlanetPam">
+    <property name="geometry">
+     <rect>
+      <x>1</x>
+      <y>320</y>
+      <width>559</width>
+      <height>224</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>8514oem</family>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox {
                   color: #eee;
                   border: none;
                   border-radius: 4px;
@@ -1069,54 +1096,54 @@
                   min-width: 20px;
                   }
               </string>
-          </property>
-          <property name="title">
-              <string>Planet Parameters</string>
-          </property>
-          <property name="alignment">
-              <set>Qt::AlignCenter</set>
-          </property>
-          <property name="flat">
-              <bool>false</bool>
-          </property>
-          <property name="checkable">
-              <bool>false</bool>
-          </property>
-          <widget class="QLineEdit" name="lePlanetCount">
-              <property name="geometry">
-                  <rect>
-                      <x>380</x>
-                      <y>191</y>
-                      <width>180</width>
-                      <height>28</height>
-                  </rect>
-              </property>
-              <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                  </sizepolicy>
-              </property>
-              <property name="minimumSize">
-                  <size>
-                      <width>26</width>
-                      <height>26</height>
-                  </size>
-              </property>
-              <property name="maximumSize">
-                  <size>
-                      <width>16777215</width>
-                      <height>16777215</height>
-                  </size>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                      <stylestrategy>PreferDefault</stylestrategy>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLineEdit {
+    </property>
+    <property name="title">
+     <string>Planet Parameters</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <widget class="QLineEdit" name="lePlanetCount">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>191</y>
+       <width>180</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>26</width>
+       <height>26</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+       <stylestrategy>PreferDefault</stylestrategy>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -1138,39 +1165,39 @@
                       min-width: 20px;
                       }
                   </string>
-              </property>
-              <property name="text">
-                  <string>50</string>
-              </property>
-              <property name="maxLength">
-                  <number>10000000</number>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-          <widget class="QLineEdit" name="lePlanetMaxRad">
-              <property name="geometry">
-                  <rect>
-                      <x>380</x>
-                      <y>150</y>
-                      <width>180</width>
-                      <height>28</height>
-                  </rect>
-              </property>
-              <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                  </sizepolicy>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLineEdit {
+     </property>
+     <property name="text">
+      <string>60</string>
+     </property>
+     <property name="maxLength">
+      <number>1000</number>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lePlanetMaxRad">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>150</y>
+       <width>180</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -1192,39 +1219,39 @@
                       min-width: 20px;
                       }
                   </string>
-              </property>
-              <property name="text">
-                  <string>0</string>
-              </property>
-              <property name="maxLength">
-                  <number>10000000</number>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-          <widget class="QLineEdit" name="lePlanetMinRad">
-              <property name="geometry">
-                  <rect>
-                      <x>380</x>
-                      <y>109</y>
-                      <width>180</width>
-                      <height>28</height>
-                  </rect>
-              </property>
-              <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                  </sizepolicy>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLineEdit {
+     </property>
+     <property name="text">
+      <string>1</string>
+     </property>
+     <property name="maxLength">
+      <number>99</number>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lePlanetMinRad">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>109</y>
+       <width>180</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -1246,39 +1273,39 @@
                       min-width: 20px;
                       }
                   </string>
-              </property>
-              <property name="text">
-                  <string>0</string>
-              </property>
-              <property name="maxLength">
-                  <number>10000000</number>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-          <widget class="QLineEdit" name="lePlanetMaxMass">
-              <property name="geometry">
-                  <rect>
-                      <x>380</x>
-                      <y>68</y>
-                      <width>180</width>
-                      <height>28</height>
-                  </rect>
-              </property>
-              <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                  </sizepolicy>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLineEdit {
+     </property>
+     <property name="text">
+      <string>1</string>
+     </property>
+     <property name="maxLength">
+      <number>99</number>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lePlanetMaxMass">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>68</y>
+       <width>180</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -1300,51 +1327,51 @@
                       min-width: 20px;
                       }
                   </string>
-              </property>
-              <property name="text">
-                  <string>0</string>
-              </property>
-              <property name="maxLength">
-                  <number>10000000</number>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-          <widget class="QLineEdit" name="lePlanetMinMass">
-              <property name="enabled">
-                  <bool>true</bool>
-              </property>
-              <property name="geometry">
-                  <rect>
-                      <x>380</x>
-                      <y>30</y>
-                      <width>180</width>
-                      <height>28</height>
-                  </rect>
-              </property>
-              <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                  </sizepolicy>
-              </property>
-              <property name="maximumSize">
-                  <size>
-                      <width>16777215</width>
-                      <height>16777215</height>
-                  </size>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="toolTip">
-                  <string/>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLineEdit {
+     </property>
+     <property name="text">
+      <string>10</string>
+     </property>
+     <property name="maxLength">
+      <number>10</number>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lePlanetMinMass">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>30</y>
+       <width>180</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="toolTip">
+      <string/>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -1366,39 +1393,39 @@
                       min-width: 20px;
                       }
                   </string>
-              </property>
-              <property name="inputMask">
-                  <string/>
-              </property>
-              <property name="text">
-                  <string>0</string>
-              </property>
-              <property name="maxLength">
-                  <number>10000000</number>
-              </property>
-              <property name="frame">
-                  <bool>true</bool>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-          <widget class="QSlider" name="hsPlanetCount">
-              <property name="geometry">
-                  <rect>
-                      <x>114</x>
-                      <y>194</y>
-                      <width>259</width>
-                      <height>22</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QSlider::groove:horizontal {
+     </property>
+     <property name="inputMask">
+      <string/>
+     </property>
+     <property name="text">
+      <string>1</string>
+     </property>
+     <property name="maxLength">
+      <number>10</number>
+     </property>
+     <property name="frame">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QSlider" name="hsPlanetCount">
+     <property name="geometry">
+      <rect>
+       <x>114</x>
+       <y>194</y>
+       <width>259</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QSlider::groove:horizontal {
                       border: 1px solid #bbb;
                       background: black;
                       height: 10px;
@@ -1466,33 +1493,36 @@
                       border-radius: 4px;
                       }
                   </string>
-              </property>
-              <property name="maximum">
-                  <number>1000</number>
-              </property>
-              <property name="value">
-                  <number>50</number>
-              </property>
-              <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-              </property>
-          </widget>
-          <widget class="QSlider" name="hsPlanetMinRad">
-              <property name="geometry">
-                  <rect>
-                      <x>114</x>
-                      <y>112</y>
-                      <width>259</width>
-                      <height>22</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QSlider::groove:horizontal {
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>1000</number>
+     </property>
+     <property name="value">
+      <number>60</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QSlider" name="hsPlanetMinRad">
+     <property name="geometry">
+      <rect>
+       <x>114</x>
+       <y>112</y>
+       <width>259</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QSlider::groove:horizontal {
                       border: 1px solid #bbb;
                       background: black;
                       height: 10px;
@@ -1560,27 +1590,30 @@
                       border-radius: 4px;
                       }
                   </string>
-              </property>
-              <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-              </property>
-          </widget>
-          <widget class="QSlider" name="hsPlanetMaxMass">
-              <property name="geometry">
-                  <rect>
-                      <x>114</x>
-                      <y>71</y>
-                      <width>259</width>
-                      <height>22</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QSlider::groove:horizontal {
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QSlider" name="hsPlanetMaxMass">
+     <property name="geometry">
+      <rect>
+       <x>114</x>
+       <y>71</y>
+       <width>259</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QSlider::groove:horizontal {
                       border: 1px solid #bbb;
                       background: black;
                       height: 10px;
@@ -1648,33 +1681,36 @@
                       border-radius: 4px;
                       }
                   </string>
-              </property>
-              <property name="minimum">
-                  <number>1</number>
-              </property>
-              <property name="maximum">
-                  <number>11</number>
-              </property>
-              <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-              </property>
-          </widget>
-          <widget class="QSlider" name="hsPlanetMaxRad">
-              <property name="geometry">
-                  <rect>
-                      <x>114</x>
-                      <y>153</y>
-                      <width>259</width>
-                      <height>22</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QSlider::groove:horizontal {
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>10</number>
+     </property>
+     <property name="value">
+      <number>10</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QSlider" name="hsPlanetMaxRad">
+     <property name="geometry">
+      <rect>
+       <x>114</x>
+       <y>153</y>
+       <width>259</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QSlider::groove:horizontal {
                       border: 1px solid #bbb;
                       background: black;
                       height: 10px;
@@ -1742,36 +1778,42 @@
                       border-radius: 4px;
                       }
                   </string>
-              </property>
-              <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-              </property>
-          </widget>
-          <widget class="QSlider" name="hsPlanetMinMass">
-              <property name="enabled">
-                  <bool>true</bool>
-              </property>
-              <property name="geometry">
-                  <rect>
-                      <x>114</x>
-                      <y>30</y>
-                      <width>259</width>
-                      <height>22</height>
-                  </rect>
-              </property>
-              <property name="minimumSize">
-                  <size>
-                      <width>250</width>
-                      <height>20</height>
-                  </size>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QSlider::groove:horizontal {
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="value">
+      <number>10</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QSlider" name="hsPlanetMinMass">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>114</x>
+       <y>30</y>
+       <width>259</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>250</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QSlider::groove:horizontal {
                       border: 1px solid #bbb;
                       background: black;
                       height: 10px;
@@ -1839,36 +1881,36 @@
                       border-radius: 4px;
                       }
                   </string>
-              </property>
-              <property name="minimum">
-                  <number>1</number>
-              </property>
-              <property name="maximum">
-                  <number>11</number>
-              </property>
-              <property name="value">
-                  <number>1</number>
-              </property>
-              <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-              </property>
-          </widget>
-          <widget class="QLabel" name="label_5">
-              <property name="geometry">
-                  <rect>
-                      <x>1</x>
-                      <y>191</y>
-                      <width>106</width>
-                      <height>26</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLabel {
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>11</number>
+     </property>
+     <property name="value">
+      <number>1</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>1</x>
+       <y>191</y>
+       <width>106</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -1890,30 +1932,30 @@
                       min-width: 20px;
                       }
                   </string>
-              </property>
-              <property name="text">
-                  <string>Count</string>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-          <widget class="QLabel" name="label_2">
-              <property name="geometry">
-                  <rect>
-                      <x>1</x>
-                      <y>68</y>
-                      <width>106</width>
-                      <height>26</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLabel {
+     </property>
+     <property name="text">
+      <string>Count</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>1</x>
+       <y>68</y>
+       <width>106</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -1935,30 +1977,30 @@
                       min-width: 20px;
                       }
                   </string>
-              </property>
-              <property name="text">
-                  <string>Max Mass</string>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-          <widget class="QLabel" name="label">
-              <property name="geometry">
-                  <rect>
-                      <x>1</x>
-                      <y>27</y>
-                      <width>106</width>
-                      <height>26</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLabel {
+     </property>
+     <property name="text">
+      <string>Max Mass</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>1</x>
+       <y>27</y>
+       <width>106</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -1980,30 +2022,30 @@
                       min-width: 20px;
                       }
                   </string>
-              </property>
-              <property name="text">
-                  <string>Min Mass</string>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-          <widget class="QLabel" name="label_4">
-              <property name="geometry">
-                  <rect>
-                      <x>1</x>
-                      <y>150</y>
-                      <width>106</width>
-                      <height>26</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLabel {
+     </property>
+     <property name="text">
+      <string>Min Mass</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>1</x>
+       <y>150</y>
+       <width>106</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -2025,30 +2067,30 @@
                       min-width: 20px;
                       }
                   </string>
-              </property>
-              <property name="text">
-                  <string>Max Radius</string>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-          <widget class="QLabel" name="label_3">
-              <property name="geometry">
-                  <rect>
-                      <x>1</x>
-                      <y>109</y>
-                      <width>106</width>
-                      <height>26</height>
-                  </rect>
-              </property>
-              <property name="font">
-                  <font>
-                      <family>8514oem</family>
-                  </font>
-              </property>
-              <property name="styleSheet">
-                  <string notr="true">QLabel {
+     </property>
+     <property name="text">
+      <string>Max Radius</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>1</x>
+       <y>109</y>
+       <width>106</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
                       color: #eee;
                       border: 3px solid #eee;
                       border-radius: 4px;
@@ -2070,31 +2112,31 @@
                       min-width: 20px;
                       }
                   </string>
-              </property>
-              <property name="text">
-                  <string>Min Radius</string>
-              </property>
-              <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-              </property>
-          </widget>
-      </widget>
-      <widget class="QPushButton" name="btnInitialize">
-          <property name="geometry">
-              <rect>
-                  <x>1</x>
-                  <y>560</y>
-                  <width>561</width>
-                  <height>26</height>
-              </rect>
-          </property>
-          <property name="font">
-              <font>
-                  <family>8514oem</family>
-              </font>
-          </property>
-          <property name="styleSheet">
-              <string notr="true">QPushButton {
+     </property>
+     <property name="text">
+      <string>Min Radius</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="btnInitialize">
+    <property name="geometry">
+     <rect>
+      <x>1</x>
+      <y>560</y>
+      <width>561</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>8514oem</family>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
                   color: #eee;
                   border: 3px solid #eee;
                   border-radius: 4px;
@@ -2117,27 +2159,27 @@
                   border: 3px solid #eee;
                   }
               </string>
-          </property>
-          <property name="text">
-              <string>Initialize Simulation with given Parameters</string>
-          </property>
-      </widget>
-      <widget class="QGroupBox" name="groupBox">
+    </property>
+    <property name="text">
+     <string>Initialize Simulation with given Parameters</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-         <x>1</x>
-         <y>600</y>
-         <width>559</width>
-         <height>59</height>
+      <x>1</x>
+      <y>600</y>
+      <width>559</width>
+      <height>59</height>
      </rect>
     </property>
-          <property name="font">
-              <font>
-                  <family>8514oem</family>
-              </font>
-          </property>
-          <property name="styleSheet">
-              <string notr="true">QGroupBox {
+    <property name="font">
+     <font>
+      <family>8514oem</family>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox {
                   color: #eee;
                   border: none;
                   border-radius: 4px;
@@ -2146,32 +2188,32 @@
                   min-width: 20px;
                   }
               </string>
-          </property>
-          <property name="title">
-              <string>Simulation Control</string>
-          </property>
-          <property name="alignment">
-              <set>Qt::AlignCenter</set>
-          </property>
-          <widget class="QWidget" name="horizontalLayoutWidget_2">
-              <property name="geometry">
-                  <rect>
-                      <x>0</x>
-                      <y>20</y>
-                      <width>561</width>
-                      <height>41</height>
-                  </rect>
-              </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_2">
-                  <item>
-                      <widget class="QPushButton" name="btnStart">
-                          <property name="font">
-                              <font>
-                                  <family>8514oem</family>
-                              </font>
-                          </property>
-                          <property name="styleSheet">
-                              <string notr="true">QPushButton {
+    </property>
+    <property name="title">
+     <string>Simulation Control</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <widget class="QWidget" name="horizontalLayoutWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>20</y>
+       <width>561</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="btnStart">
+        <property name="font">
+         <font>
+          <family>8514oem</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
                                   color: #eee;
                                   border: 3px solid #eee;
                                   border-radius: 4px;
@@ -2194,21 +2236,21 @@
                                   border: 3px solid #eee;
                                   }
                               </string>
-                          </property>
-                          <property name="text">
-                              <string>Start</string>
-                          </property>
-                      </widget>
-                  </item>
-                  <item>
-                      <widget class="QPushButton" name="btnPause">
-                          <property name="font">
-                              <font>
-                                  <family>8514oem</family>
-                              </font>
-                          </property>
-                          <property name="styleSheet">
-                              <string notr="true">QPushButton {
+        </property>
+        <property name="text">
+         <string>Start</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnPause">
+        <property name="font">
+         <font>
+          <family>8514oem</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
                                   color: #eee;
                                   border: 3px solid #eee;
                                   border-radius: 4px;
@@ -2231,21 +2273,21 @@
                                   border: 3px solid #eee;
                                   }
                               </string>
-                          </property>
-                          <property name="text">
-                              <string>Pause</string>
-                          </property>
-                      </widget>
-                  </item>
-                  <item>
-                      <widget class="QPushButton" name="btnStop">
-                          <property name="font">
-                              <font>
-                                  <family>8514oem</family>
-                              </font>
-                          </property>
-                          <property name="styleSheet">
-                              <string notr="true">QPushButton {
+        </property>
+        <property name="text">
+         <string>Pause</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnStop">
+        <property name="font">
+         <font>
+          <family>8514oem</family>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
                                   color: #eee;
                                   border: 3px solid #eee;
                                   border-radius: 4px;
@@ -2268,17 +2310,162 @@
                                   border: 3px solid #eee;
                                   }
                               </string>
-                          </property>
-                          <property name="text">
-                              <string>Stop</string>
-                          </property>
-                      </widget>
-                  </item>
-              </layout>
-          </widget>
-      </widget>
+        </property>
+        <property name="text">
+         <string>Stop</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>cbTemplate</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>gbPlanetPam</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>470</x>
+     <y>40</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>280</x>
+     <y>431</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbTemplate</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>gbCentralPam</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>470</x>
+     <y>40</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>280</x>
+     <y>267</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbTemplate</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>sbSpaceX</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>470</x>
+     <y>40</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>244</x>
+     <y>120</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbTemplate</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>sbSpaceY</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>470</x>
+     <y>40</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>244</x>
+     <y>160</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbTemplate</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>sbSpaceZ</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>470</x>
+     <y>40</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>244</x>
+     <y>200</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbTemplate</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>lbX</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>470</x>
+     <y>40</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>54</x>
+     <y>119</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbTemplate</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>lbY</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>470</x>
+     <y>40</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>54</x>
+     <y>159</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbTemplate</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>lbZ</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>470</x>
+     <y>40</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>54</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbTemplate</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>btnInitialize</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>470</x>
+     <y>40</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>572</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
