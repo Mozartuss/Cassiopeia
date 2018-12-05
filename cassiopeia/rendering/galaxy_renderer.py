@@ -117,7 +117,7 @@ class GalaxyRenderer:
             Render the scene using the sphere display list
         """
         if self.do_exit:
-            print('renderer exiting ...')
+            print('Stopping renderer...')
             # glut event loop needs hard exit ...
             sys.exit(0)
         if self.bodies is None:
@@ -163,8 +163,7 @@ class GalaxyRenderer:
         if self.render_pipe.poll():
             pipe_input = self.render_pipe.recv()
             if isinstance(pipe_input, str) and pipe_input == END_MESSAGE:
-                print("Stopping renderer...")
-                sys.exit(0)
+                self.do_exit = True
             elif isinstance(pipe_input, float):
                 if _SCALE_FACTOR is 1:
                     _SCALE_FACTOR = pipe_input

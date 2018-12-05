@@ -10,5 +10,5 @@ setup(
                  'dejan.pekez@hs-augsburg.de,'
                  'benjamin.altimiks@hs-augsburg.de,'
                  'lukas.kleybolte@hs-augsburg.de',
-    packages=['cassiopeia'], install_requires=['numpy']
+    packages=['cassiopeia'], install_requires=['numpy', 'PyQt5']
 )

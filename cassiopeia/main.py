@@ -1,6 +1,8 @@
 """
 Start simulation and renderer in separate processes connected by a pipe.
 """
+import multiprocessing
+import threading
 #
 # Copyright (C) 2017  "Peter Roesch" <Peter.Roesch@fh-augsburg.de>
 #
@@ -19,18 +21,15 @@ Start simulation and renderer in separate processes connected by a pipe.
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 # or open http://www.fsf.org/licensing/licenses/gpl.html
 #
-import multiprocessing
-import threading
 import time
-from signal import SIGINT, signal
-from sys import argv, exit
+from sys import argv
 
 from rendering import simulation_bridge, galaxy_renderer
 from rendering.simulation_constants import END_MESSAGE
 
 
-def _startup(json_path ="random_planets_x18.json", delta_t = 3600):
-    currentthread = threading.currentThread()
+def _startup(json_path="random_planets_x18.json", delta_t=3600):
+    current_thread = threading.currentThread()
     renderer_conn, simulation_conn = multiprocessing.Pipe()
     physics_debug_mode, render_debug_mode = False, False
     if len(argv) > 1:
@@ -41,28 +40,21 @@ def _startup(json_path ="random_planets_x18.json", delta_t = 3600):
 
     simulation_process = \
         multiprocessing.Process(target=simulation_bridge.startup,
-            args=(simulation_conn, json_path, delta_t, physics_debug_mode))
+                                args=(simulation_conn, json_path, delta_t, physics_debug_mode))
 
     render_process = \
         multiprocessing.Process(target=galaxy_renderer.startup,
-            args=(renderer_conn, 60, render_debug_mode))
+                                args=(renderer_conn, 60, render_debug_mode))
 
     simulation_process.start()
     render_process.start()
 
-    while getattr(currentthread, "do_run", True):
+    while getattr(current_thread, "do_run", True):
         time.sleep(1)
 
-    print("exit signal received")
+    print("Exit signal received")
 
     simulation_conn.send(END_MESSAGE)
     renderer_conn.send(END_MESSAGE)
     simulation_process.join()
     render_process.join()
-
-
-if __name__ == '__main__':
-    """
-    json_path, delta_t
-    """
-    #_startup("random_planets_x18.json", 60 * 60)
