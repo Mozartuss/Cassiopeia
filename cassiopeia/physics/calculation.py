@@ -55,10 +55,8 @@ class Calculation:
         The open_json load the json data from the src directory
         :return: A dictionary of the planet data
         """
-        # We have to work with absolute paths, that's why we're using __file__
         current_dir = path.dirname(__file__)
         upper_dir = path.realpath(path.join(current_dir, ".."))
-        # templates_dir = path.join(upper_dir, "templates")
         with open(path.join(upper_dir, self.json_path)) as f:
             planet_dict = json.load(f)
         return planet_dict
