@@ -44,7 +44,7 @@ class SetupGalaxy:
         self.space_y = space_y
         self.space_z = space_z
         self.positions = list()
-        print(self.planet_amount)
+        print("Planet amount:", self.planet_amount)
 
     def setup(self):
         planet_system = [{
@@ -86,7 +86,7 @@ class SetupGalaxy:
         :return: a unique position
         """
         pos = zeros(3, float64)
-        positions_max = [self.space_x * 10 ** 9, self.space_y * 10 ** 9, self.space_z]
+        positions_max = [self.space_x * 10 ** 9, self.space_y * 10 ** 9, self.space_z * 10 ** 9]
 
         pos[0] = int(random.uniform(-positions_max[0], positions_max[0]))
         pos[1] = int(random.uniform(-positions_max[1], positions_max[1]))

@@ -7,8 +7,7 @@ from os import path
 
 import numpy
 
-X_INDEX = 0
-Y_INDEX = 1
+X_INDEX, Y_INDEX, Z_INDEX = 0, 1, 2
 
 
 class Calculation:
@@ -178,7 +177,6 @@ class Calculation:
         # with 100 elements, where each of those 100 elements
         # is itself an array with 10 elements, where each of these
         # elements contains 4 values (x, y, z, radius, e.g.)
-        i = 0
         while self._is_running:
             # One planet with 4 values (x, y, z, scale)
             positions_in_frame = numpy.zeros((len(self.planets), 4), dtype=numpy.float64)
@@ -187,6 +185,7 @@ class Calculation:
                     new_pos = self.calc_obj_new_pos(planet)  # IDs start from 1
                     positions_in_frame[planet][X_INDEX] = new_pos[X_INDEX]
                     positions_in_frame[planet][Y_INDEX] = new_pos[Y_INDEX]
+                    positions_in_frame[planet][Z_INDEX] = new_pos[Z_INDEX]
             yield positions_in_frame
 
     def calc_obj_new_pos(self, current_planet):
