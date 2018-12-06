@@ -35,6 +35,8 @@ class Calculation:
         """
 
         if "random" in json_path:
+            print("{:20}, {:62}, {:26}".format("Name", "Velocity", "Position"))
+            print("\n")
             for i in range(len(self.planets)):
                 if i != 0:
                     velocity = self.velocity_direction(i)
@@ -57,8 +59,8 @@ class Calculation:
         # We have to work with absolute paths, that's why we're using __file__
         current_dir = path.dirname(__file__)
         upper_dir = path.realpath(path.join(current_dir, ".."))
-        templates_dir = path.join(upper_dir, "templates")
-        with open(path.join(templates_dir, self.json_path)) as f:
+        # templates_dir = path.join(upper_dir, "templates")
+        with open(path.join(upper_dir, self.json_path)) as f:
             planet_dict = json.load(f)
         return planet_dict
 
@@ -211,10 +213,3 @@ class Calculation:
     def stop(self):
         """ Stops the calculation of new frames """
         self._is_running = False
-
-
-if __name__ == '__main__':
-    c = Calculation()
-    m = c.calc_frame_positions()
-    for pos in m:
-        print(pos)
