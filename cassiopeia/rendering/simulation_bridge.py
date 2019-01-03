@@ -23,7 +23,7 @@
 import sys
 import time
 
-from physics.calculation import Calculation
+from physics.cython_calculation import Calculation
 from rendering.simulation_constants import END_MESSAGE
 
 __FPS = 60
