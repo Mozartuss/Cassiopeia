@@ -33,6 +33,12 @@ cdef class Calculation:
         self.amount_of_planets_list = list(range(len(self.planets)))
         self.gravitation = G
 
+        """
+        Cast dict to Array
+        Set the correct mass
+        Cast Pos to ndarray 
+        """
+
         cdef int i
         for i in self.amount_of_planets_list:
             temp = []
@@ -47,7 +53,7 @@ cdef class Calculation:
         """
         If we load a random_planet_....json
         """
-        cdef numpy.ndarray[numpy.float64_t, ndim=1] velocity = numpy.zeros(3, dtype=numpy.float64)
+        cdef numpy.ndarray velocity = numpy.zeros(3, dtype=numpy.float64)
         if "random" in json_path:
             print("{:20}, {:62}, {:26}".format("Name", "Velocity", "Position"))
             print("\n")
@@ -82,22 +88,22 @@ cdef class Calculation:
 
         return dist_abs
 
-    cdef numpy.ndarray[numpy.float64_t, ndim=1] dist_vec(self, numpy.ndarray planet_1, numpy.ndarray planet_2):
+    cdef numpy.ndarray dist_vec(self, numpy.ndarray planet_1, numpy.ndarray planet_2):
         cdef numpy.ndarray dist_vec = planet_1 - planet_2
 
         return dist_vec
 
-    cdef numpy.ndarray[numpy.float64_t, ndim=1] calc_acceleration(self, int planet_index):
+    cdef numpy.ndarray calc_acceleration(self, int planet_index):
         """
         Calculate the acceleration of planet1
         :param planet_index: the current planet
         :return: a acceleration vector
         """
-        cdef numpy.ndarray[numpy.float64_t, ndim=1] current_planet_pos = numpy.array(self.planets[planet_index][3], dtype=numpy.float64)
+        cdef numpy.ndarray current_planet_pos = numpy.array(self.planets[planet_index][3], dtype=numpy.float64)
         cdef double current_planet_mass = self.planets[planet_index][1]
 
-        cdef numpy.ndarray[numpy.float64_t, ndim=1] current_planet_force = numpy.empty(3, dtype=numpy.float64)
-        cdef numpy.ndarray[numpy.float64_t, ndim=1] dist_vector = numpy.empty(3, dtype=numpy.float64)
+        cdef numpy.ndarray current_planet_force = numpy.empty(3, dtype=numpy.float64)
+        cdef numpy.ndarray dist_vector = numpy.empty(3, dtype=numpy.float64)
         cdef double dist_absolute
         cdef double mass_different
         cdef int i
@@ -110,7 +116,7 @@ cdef class Calculation:
                 current_planet_force = current_planet_force + self.gravitation * \
                                        (mass_different / (dist_absolute ** 3)) * dist_vector
 
-        cdef numpy.ndarray[numpy.float64_t, ndim=1] current_planet_acceleration = (current_planet_force / current_planet_mass)
+        cdef numpy.ndarray current_planet_acceleration = (current_planet_force / current_planet_mass)
 
         return current_planet_acceleration
 
@@ -139,25 +145,25 @@ cdef class Calculation:
 
         return velocity
 
-    cdef numpy.ndarray[numpy.float64_t, ndim=1] velocity_direction(self, int current_planet):
+    cdef numpy.ndarray velocity_direction(self, int current_planet):
         """
         Calculate the velocity_direction in Z-direction
         :param current_planet:
         :return:
         """
-        cdef numpy.ndarray[numpy.float64_t, ndim=1] distance_vec \
+        cdef numpy.ndarray distance_vec \
             = self.dist_vec(numpy.array((self.planets[current_planet][3]), dtype=numpy.float64),
                             (numpy.array(self.mass_focus_without_planet_x(current_planet), dtype=numpy.float64)))
-        cdef numpy.ndarray[numpy.float64_t, ndim=1] z_direction = numpy.array([0, 0, 1], dtype=numpy.float64)
-        cdef numpy.ndarray[numpy.float64_t, ndim=1] velocity_direction = numpy.cross(distance_vec, z_direction)
+        cdef numpy.ndarray z_direction = numpy.array([0, 0, 1], dtype=numpy.float64)
+        cdef numpy.ndarray velocity_direction = numpy.cross(distance_vec, z_direction)
         cdef double velocity_direction_abs = numpy.linalg.norm(velocity_direction)
         cdef double abs_velocity = self.abs_velocity(self.total_mass(), current_planet)
-        cdef numpy.ndarray[numpy.float64_t, ndim=1] velocity = (velocity_direction / velocity_direction_abs) * \
+        cdef numpy.ndarray velocity = (velocity_direction / velocity_direction_abs) * \
                                                                abs_velocity
 
         return velocity
 
-    cdef numpy.ndarray[numpy.float64_t, ndim=1] mass_focus_without_planet_x(self, int planet_index):
+    cdef numpy.ndarray mass_focus_without_planet_x(self, int planet_index):
         """
         the mass focus without the planet(l)
         :param planet_index: the planet we didn't want to calc
@@ -169,7 +175,7 @@ cdef class Calculation:
             if i != planet_index:
                 sum_mass_pos = sum_mass_pos + self.planets[i][1] * self.planets[i][3]
 
-        cdef numpy.ndarray[numpy.float64_t, ndim=1] mass_focus_without_planet_x = numpy.array(((1 / self.total_mass()) * sum_mass_pos),dtype=numpy.float64)
+        cdef numpy.ndarray mass_focus_without_planet_x = numpy.array(((1 / self.total_mass()) * sum_mass_pos),dtype=numpy.float64)
 
         return mass_focus_without_planet_x
 
@@ -188,7 +194,9 @@ cdef class Calculation:
         cdef numpy.ndarray new_pos
         cdef numpy.ndarray position_in_frame
 
-        while self._is_running:
+        cdef int co = 0
+        while co < 1000:
+            co = co + 1
             # One planet with 4 values (x, y, z, scale)
             positions_in_frame = numpy.zeros((len(self.planets), 4), dtype=numpy.float64)
             for i in range(positions_in_frame.shape[0]):  # shape[1] contains
@@ -200,18 +208,18 @@ cdef class Calculation:
                     positions_in_frame[i][3] = self.planets[i][4] # <-- add radius
             yield positions_in_frame
 
-    cdef numpy.ndarray[numpy.float64_t, ndim=1] calc_obj_new_pos(self, int current_planet):
+    cdef numpy.ndarray calc_obj_new_pos(self, int current_planet):
         """
         calculate the single planet
         :param current_planet: the planet we want to calculate
         :return: a new position vector
         """
 
-        cdef numpy.ndarray[numpy.float64_t, ndim=1] current_planet_acceleration = self.calc_acceleration(current_planet)
-        cdef numpy.ndarray[numpy.float64_t, ndim=1] current_planet_velocity = self.planets[current_planet][5]
+        cdef numpy.ndarray current_planet_acceleration = self.calc_acceleration(current_planet)
+        cdef numpy.ndarray current_planet_velocity = self.planets[current_planet][5]
         cdef int d_t = self.delta_t
 
-        cdef numpy.ndarray[numpy.float64_t, ndim=1] new_pos = self.planets[current_planet][3] + \
+        cdef numpy.ndarray new_pos = self.planets[current_planet][3] + \
                                      numpy.multiply(d_t, current_planet_velocity) + \
                                      numpy.multiply(((d_t ** 2) / 2), current_planet_acceleration)
 
