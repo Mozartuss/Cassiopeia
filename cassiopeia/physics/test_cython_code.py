@@ -26,11 +26,11 @@ def cython_test():
 
 @timeit
 def pure_test():
-    p = pure("/home/mo7art/PycharmProjects/Prog3/cassiopeia/cassiopeia/templates/random_planets_x501.json", 3600)
+    p = pure("/home/mo7art/PycharmProjects/Prog3/cassiopeia/cassiopeia/templates/random_planets_x18.json", 3600)
     for pi in p.calc_frame_positions():
         pass
 
 
 if __name__ == '__main__':
-    cython_test()
+    #cython_test()
     pure_test()
