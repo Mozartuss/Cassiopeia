@@ -1130,7 +1130,7 @@ struct __pyx_obj_18cython_calculation_Calculation {
 };
 
 
-/* "cython_calculation.pyx":176
+/* "cython_calculation.pyx":188
  *         return mass_focus_without_planet_x
  * 
  *     def calc_frame_positions(self):             # <<<<<<<<<<<<<<
@@ -1139,7 +1139,6 @@ struct __pyx_obj_18cython_calculation_Calculation {
  */
 struct __pyx_obj_18cython_calculation___pyx_scope_struct__calc_frame_positions {
   PyObject_HEAD
-  int __pyx_v_co;
   int __pyx_v_i;
   PyArrayObject *__pyx_v_new_pos;
   PyArrayObject *__pyx_v_position_in_frame;
@@ -1167,6 +1166,7 @@ struct __pyx_vtabstruct_18cython_calculation_Calculation {
   PyArrayObject *(*mass_focus_without_planet_x)(struct __pyx_obj_18cython_calculation_Calculation *, int);
   PyArrayObject *(*calc_obj_new_pos)(struct __pyx_obj_18cython_calculation_Calculation *, int);
   PyObject *(*stop)(struct __pyx_obj_18cython_calculation_Calculation *, int __pyx_skip_dispatch);
+  PyObject *(*profile)(struct __pyx_obj_18cython_calculation_Calculation *, int, int __pyx_skip_dispatch);
 };
 static struct __pyx_vtabstruct_18cython_calculation_Calculation *__pyx_vtabptr_18cython_calculation_Calculation;
 
@@ -1527,9 +1527,6 @@ static void __Pyx_WriteUnraisable(const char *name, int clineno,
                                   int lineno, const char *filename,
                                   int full_traceback, int nogil);
 
-/* None.proto */
-static CYTHON_INLINE long __Pyx_div_long(long, long);
-
 /* PyErrExceptionMatches.proto */
 #if CYTHON_FAST_THREAD_STATE
 #define __Pyx_PyErr_ExceptionMatches(err) __Pyx_PyErr_ExceptionMatchesInState(__pyx_tstate, err)
@@ -1867,6 +1864,9 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_velocity_direct
 static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_mass_focus_without_planet_x(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self, int __pyx_v_planet_index); /* proto*/
 static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_obj_new_pos(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self, int __pyx_v_current_planet); /* proto*/
 static PyObject *__pyx_f_18cython_calculation_11Calculation_stop(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
+static PyObject *__pyx_f_18cython_calculation_11Calculation_profile(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self, int __pyx_v_num, int __pyx_skip_dispatch); /* proto*/
+
+/* Module declarations from 'cython' */
 
 /* Module declarations from 'cpython.buffer' */
 
@@ -1964,6 +1964,7 @@ static const char __pyx_k_7_52_36[] = "{:7}, {:>52}, {:>36}";
 static const char __pyx_k_delta_t[] = "delta_t";
 static const char __pyx_k_dirname[] = "dirname";
 static const char __pyx_k_float64[] = "float64";
+static const char __pyx_k_profile[] = "profile";
 static const char __pyx_k_20_62_26[] = "{:20}, {:62}, {:26}";
 static const char __pyx_k_Position[] = "Position";
 static const char __pyx_k_Velocity[] = "Velocity";
@@ -2068,6 +2069,7 @@ static PyObject *__pyx_n_s_os;
 static PyObject *__pyx_n_s_path;
 static PyObject *__pyx_n_s_pickle;
 static PyObject *__pyx_n_s_print;
+static PyObject *__pyx_n_s_profile;
 static PyObject *__pyx_n_s_pyx_PickleError;
 static PyObject *__pyx_n_s_pyx_checksum;
 static PyObject *__pyx_n_s_pyx_result;
@@ -2097,10 +2099,11 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
 static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_18cython_calculation_11Calculation_4calc_frame_positions(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_18cython_calculation_11Calculation_7stop(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_18cython_calculation_11Calculation_9profile(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self, int __pyx_v_num); /* proto */
 static PyObject *__pyx_pf_18cython_calculation_11Calculation_11_is_running___get__(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self); /* proto */
 static int __pyx_pf_18cython_calculation_11Calculation_11_is_running_2__set__(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_18cython_calculation_11Calculation_9__reduce_cython__(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_18cython_calculation_11Calculation_11__setstate_cython__(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_18cython_calculation_11Calculation_11__reduce_cython__(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_18cython_calculation_11Calculation_13__setstate_cython__(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_18cython_calculation___pyx_unpickle_Calculation(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info); /* proto */
@@ -2315,7 +2318,7 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
  *         self.amount_of_planets_list = list(range(len(self.planets)))
  *         self.gravitation = G             # <<<<<<<<<<<<<<
  * 
- *         cdef int i
+ *         """
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_G); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -2323,7 +2326,7 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->gravitation = __pyx_t_5;
 
-  /* "cython_calculation.pyx":37
+  /* "cython_calculation.pyx":43
  * 
  *         cdef int i
  *         for i in self.amount_of_planets_list:             # <<<<<<<<<<<<<<
@@ -2332,34 +2335,34 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
  */
   if (unlikely(__pyx_v_self->amount_of_planets_list == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 37, __pyx_L1_error)
+    __PYX_ERR(0, 43, __pyx_L1_error)
   }
   __pyx_t_1 = __pyx_v_self->amount_of_planets_list; __Pyx_INCREF(__pyx_t_1); __pyx_t_4 = 0;
   for (;;) {
     if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_1)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 37, __pyx_L1_error)
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 43, __pyx_L1_error)
     #else
-    __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
+    __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
-    __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 37, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 43, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_i = __pyx_t_6;
 
-    /* "cython_calculation.pyx":38
+    /* "cython_calculation.pyx":44
  *         cdef int i
  *         for i in self.amount_of_planets_list:
  *             temp = []             # <<<<<<<<<<<<<<
  *             for key, item in self.planets[i].items():
  *                 if key == "Mass":
  */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 44, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_XDECREF_SET(__pyx_v_temp, ((PyObject*)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "cython_calculation.pyx":39
+    /* "cython_calculation.pyx":45
  *         for i in self.amount_of_planets_list:
  *             temp = []
  *             for key, item in self.planets[i].items():             # <<<<<<<<<<<<<<
@@ -2368,9 +2371,9 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
  */
     if (unlikely(__pyx_v_self->planets == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 39, __pyx_L1_error)
+      __PYX_ERR(0, 45, __pyx_L1_error)
     }
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), __pyx_n_s_items); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), __pyx_n_s_items); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 45, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_7 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -2384,16 +2387,16 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
     }
     __pyx_t_2 = (__pyx_t_7) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_7) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
       __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3); __pyx_t_8 = 0;
       __pyx_t_9 = NULL;
     } else {
-      __pyx_t_8 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
+      __pyx_t_8 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 45, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_9 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 39, __pyx_L1_error)
+      __pyx_t_9 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 45, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     for (;;) {
@@ -2401,17 +2404,17 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
         if (likely(PyList_CheckExact(__pyx_t_3))) {
           if (__pyx_t_8 >= PyList_GET_SIZE(__pyx_t_3)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_2); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 39, __pyx_L1_error)
+          __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_2); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 45, __pyx_L1_error)
           #else
-          __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
+          __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           #endif
         } else {
           if (__pyx_t_8 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_2); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 39, __pyx_L1_error)
+          __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_2); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 45, __pyx_L1_error)
           #else
-          __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
+          __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           #endif
         }
@@ -2421,7 +2424,7 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 39, __pyx_L1_error)
+            else __PYX_ERR(0, 45, __pyx_L1_error)
           }
           break;
         }
@@ -2433,7 +2436,7 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 39, __pyx_L1_error)
+          __PYX_ERR(0, 45, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -2446,15 +2449,15 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
         __Pyx_INCREF(__pyx_t_7);
         __Pyx_INCREF(__pyx_t_10);
         #else
-        __pyx_t_7 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 39, __pyx_L1_error)
+        __pyx_t_7 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 45, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        __pyx_t_10 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 39, __pyx_L1_error)
+        __pyx_t_10 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 45, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         #endif
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_11 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 39, __pyx_L1_error)
+        __pyx_t_11 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 45, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_t_12 = Py_TYPE(__pyx_t_11)->tp_iternext;
@@ -2462,7 +2465,7 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
         __Pyx_GOTREF(__pyx_t_7);
         index = 1; __pyx_t_10 = __pyx_t_12(__pyx_t_11); if (unlikely(!__pyx_t_10)) goto __pyx_L7_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_10);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_12(__pyx_t_11), 2) < 0) __PYX_ERR(0, 39, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_12(__pyx_t_11), 2) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
         __pyx_t_12 = NULL;
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         goto __pyx_L8_unpacking_done;
@@ -2470,7 +2473,7 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         __pyx_t_12 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 39, __pyx_L1_error)
+        __PYX_ERR(0, 45, __pyx_L1_error)
         __pyx_L8_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_7);
@@ -2478,29 +2481,29 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
       __Pyx_XDECREF_SET(__pyx_v_item, __pyx_t_10);
       __pyx_t_10 = 0;
 
-      /* "cython_calculation.pyx":40
+      /* "cython_calculation.pyx":46
  *             temp = []
  *             for key, item in self.planets[i].items():
  *                 if key == "Mass":             # <<<<<<<<<<<<<<
  *                     item = item * 10 ** 24
  *                 if key == "Pos":
  */
-      __pyx_t_13 = (__Pyx_PyString_Equals(__pyx_v_key, __pyx_n_s_Mass, Py_EQ)); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 40, __pyx_L1_error)
+      __pyx_t_13 = (__Pyx_PyString_Equals(__pyx_v_key, __pyx_n_s_Mass, Py_EQ)); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 46, __pyx_L1_error)
       if (__pyx_t_13) {
 
-        /* "cython_calculation.pyx":41
+        /* "cython_calculation.pyx":47
  *             for key, item in self.planets[i].items():
  *                 if key == "Mass":
  *                     item = item * 10 ** 24             # <<<<<<<<<<<<<<
  *                 if key == "Pos":
  *                     item = numpy.array(item, dtype=numpy.float64)
  */
-        __pyx_t_2 = PyNumber_Multiply(__pyx_v_item, __pyx_int_1000000000000000000000000); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
+        __pyx_t_2 = PyNumber_Multiply(__pyx_v_item, __pyx_int_1000000000000000000000000); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF_SET(__pyx_v_item, __pyx_t_2);
         __pyx_t_2 = 0;
 
-        /* "cython_calculation.pyx":40
+        /* "cython_calculation.pyx":46
  *             temp = []
  *             for key, item in self.planets[i].items():
  *                 if key == "Mass":             # <<<<<<<<<<<<<<
@@ -2509,43 +2512,43 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
  */
       }
 
-      /* "cython_calculation.pyx":42
+      /* "cython_calculation.pyx":48
  *                 if key == "Mass":
  *                     item = item * 10 ** 24
  *                 if key == "Pos":             # <<<<<<<<<<<<<<
  *                     item = numpy.array(item, dtype=numpy.float64)
- *                 temp.append(item)
+ *                 if key == "Velocity":
  */
-      __pyx_t_13 = (__Pyx_PyString_Equals(__pyx_v_key, __pyx_n_s_Pos, Py_EQ)); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 42, __pyx_L1_error)
+      __pyx_t_13 = (__Pyx_PyString_Equals(__pyx_v_key, __pyx_n_s_Pos, Py_EQ)); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 48, __pyx_L1_error)
       if (__pyx_t_13) {
 
-        /* "cython_calculation.pyx":43
+        /* "cython_calculation.pyx":49
  *                     item = item * 10 ** 24
  *                 if key == "Pos":
  *                     item = numpy.array(item, dtype=numpy.float64)             # <<<<<<<<<<<<<<
- *                 temp.append(item)
- *             self.planets[i] = temp
+ *                 if key == "Velocity":
+ *                     item = numpy.array(item, dtype=numpy.float64)
  */
-        __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_array); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 43, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_array); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 49, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_INCREF(__pyx_v_item);
         __Pyx_GIVEREF(__pyx_v_item);
         PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_item);
-        __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 43, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 49, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_n_s_numpy); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 43, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_n_s_numpy); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 49, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
-        __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_float64); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 43, __pyx_L1_error)
+        __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_float64); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 49, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-        if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_dtype, __pyx_t_14) < 0) __PYX_ERR(0, 43, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_dtype, __pyx_t_14) < 0) __PYX_ERR(0, 49, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-        __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_2, __pyx_t_7); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 43, __pyx_L1_error)
+        __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_2, __pyx_t_7); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 49, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -2553,25 +2556,78 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
         __Pyx_DECREF_SET(__pyx_v_item, __pyx_t_14);
         __pyx_t_14 = 0;
 
-        /* "cython_calculation.pyx":42
+        /* "cython_calculation.pyx":48
  *                 if key == "Mass":
  *                     item = item * 10 ** 24
  *                 if key == "Pos":             # <<<<<<<<<<<<<<
+ *                     item = numpy.array(item, dtype=numpy.float64)
+ *                 if key == "Velocity":
+ */
+      }
+
+      /* "cython_calculation.pyx":50
+ *                 if key == "Pos":
+ *                     item = numpy.array(item, dtype=numpy.float64)
+ *                 if key == "Velocity":             # <<<<<<<<<<<<<<
+ *                     item = numpy.array(item, dtype=numpy.float64)
+ *                 temp.append(item)
+ */
+      __pyx_t_13 = (__Pyx_PyString_Equals(__pyx_v_key, __pyx_n_s_Velocity, Py_EQ)); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 50, __pyx_L1_error)
+      if (__pyx_t_13) {
+
+        /* "cython_calculation.pyx":51
+ *                     item = numpy.array(item, dtype=numpy.float64)
+ *                 if key == "Velocity":
+ *                     item = numpy.array(item, dtype=numpy.float64)             # <<<<<<<<<<<<<<
+ *                 temp.append(item)
+ *             self.planets[i] = temp
+ */
+        __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_numpy); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 51, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_14);
+        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_14, __pyx_n_s_array); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 51, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+        __pyx_t_14 = PyTuple_New(1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 51, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_14);
+        __Pyx_INCREF(__pyx_v_item);
+        __Pyx_GIVEREF(__pyx_v_item);
+        PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_v_item);
+        __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_numpy); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 51, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_float64); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 51, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_11);
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+        if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_11) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+        __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_14, __pyx_t_2); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 51, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_11);
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __Pyx_DECREF_SET(__pyx_v_item, __pyx_t_11);
+        __pyx_t_11 = 0;
+
+        /* "cython_calculation.pyx":50
+ *                 if key == "Pos":
+ *                     item = numpy.array(item, dtype=numpy.float64)
+ *                 if key == "Velocity":             # <<<<<<<<<<<<<<
  *                     item = numpy.array(item, dtype=numpy.float64)
  *                 temp.append(item)
  */
       }
 
-      /* "cython_calculation.pyx":44
- *                 if key == "Pos":
+      /* "cython_calculation.pyx":52
+ *                 if key == "Velocity":
  *                     item = numpy.array(item, dtype=numpy.float64)
  *                 temp.append(item)             # <<<<<<<<<<<<<<
  *             self.planets[i] = temp
  * 
  */
-      __pyx_t_15 = __Pyx_PyList_Append(__pyx_v_temp, __pyx_v_item); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 44, __pyx_L1_error)
+      __pyx_t_15 = __Pyx_PyList_Append(__pyx_v_temp, __pyx_v_item); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 52, __pyx_L1_error)
 
-      /* "cython_calculation.pyx":39
+      /* "cython_calculation.pyx":45
  *         for i in self.amount_of_planets_list:
  *             temp = []
  *             for key, item in self.planets[i].items():             # <<<<<<<<<<<<<<
@@ -2581,7 +2637,7 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "cython_calculation.pyx":45
+    /* "cython_calculation.pyx":53
  *                     item = numpy.array(item, dtype=numpy.float64)
  *                 temp.append(item)
  *             self.planets[i] = temp             # <<<<<<<<<<<<<<
@@ -2590,11 +2646,11 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
  */
     if (unlikely(__pyx_v_self->planets == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 45, __pyx_L1_error)
+      __PYX_ERR(0, 53, __pyx_L1_error)
     }
-    if (unlikely(__Pyx_SetItemInt(__pyx_v_self->planets, __pyx_v_i, __pyx_v_temp, int, 1, __Pyx_PyInt_From_int, 1, 0, 0) < 0)) __PYX_ERR(0, 45, __pyx_L1_error)
+    if (unlikely(__Pyx_SetItemInt(__pyx_v_self->planets, __pyx_v_i, __pyx_v_temp, int, 1, __Pyx_PyInt_From_int, 1, 0, 0) < 0)) __PYX_ERR(0, 53, __pyx_L1_error)
 
-    /* "cython_calculation.pyx":37
+    /* "cython_calculation.pyx":43
  * 
  *         cdef int i
  *         for i in self.amount_of_planets_list:             # <<<<<<<<<<<<<<
@@ -2604,71 +2660,71 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cython_calculation.pyx":50
+  /* "cython_calculation.pyx":58
  *         If we load a random_planet_....json
  *         """
  *         cdef numpy.ndarray velocity = numpy.zeros(3, dtype=numpy.float64)             # <<<<<<<<<<<<<<
  *         if "random" in json_path:
  *             print("{:20}, {:62}, {:26}".format("Name", "Velocity", "Position"))
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_numpy); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 50, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_14);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_14, __pyx_n_s_float64); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 50, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_7) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple_, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 50, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_n_s_numpy); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_11);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_float64); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_2) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple_, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_7) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_7, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 50, __pyx_L1_error)
-  __pyx_v_velocity = ((PyArrayObject *)__pyx_t_7);
-  __pyx_t_7 = 0;
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_v_velocity = ((PyArrayObject *)__pyx_t_2);
+  __pyx_t_2 = 0;
 
-  /* "cython_calculation.pyx":51
+  /* "cython_calculation.pyx":59
  *         """
  *         cdef numpy.ndarray velocity = numpy.zeros(3, dtype=numpy.float64)
  *         if "random" in json_path:             # <<<<<<<<<<<<<<
  *             print("{:20}, {:62}, {:26}".format("Name", "Velocity", "Position"))
  *             print("\n")
  */
-  __pyx_t_13 = (__Pyx_PySequence_ContainsTF(__pyx_n_s_random, __pyx_v_json_path, Py_EQ)); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_13 = (__Pyx_PySequence_ContainsTF(__pyx_n_s_random, __pyx_v_json_path, Py_EQ)); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 59, __pyx_L1_error)
   __pyx_t_16 = (__pyx_t_13 != 0);
   if (__pyx_t_16) {
 
-    /* "cython_calculation.pyx":52
+    /* "cython_calculation.pyx":60
  *         cdef numpy.ndarray velocity = numpy.zeros(3, dtype=numpy.float64)
  *         if "random" in json_path:
  *             print("{:20}, {:62}, {:26}".format("Name", "Velocity", "Position"))             # <<<<<<<<<<<<<<
  *             print("\n")
  *             for i in self.amount_of_planets_list:
  */
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_20_62_26, __pyx_n_s_format); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 52, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_20_62_26, __pyx_n_s_format); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 60, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (__Pyx_PrintOne(0, __pyx_t_1) < 0) __PYX_ERR(0, 52, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (__Pyx_PrintOne(0, __pyx_t_1) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "cython_calculation.pyx":53
+    /* "cython_calculation.pyx":61
  *         if "random" in json_path:
  *             print("{:20}, {:62}, {:26}".format("Name", "Velocity", "Position"))
  *             print("\n")             # <<<<<<<<<<<<<<
  *             for i in self.amount_of_planets_list:
  *                 if i != 0:
  */
-    if (__Pyx_PrintOne(0, __pyx_kp_s__3) < 0) __PYX_ERR(0, 53, __pyx_L1_error)
+    if (__Pyx_PrintOne(0, __pyx_kp_s__3) < 0) __PYX_ERR(0, 61, __pyx_L1_error)
 
-    /* "cython_calculation.pyx":54
+    /* "cython_calculation.pyx":62
  *             print("{:20}, {:62}, {:26}".format("Name", "Velocity", "Position"))
  *             print("\n")
  *             for i in self.amount_of_planets_list:             # <<<<<<<<<<<<<<
@@ -2677,22 +2733,22 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
  */
     if (unlikely(__pyx_v_self->amount_of_planets_list == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 54, __pyx_L1_error)
+      __PYX_ERR(0, 62, __pyx_L1_error)
     }
     __pyx_t_1 = __pyx_v_self->amount_of_planets_list; __Pyx_INCREF(__pyx_t_1); __pyx_t_4 = 0;
     for (;;) {
       if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_1)) break;
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_7 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_7); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 54, __pyx_L1_error)
+      __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 62, __pyx_L1_error)
       #else
-      __pyx_t_7 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 54, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_7);
+      __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 62, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
       #endif
-      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_7); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 54, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 62, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_v_i = __pyx_t_6;
 
-      /* "cython_calculation.pyx":55
+      /* "cython_calculation.pyx":63
  *             print("\n")
  *             for i in self.amount_of_planets_list:
  *                 if i != 0:             # <<<<<<<<<<<<<<
@@ -2702,19 +2758,19 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
       __pyx_t_16 = ((__pyx_v_i != 0) != 0);
       if (__pyx_t_16) {
 
-        /* "cython_calculation.pyx":56
+        /* "cython_calculation.pyx":64
  *             for i in self.amount_of_planets_list:
  *                 if i != 0:
  *                     velocity = self.velocity_direction(i)             # <<<<<<<<<<<<<<
  *                     self.planets[i].append(velocity)
  *                     print("{:7}, {:>52}, {:>36}".format(
  */
-        __pyx_t_7 = ((PyObject *)((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->velocity_direction(__pyx_v_self, __pyx_v_i)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 56, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_7);
-        __Pyx_DECREF_SET(__pyx_v_velocity, ((PyArrayObject *)__pyx_t_7));
-        __pyx_t_7 = 0;
+        __pyx_t_2 = ((PyObject *)((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->velocity_direction(__pyx_v_self, __pyx_v_i)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 64, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_DECREF_SET(__pyx_v_velocity, ((PyArrayObject *)__pyx_t_2));
+        __pyx_t_2 = 0;
 
-        /* "cython_calculation.pyx":57
+        /* "cython_calculation.pyx":65
  *                 if i != 0:
  *                     velocity = self.velocity_direction(i)
  *                     self.planets[i].append(velocity)             # <<<<<<<<<<<<<<
@@ -2723,21 +2779,21 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
  */
         if (unlikely(__pyx_v_self->planets == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 57, __pyx_L1_error)
+          __PYX_ERR(0, 65, __pyx_L1_error)
         }
-        __pyx_t_15 = __Pyx_PyObject_Append(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), ((PyObject *)__pyx_v_velocity)); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 57, __pyx_L1_error)
+        __pyx_t_15 = __Pyx_PyObject_Append(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), ((PyObject *)__pyx_v_velocity)); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 65, __pyx_L1_error)
 
-        /* "cython_calculation.pyx":58
+        /* "cython_calculation.pyx":66
  *                     velocity = self.velocity_direction(i)
  *                     self.planets[i].append(velocity)
  *                     print("{:7}, {:>52}, {:>36}".format(             # <<<<<<<<<<<<<<
  *                         self.planets[i][2], str(self.planets[i][5]), str(self.planets[i][3])))
  *                 else:
  */
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_7_52_36, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_7_52_36, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
 
-        /* "cython_calculation.pyx":59
+        /* "cython_calculation.pyx":67
  *                     self.planets[i].append(velocity)
  *                     print("{:7}, {:>52}, {:>36}".format(
  *                         self.planets[i][2], str(self.planets[i][5]), str(self.planets[i][3])))             # <<<<<<<<<<<<<<
@@ -2746,35 +2802,35 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
  */
         if (unlikely(__pyx_v_self->planets == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 59, __pyx_L1_error)
+          __PYX_ERR(0, 67, __pyx_L1_error)
         }
-        __pyx_t_14 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 59, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_14);
-        if (unlikely(__pyx_v_self->planets == Py_None)) {
-          PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 59, __pyx_L1_error)
-        }
-        __pyx_t_2 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_10 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_t_2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 59, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_10);
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        if (unlikely(__pyx_v_self->planets == Py_None)) {
-          PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 59, __pyx_L1_error)
-        }
-        __pyx_t_2 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_11 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_t_2); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 59, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 67, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_2 = NULL;
+        if (unlikely(__pyx_v_self->planets == Py_None)) {
+          PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+          __PYX_ERR(0, 67, __pyx_L1_error)
+        }
+        __pyx_t_14 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 67, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_14);
+        __pyx_t_7 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_t_14); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 67, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+        if (unlikely(__pyx_v_self->planets == Py_None)) {
+          PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+          __PYX_ERR(0, 67, __pyx_L1_error)
+        }
+        __pyx_t_14 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 67, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_14);
+        __pyx_t_10 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_t_14); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 67, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+        __pyx_t_14 = NULL;
         __pyx_t_6 = 0;
         if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-          __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
-          if (likely(__pyx_t_2)) {
+          __pyx_t_14 = PyMethod_GET_SELF(__pyx_t_3);
+          if (likely(__pyx_t_14)) {
             PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-            __Pyx_INCREF(__pyx_t_2);
+            __Pyx_INCREF(__pyx_t_14);
             __Pyx_INCREF(function);
             __Pyx_DECREF_SET(__pyx_t_3, function);
             __pyx_t_6 = 1;
@@ -2782,60 +2838,60 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
         }
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
-          PyObject *__pyx_temp[4] = {__pyx_t_2, __pyx_t_14, __pyx_t_10, __pyx_t_11};
-          __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 58, __pyx_L1_error)
-          __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-          __Pyx_GOTREF(__pyx_t_7);
-          __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+          PyObject *__pyx_temp[4] = {__pyx_t_14, __pyx_t_11, __pyx_t_7, __pyx_t_10};
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+          __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         } else
         #endif
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
-          PyObject *__pyx_temp[4] = {__pyx_t_2, __pyx_t_14, __pyx_t_10, __pyx_t_11};
-          __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 58, __pyx_L1_error)
-          __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-          __Pyx_GOTREF(__pyx_t_7);
-          __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+          PyObject *__pyx_temp[4] = {__pyx_t_14, __pyx_t_11, __pyx_t_7, __pyx_t_10};
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+          __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         } else
         #endif
         {
-          __pyx_t_17 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 58, __pyx_L1_error)
+          __pyx_t_17 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 66, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_17);
-          if (__pyx_t_2) {
-            __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_17, 0, __pyx_t_2); __pyx_t_2 = NULL;
+          if (__pyx_t_14) {
+            __Pyx_GIVEREF(__pyx_t_14); PyTuple_SET_ITEM(__pyx_t_17, 0, __pyx_t_14); __pyx_t_14 = NULL;
           }
-          __Pyx_GIVEREF(__pyx_t_14);
-          PyTuple_SET_ITEM(__pyx_t_17, 0+__pyx_t_6, __pyx_t_14);
-          __Pyx_GIVEREF(__pyx_t_10);
-          PyTuple_SET_ITEM(__pyx_t_17, 1+__pyx_t_6, __pyx_t_10);
           __Pyx_GIVEREF(__pyx_t_11);
-          PyTuple_SET_ITEM(__pyx_t_17, 2+__pyx_t_6, __pyx_t_11);
-          __pyx_t_14 = 0;
-          __pyx_t_10 = 0;
+          PyTuple_SET_ITEM(__pyx_t_17, 0+__pyx_t_6, __pyx_t_11);
+          __Pyx_GIVEREF(__pyx_t_7);
+          PyTuple_SET_ITEM(__pyx_t_17, 1+__pyx_t_6, __pyx_t_7);
+          __Pyx_GIVEREF(__pyx_t_10);
+          PyTuple_SET_ITEM(__pyx_t_17, 2+__pyx_t_6, __pyx_t_10);
           __pyx_t_11 = 0;
-          __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_17, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 58, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_7);
+          __pyx_t_7 = 0;
+          __pyx_t_10 = 0;
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_17, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
         }
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (__Pyx_PrintOne(0, __pyx_t_7) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        if (__Pyx_PrintOne(0, __pyx_t_2) < 0) __PYX_ERR(0, 66, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-        /* "cython_calculation.pyx":55
+        /* "cython_calculation.pyx":63
  *             print("\n")
  *             for i in self.amount_of_planets_list:
  *                 if i != 0:             # <<<<<<<<<<<<<<
  *                     velocity = self.velocity_direction(i)
  *                     self.planets[i].append(velocity)
  */
-        goto __pyx_L14;
+        goto __pyx_L15;
       }
 
-      /* "cython_calculation.pyx":61
+      /* "cython_calculation.pyx":69
  *                         self.planets[i][2], str(self.planets[i][5]), str(self.planets[i][3])))
  *                 else:
  *                     self.planets[i].append(velocity)             # <<<<<<<<<<<<<<
@@ -2845,21 +2901,21 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
       /*else*/ {
         if (unlikely(__pyx_v_self->planets == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 61, __pyx_L1_error)
+          __PYX_ERR(0, 69, __pyx_L1_error)
         }
-        __pyx_t_15 = __Pyx_PyObject_Append(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), ((PyObject *)__pyx_v_velocity)); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 61, __pyx_L1_error)
+        __pyx_t_15 = __Pyx_PyObject_Append(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), ((PyObject *)__pyx_v_velocity)); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 69, __pyx_L1_error)
 
-        /* "cython_calculation.pyx":62
+        /* "cython_calculation.pyx":70
  *                 else:
  *                     self.planets[i].append(velocity)
  *                     print("{:7}, {:>52}, {:>36}".format(             # <<<<<<<<<<<<<<
  *                         self.planets[i][2], str(self.planets[i][5]), str(self.planets[i][3])))
  * 
  */
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_7_52_36, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_7_52_36, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 70, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
 
-        /* "cython_calculation.pyx":63
+        /* "cython_calculation.pyx":71
  *                     self.planets[i].append(velocity)
  *                     print("{:7}, {:>52}, {:>36}".format(
  *                         self.planets[i][2], str(self.planets[i][5]), str(self.planets[i][3])))             # <<<<<<<<<<<<<<
@@ -2868,35 +2924,35 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
  */
         if (unlikely(__pyx_v_self->planets == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 63, __pyx_L1_error)
+          __PYX_ERR(0, 71, __pyx_L1_error)
         }
-        __pyx_t_17 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 63, __pyx_L1_error)
+        __pyx_t_17 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 71, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_17);
         if (unlikely(__pyx_v_self->planets == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 63, __pyx_L1_error)
+          __PYX_ERR(0, 71, __pyx_L1_error)
         }
-        __pyx_t_11 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 63, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_11);
-        __pyx_t_10 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_t_11); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 63, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 71, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
-        __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+        __pyx_t_7 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 71, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         if (unlikely(__pyx_v_self->planets == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 63, __pyx_L1_error)
+          __PYX_ERR(0, 71, __pyx_L1_error)
         }
-        __pyx_t_11 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 63, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 71, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        __pyx_t_11 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_t_10); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 71, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
-        __pyx_t_14 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_t_11); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 63, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_14);
-        __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-        __pyx_t_11 = NULL;
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+        __pyx_t_10 = NULL;
         __pyx_t_6 = 0;
         if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-          __pyx_t_11 = PyMethod_GET_SELF(__pyx_t_3);
-          if (likely(__pyx_t_11)) {
+          __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_3);
+          if (likely(__pyx_t_10)) {
             PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-            __Pyx_INCREF(__pyx_t_11);
+            __Pyx_INCREF(__pyx_t_10);
             __Pyx_INCREF(function);
             __Pyx_DECREF_SET(__pyx_t_3, function);
             __pyx_t_6 = 1;
@@ -2904,52 +2960,52 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
         }
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_3)) {
-          PyObject *__pyx_temp[4] = {__pyx_t_11, __pyx_t_17, __pyx_t_10, __pyx_t_14};
-          __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 62, __pyx_L1_error)
-          __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
-          __Pyx_GOTREF(__pyx_t_7);
+          PyObject *__pyx_temp[4] = {__pyx_t_10, __pyx_t_17, __pyx_t_7, __pyx_t_11};
+          __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-          __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+          __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+          __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         } else
         #endif
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
-          PyObject *__pyx_temp[4] = {__pyx_t_11, __pyx_t_17, __pyx_t_10, __pyx_t_14};
-          __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 62, __pyx_L1_error)
-          __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
-          __Pyx_GOTREF(__pyx_t_7);
+          PyObject *__pyx_temp[4] = {__pyx_t_10, __pyx_t_17, __pyx_t_7, __pyx_t_11};
+          __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
+          __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-          __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+          __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+          __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         } else
         #endif
         {
-          __pyx_t_2 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 62, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_2);
-          if (__pyx_t_11) {
-            __Pyx_GIVEREF(__pyx_t_11); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_11); __pyx_t_11 = NULL;
+          __pyx_t_14 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 70, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_14);
+          if (__pyx_t_10) {
+            __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_t_10); __pyx_t_10 = NULL;
           }
           __Pyx_GIVEREF(__pyx_t_17);
-          PyTuple_SET_ITEM(__pyx_t_2, 0+__pyx_t_6, __pyx_t_17);
-          __Pyx_GIVEREF(__pyx_t_10);
-          PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_6, __pyx_t_10);
-          __Pyx_GIVEREF(__pyx_t_14);
-          PyTuple_SET_ITEM(__pyx_t_2, 2+__pyx_t_6, __pyx_t_14);
+          PyTuple_SET_ITEM(__pyx_t_14, 0+__pyx_t_6, __pyx_t_17);
+          __Pyx_GIVEREF(__pyx_t_7);
+          PyTuple_SET_ITEM(__pyx_t_14, 1+__pyx_t_6, __pyx_t_7);
+          __Pyx_GIVEREF(__pyx_t_11);
+          PyTuple_SET_ITEM(__pyx_t_14, 2+__pyx_t_6, __pyx_t_11);
           __pyx_t_17 = 0;
-          __pyx_t_10 = 0;
-          __pyx_t_14 = 0;
-          __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 62, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_7);
-          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __pyx_t_7 = 0;
+          __pyx_t_11 = 0;
+          __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_14, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
         }
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (__Pyx_PrintOne(0, __pyx_t_7) < 0) __PYX_ERR(0, 62, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        if (__Pyx_PrintOne(0, __pyx_t_2) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       }
-      __pyx_L14:;
+      __pyx_L15:;
 
-      /* "cython_calculation.pyx":54
+      /* "cython_calculation.pyx":62
  *             print("{:20}, {:62}, {:26}".format("Name", "Velocity", "Position"))
  *             print("\n")
  *             for i in self.amount_of_planets_list:             # <<<<<<<<<<<<<<
@@ -2959,7 +3015,7 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "cython_calculation.pyx":51
+    /* "cython_calculation.pyx":59
  *         """
  *         cdef numpy.ndarray velocity = numpy.zeros(3, dtype=numpy.float64)
  *         if "random" in json_path:             # <<<<<<<<<<<<<<
@@ -2968,7 +3024,7 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
  */
   }
 
-  /* "cython_calculation.pyx":65
+  /* "cython_calculation.pyx":73
  *                         self.planets[i][2], str(self.planets[i][5]), str(self.planets[i][3])))
  * 
  *         self._is_running = True             # <<<<<<<<<<<<<<
@@ -3008,7 +3064,7 @@ static int __pyx_pf_18cython_calculation_11Calculation___init__(struct __pyx_obj
   return __pyx_r;
 }
 
-/* "cython_calculation.pyx":67
+/* "cython_calculation.pyx":75
  *         self._is_running = True
  * 
  *     def open_json(self):             # <<<<<<<<<<<<<<
@@ -3053,19 +3109,19 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
   int __pyx_t_14;
   __Pyx_RefNannySetupContext("open_json", 0);
 
-  /* "cython_calculation.pyx":72
+  /* "cython_calculation.pyx":80
  *         :return: A dictionary of the planet data
  *         """
  *         current_dir = path.dirname(__file__)             # <<<<<<<<<<<<<<
  *         upper_dir = path.realpath(path.join(current_dir, ".."))
  *         with open(path.join(upper_dir, self.json_path)) as f:
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_path); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 72, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_path); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_dirname); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 72, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_dirname); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_file); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 72, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_file); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -3080,27 +3136,27 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_current_dir = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "cython_calculation.pyx":73
+  /* "cython_calculation.pyx":81
  *         """
  *         current_dir = path.dirname(__file__)
  *         upper_dir = path.realpath(path.join(current_dir, ".."))             # <<<<<<<<<<<<<<
  *         with open(path.join(upper_dir, self.json_path)) as f:
  *             planet_dict = json.load(f)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_realpath); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_realpath); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_path); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_path); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_join); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_join); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -3118,7 +3174,7 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_5)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_current_dir, __pyx_kp_s__4};
-    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 73, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 81, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_3);
   } else
@@ -3126,13 +3182,13 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_current_dir, __pyx_kp_s__4};
-    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 73, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 81, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_3);
   } else
   #endif
   {
-    __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 73, __pyx_L1_error)
+    __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 81, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -3143,7 +3199,7 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
     __Pyx_INCREF(__pyx_kp_s__4);
     __Pyx_GIVEREF(__pyx_kp_s__4);
     PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_6, __pyx_kp_s__4);
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 73, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 81, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
@@ -3161,13 +3217,13 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
   __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_upper_dir = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "cython_calculation.pyx":74
+  /* "cython_calculation.pyx":82
  *         current_dir = path.dirname(__file__)
  *         upper_dir = path.realpath(path.join(current_dir, ".."))
  *         with open(path.join(upper_dir, self.json_path)) as f:             # <<<<<<<<<<<<<<
@@ -3175,9 +3231,9 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
  *         return planet_dict
  */
   /*with:*/ {
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_path); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 74, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_path); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_join); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_join); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_2 = NULL;
@@ -3195,7 +3251,7 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_upper_dir, __pyx_v_self->json_path};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -3203,13 +3259,13 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
       PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_upper_dir, __pyx_v_self->json_path};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_5 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 74, __pyx_L1_error)
+      __pyx_t_5 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 82, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       if (__pyx_t_2) {
         __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2); __pyx_t_2 = NULL;
@@ -3220,17 +3276,17 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
       __Pyx_INCREF(__pyx_v_self->json_path);
       __Pyx_GIVEREF(__pyx_v_self->json_path);
       PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_6, __pyx_v_self->json_path);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_open, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_open, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_8 = __Pyx_PyObject_LookupSpecial(__pyx_t_3, __pyx_n_s_exit); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 74, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_LookupSpecial(__pyx_t_3, __pyx_n_s_exit); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 82, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_5 = __Pyx_PyObject_LookupSpecial(__pyx_t_3, __pyx_n_s_enter); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 74, __pyx_L3_error)
+    __pyx_t_5 = __Pyx_PyObject_LookupSpecial(__pyx_t_3, __pyx_n_s_enter); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 82, __pyx_L3_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_2 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -3244,7 +3300,7 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
     }
     __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L3_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L3_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_5 = __pyx_t_1;
@@ -3262,16 +3318,16 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
           __pyx_v_f = __pyx_t_5;
           __pyx_t_5 = 0;
 
-          /* "cython_calculation.pyx":75
+          /* "cython_calculation.pyx":83
  *         upper_dir = path.realpath(path.join(current_dir, ".."))
  *         with open(path.join(upper_dir, self.json_path)) as f:
  *             planet_dict = json.load(f)             # <<<<<<<<<<<<<<
  *         return planet_dict
  * 
  */
-          __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_json); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 75, __pyx_L7_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_json); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 83, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_load); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L7_error)
+          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_load); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           __pyx_t_3 = NULL;
@@ -3286,13 +3342,13 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
           }
           __pyx_t_5 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_3, __pyx_v_f) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_f);
           __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-          if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 75, __pyx_L7_error)
+          if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 83, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __pyx_v_planet_dict = __pyx_t_5;
           __pyx_t_5 = 0;
 
-          /* "cython_calculation.pyx":74
+          /* "cython_calculation.pyx":82
  *         current_dir = path.dirname(__file__)
  *         upper_dir = path.realpath(path.join(current_dir, ".."))
  *         with open(path.join(upper_dir, self.json_path)) as f:             # <<<<<<<<<<<<<<
@@ -3313,20 +3369,20 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         /*except:*/ {
           __Pyx_AddTraceback("cython_calculation.Calculation.open_json", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_1, &__pyx_t_3) < 0) __PYX_ERR(0, 74, __pyx_L9_except_error)
+          if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_1, &__pyx_t_3) < 0) __PYX_ERR(0, 82, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_2 = PyTuple_Pack(3, __pyx_t_5, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 74, __pyx_L9_except_error)
+          __pyx_t_2 = PyTuple_Pack(3, __pyx_t_5, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_2);
           __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_2, NULL);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-          if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 74, __pyx_L9_except_error)
+          if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 82, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_12);
           __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_12);
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-          if (__pyx_t_13 < 0) __PYX_ERR(0, 74, __pyx_L9_except_error)
+          if (__pyx_t_13 < 0) __PYX_ERR(0, 82, __pyx_L9_except_error)
           __pyx_t_14 = ((!(__pyx_t_13 != 0)) != 0);
           if (__pyx_t_14) {
             __Pyx_GIVEREF(__pyx_t_5);
@@ -3334,7 +3390,7 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
             __Pyx_XGIVEREF(__pyx_t_3);
             __Pyx_ErrRestoreWithState(__pyx_t_5, __pyx_t_1, __pyx_t_3);
             __pyx_t_5 = 0; __pyx_t_1 = 0; __pyx_t_3 = 0; 
-            __PYX_ERR(0, 74, __pyx_L9_except_error)
+            __PYX_ERR(0, 82, __pyx_L9_except_error)
           }
           __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -3360,7 +3416,7 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
         if (__pyx_t_8) {
           __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_tuple__5, NULL);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-          if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 74, __pyx_L1_error)
+          if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 82, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_11);
           __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         }
@@ -3375,20 +3431,20 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
     __pyx_L16:;
   }
 
-  /* "cython_calculation.pyx":76
+  /* "cython_calculation.pyx":84
  *         with open(path.join(upper_dir, self.json_path)) as f:
  *             planet_dict = json.load(f)
  *         return planet_dict             # <<<<<<<<<<<<<<
  * 
- *     cdef double dist_abs(self, numpy.ndarray planet_1, numpy.ndarray planet_2):
+ *     @cython.optimize.unpack_method_calls(True)
  */
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_planet_dict)) { __Pyx_RaiseUnboundLocalError("planet_dict"); __PYX_ERR(0, 76, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_planet_dict)) { __Pyx_RaiseUnboundLocalError("planet_dict"); __PYX_ERR(0, 84, __pyx_L1_error) }
   __Pyx_INCREF(__pyx_v_planet_dict);
   __pyx_r = __pyx_v_planet_dict;
   goto __pyx_L0;
 
-  /* "cython_calculation.pyx":67
+  /* "cython_calculation.pyx":75
  *         self._is_running = True
  * 
  *     def open_json(self):             # <<<<<<<<<<<<<<
@@ -3416,9 +3472,9 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_2open_json(struct _
   return __pyx_r;
 }
 
-/* "cython_calculation.pyx":78
- *         return planet_dict
+/* "cython_calculation.pyx":87
  * 
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef double dist_abs(self, numpy.ndarray planet_1, numpy.ndarray planet_2):             # <<<<<<<<<<<<<<
  *         cdef double dist_abs = sqrt(((planet_1[0] - planet_2[0]) ** 2)
  *                                    + ((planet_1[1] - planet_2[1]) ** 2)
@@ -3435,75 +3491,75 @@ static double __pyx_f_18cython_calculation_11Calculation_dist_abs(CYTHON_UNUSED 
   double __pyx_t_5;
   __Pyx_RefNannySetupContext("dist_abs", 0);
 
-  /* "cython_calculation.pyx":79
- * 
+  /* "cython_calculation.pyx":88
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef double dist_abs(self, numpy.ndarray planet_1, numpy.ndarray planet_2):
  *         cdef double dist_abs = sqrt(((planet_1[0] - planet_2[0]) ** 2)             # <<<<<<<<<<<<<<
  *                                    + ((planet_1[1] - planet_2[1]) ** 2)
  *                                    + ((planet_1[2] - planet_2[2]) ** 2))
  */
-  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planet_1), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planet_1), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planet_2), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planet_2), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_Subtract(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Subtract(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Power(__pyx_t_3, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Power(__pyx_t_3, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cython_calculation.pyx":80
+  /* "cython_calculation.pyx":89
  *     cdef double dist_abs(self, numpy.ndarray planet_1, numpy.ndarray planet_2):
  *         cdef double dist_abs = sqrt(((planet_1[0] - planet_2[0]) ** 2)
  *                                    + ((planet_1[1] - planet_2[1]) ** 2)             # <<<<<<<<<<<<<<
  *                                    + ((planet_1[2] - planet_2[2]) ** 2))
  * 
  */
-  __pyx_t_3 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planet_1), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planet_1), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planet_2), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planet_2), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyNumber_Subtract(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Subtract(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Power(__pyx_t_4, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Power(__pyx_t_4, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Add(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Add(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cython_calculation.pyx":81
+  /* "cython_calculation.pyx":90
  *         cdef double dist_abs = sqrt(((planet_1[0] - planet_2[0]) ** 2)
  *                                    + ((planet_1[1] - planet_2[1]) ** 2)
  *                                    + ((planet_1[2] - planet_2[2]) ** 2))             # <<<<<<<<<<<<<<
  * 
  *         return dist_abs
  */
-  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planet_1), 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planet_1), 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planet_2), 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planet_2), 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_Subtract(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Subtract(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Power(__pyx_t_3, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Power(__pyx_t_3, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Add(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Add(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cython_calculation.pyx":79
- * 
+  /* "cython_calculation.pyx":88
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef double dist_abs(self, numpy.ndarray planet_1, numpy.ndarray planet_2):
  *         cdef double dist_abs = sqrt(((planet_1[0] - planet_2[0]) ** 2)             # <<<<<<<<<<<<<<
  *                                    + ((planet_1[1] - planet_2[1]) ** 2)
@@ -3511,19 +3567,19 @@ static double __pyx_f_18cython_calculation_11Calculation_dist_abs(CYTHON_UNUSED 
  */
   __pyx_v_dist_abs = sqrt(__pyx_t_5);
 
-  /* "cython_calculation.pyx":83
+  /* "cython_calculation.pyx":92
  *                                    + ((planet_1[2] - planet_2[2]) ** 2))
  * 
  *         return dist_abs             # <<<<<<<<<<<<<<
  * 
- *     cdef numpy.ndarray dist_vec(self, numpy.ndarray planet_1, numpy.ndarray planet_2):
+ *     @cython.optimize.unpack_method_calls(True)
  */
   __pyx_r = __pyx_v_dist_abs;
   goto __pyx_L0;
 
-  /* "cython_calculation.pyx":78
- *         return planet_dict
+  /* "cython_calculation.pyx":87
  * 
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef double dist_abs(self, numpy.ndarray planet_1, numpy.ndarray planet_2):             # <<<<<<<<<<<<<<
  *         cdef double dist_abs = sqrt(((planet_1[0] - planet_2[0]) ** 2)
  *                                    + ((planet_1[1] - planet_2[1]) ** 2)
@@ -3542,9 +3598,9 @@ static double __pyx_f_18cython_calculation_11Calculation_dist_abs(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "cython_calculation.pyx":85
- *         return dist_abs
+/* "cython_calculation.pyx":95
  * 
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef numpy.ndarray dist_vec(self, numpy.ndarray planet_1, numpy.ndarray planet_2):             # <<<<<<<<<<<<<<
  *         cdef numpy.ndarray dist_vec = planet_1 - planet_2
  * 
@@ -3557,24 +3613,24 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_dist_vec(CYTHON
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("dist_vec", 0);
 
-  /* "cython_calculation.pyx":86
- * 
+  /* "cython_calculation.pyx":96
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef numpy.ndarray dist_vec(self, numpy.ndarray planet_1, numpy.ndarray planet_2):
  *         cdef numpy.ndarray dist_vec = planet_1 - planet_2             # <<<<<<<<<<<<<<
  * 
  *         return dist_vec
  */
-  __pyx_t_1 = PyNumber_Subtract(((PyObject *)__pyx_v_planet_1), ((PyObject *)__pyx_v_planet_2)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Subtract(((PyObject *)__pyx_v_planet_1), ((PyObject *)__pyx_v_planet_2)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 86, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 96, __pyx_L1_error)
   __pyx_v_dist_vec = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cython_calculation.pyx":88
+  /* "cython_calculation.pyx":98
  *         cdef numpy.ndarray dist_vec = planet_1 - planet_2
  * 
  *         return dist_vec             # <<<<<<<<<<<<<<
- * 
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef numpy.ndarray calc_acceleration(self, int planet_index):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
@@ -3582,9 +3638,9 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_dist_vec(CYTHON
   __pyx_r = __pyx_v_dist_vec;
   goto __pyx_L0;
 
-  /* "cython_calculation.pyx":85
- *         return dist_abs
+  /* "cython_calculation.pyx":95
  * 
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef numpy.ndarray dist_vec(self, numpy.ndarray planet_1, numpy.ndarray planet_2):             # <<<<<<<<<<<<<<
  *         cdef numpy.ndarray dist_vec = planet_1 - planet_2
  * 
@@ -3602,9 +3658,9 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_dist_vec(CYTHON
   return __pyx_r;
 }
 
-/* "cython_calculation.pyx":90
+/* "cython_calculation.pyx":100
  *         return dist_vec
- * 
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef numpy.ndarray calc_acceleration(self, int planet_index):             # <<<<<<<<<<<<<<
  *         """
  *         Calculate the acceleration of planet1
@@ -3633,48 +3689,48 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_accelerati
   PyObject *__pyx_t_10 = NULL;
   __Pyx_RefNannySetupContext("calc_acceleration", 0);
 
-  /* "cython_calculation.pyx":96
+  /* "cython_calculation.pyx":106
  *         :return: a acceleration vector
  *         """
  *         cdef numpy.ndarray current_planet_pos = numpy.array(self.planets[planet_index][3], dtype=numpy.float64)             # <<<<<<<<<<<<<<
  *         cdef double current_planet_mass = self.planets[planet_index][1]
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (unlikely(__pyx_v_self->planets == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 96, __pyx_L1_error)
+    __PYX_ERR(0, 106, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_planet_index), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_planet_index), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_5) < 0) __PYX_ERR(0, 96, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_5) < 0) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 96, __pyx_L1_error)
+  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 106, __pyx_L1_error)
   __pyx_v_current_planet_pos = ((PyArrayObject *)__pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "cython_calculation.pyx":97
+  /* "cython_calculation.pyx":107
  *         """
  *         cdef numpy.ndarray current_planet_pos = numpy.array(self.planets[planet_index][3], dtype=numpy.float64)
  *         cdef double current_planet_mass = self.planets[planet_index][1]             # <<<<<<<<<<<<<<
@@ -3683,74 +3739,101 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_accelerati
  */
   if (unlikely(__pyx_v_self->planets == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 97, __pyx_L1_error)
+    __PYX_ERR(0, 107, __pyx_L1_error)
   }
-  __pyx_t_5 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_planet_index), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_planet_index), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_current_planet_mass = __pyx_t_6;
 
-  /* "cython_calculation.pyx":99
+  /* "cython_calculation.pyx":109
  *         cdef double current_planet_mass = self.planets[planet_index][1]
  * 
  *         cdef numpy.ndarray current_planet_force = numpy.empty(3, dtype=numpy.float64)             # <<<<<<<<<<<<<<
  *         cdef numpy.ndarray dist_vector = numpy.empty(3, dtype=numpy.float64)
- *         cdef double dist_absolute
+ *         cdef double dist_absolute = 0
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_numpy); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_numpy); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float64); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float64); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_t_2) < 0) __PYX_ERR(0, 99, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_t_2) < 0) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple_, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple_, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 99, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 109, __pyx_L1_error)
   __pyx_v_current_planet_force = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "cython_calculation.pyx":100
+  /* "cython_calculation.pyx":110
  * 
  *         cdef numpy.ndarray current_planet_force = numpy.empty(3, dtype=numpy.float64)
  *         cdef numpy.ndarray dist_vector = numpy.empty(3, dtype=numpy.float64)             # <<<<<<<<<<<<<<
- *         cdef double dist_absolute
- *         cdef double mass_different
+ *         cdef double dist_absolute = 0
+ *         cdef double mass_different = 0
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_empty); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_empty); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float64); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float64); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_3) < 0) __PYX_ERR(0, 100, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_3) < 0) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_tuple_, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_tuple_, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 100, __pyx_L1_error)
+  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 110, __pyx_L1_error)
   __pyx_v_dist_vector = ((PyArrayObject *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "cython_calculation.pyx":105
- *         cdef int i
+  /* "cython_calculation.pyx":111
+ *         cdef numpy.ndarray current_planet_force = numpy.empty(3, dtype=numpy.float64)
+ *         cdef numpy.ndarray dist_vector = numpy.empty(3, dtype=numpy.float64)
+ *         cdef double dist_absolute = 0             # <<<<<<<<<<<<<<
+ *         cdef double mass_different = 0
+ *         cdef int i = 0
+ */
+  __pyx_v_dist_absolute = 0.0;
+
+  /* "cython_calculation.pyx":112
+ *         cdef numpy.ndarray dist_vector = numpy.empty(3, dtype=numpy.float64)
+ *         cdef double dist_absolute = 0
+ *         cdef double mass_different = 0             # <<<<<<<<<<<<<<
+ *         cdef int i = 0
+ * 
+ */
+  __pyx_v_mass_different = 0.0;
+
+  /* "cython_calculation.pyx":113
+ *         cdef double dist_absolute = 0
+ *         cdef double mass_different = 0
+ *         cdef int i = 0             # <<<<<<<<<<<<<<
+ * 
+ *         for i in self.amount_of_planets_list:
+ */
+  __pyx_v_i = 0;
+
+  /* "cython_calculation.pyx":115
+ *         cdef int i = 0
  * 
  *         for i in self.amount_of_planets_list:             # <<<<<<<<<<<<<<
  *             if i != planet_index:
@@ -3758,22 +3841,22 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_accelerati
  */
   if (unlikely(__pyx_v_self->amount_of_planets_list == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 105, __pyx_L1_error)
+    __PYX_ERR(0, 115, __pyx_L1_error)
   }
   __pyx_t_3 = __pyx_v_self->amount_of_planets_list; __Pyx_INCREF(__pyx_t_3); __pyx_t_7 = 0;
   for (;;) {
     if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_3)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 105, __pyx_L1_error)
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 115, __pyx_L1_error)
     #else
-    __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
+    __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 115, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
-    __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 105, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 115, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_i = __pyx_t_8;
 
-    /* "cython_calculation.pyx":106
+    /* "cython_calculation.pyx":116
  * 
  *         for i in self.amount_of_planets_list:
  *             if i != planet_index:             # <<<<<<<<<<<<<<
@@ -3783,92 +3866,92 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_accelerati
     __pyx_t_9 = ((__pyx_v_i != __pyx_v_planet_index) != 0);
     if (__pyx_t_9) {
 
-      /* "cython_calculation.pyx":107
+      /* "cython_calculation.pyx":117
  *         for i in self.amount_of_planets_list:
  *             if i != planet_index:
  *                 dist_absolute = self.dist_abs(numpy.array(self.planets[i][3], dtype=numpy.float64), current_planet_pos)             # <<<<<<<<<<<<<<
  *                 dist_vector = self.dist_vec(numpy.array(self.planets[i][3], dtype=numpy.float64), current_planet_pos)
  *                 mass_different = self.planets[i][1] * current_planet_mass
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_array); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 107, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_array); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 117, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       if (unlikely(__pyx_v_self->planets == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 107, __pyx_L1_error)
+        __PYX_ERR(0, 117, __pyx_L1_error)
       }
-      __pyx_t_2 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
+      __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_2);
       PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 117, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float64); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 107, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float64); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 117, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_10) < 0) __PYX_ERR(0, 107, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_10) < 0) __PYX_ERR(0, 117, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 107, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 117, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (!(likely(((__pyx_t_10) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_10, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 107, __pyx_L1_error)
+      if (!(likely(((__pyx_t_10) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_10, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 117, __pyx_L1_error)
       __pyx_v_dist_absolute = ((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->dist_abs(__pyx_v_self, ((PyArrayObject *)__pyx_t_10), __pyx_v_current_planet_pos);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-      /* "cython_calculation.pyx":108
+      /* "cython_calculation.pyx":118
  *             if i != planet_index:
  *                 dist_absolute = self.dist_abs(numpy.array(self.planets[i][3], dtype=numpy.float64), current_planet_pos)
  *                 dist_vector = self.dist_vec(numpy.array(self.planets[i][3], dtype=numpy.float64), current_planet_pos)             # <<<<<<<<<<<<<<
  *                 mass_different = self.planets[i][1] * current_planet_mass
  *                 current_planet_force = current_planet_force + self.gravitation * \
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_numpy); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 108, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_numpy); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 118, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 118, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       if (unlikely(__pyx_v_self->planets == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 108, __pyx_L1_error)
+        __PYX_ERR(0, 118, __pyx_L1_error)
       }
-      __pyx_t_10 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 108, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 118, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
+      __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_10);
       PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_10);
       __pyx_t_10 = 0;
-      __pyx_t_10 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 108, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 118, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_numpy); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 108, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_numpy); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 118, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_float64); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 108, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_float64); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 118, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (PyDict_SetItem(__pyx_t_10, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 108, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_10, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 118, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, __pyx_t_10); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 108, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, __pyx_t_10); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 118, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 108, __pyx_L1_error)
-      __pyx_t_10 = ((PyObject *)((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->dist_vec(__pyx_v_self, ((PyArrayObject *)__pyx_t_4), __pyx_v_current_planet_pos)); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 108, __pyx_L1_error)
+      if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 118, __pyx_L1_error)
+      __pyx_t_10 = ((PyObject *)((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->dist_vec(__pyx_v_self, ((PyArrayObject *)__pyx_t_4), __pyx_v_current_planet_pos)); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 118, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF_SET(__pyx_v_dist_vector, ((PyArrayObject *)__pyx_t_10));
       __pyx_t_10 = 0;
 
-      /* "cython_calculation.pyx":109
+      /* "cython_calculation.pyx":119
  *                 dist_absolute = self.dist_abs(numpy.array(self.planets[i][3], dtype=numpy.float64), current_planet_pos)
  *                 dist_vector = self.dist_vec(numpy.array(self.planets[i][3], dtype=numpy.float64), current_planet_pos)
  *                 mass_different = self.planets[i][1] * current_planet_mass             # <<<<<<<<<<<<<<
@@ -3877,69 +3960,56 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_accelerati
  */
       if (unlikely(__pyx_v_self->planets == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 109, __pyx_L1_error)
+        __PYX_ERR(0, 119, __pyx_L1_error)
       }
-      __pyx_t_10 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 109, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 119, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_4 = PyFloat_FromDouble(__pyx_v_current_planet_mass); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 109, __pyx_L1_error)
+      __pyx_t_4 = PyFloat_FromDouble(__pyx_v_current_planet_mass); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 119, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_1 = PyNumber_Multiply(__pyx_t_10, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
+      __pyx_t_1 = PyNumber_Multiply(__pyx_t_10, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 109, __pyx_L1_error)
+      __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 119, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_v_mass_different = __pyx_t_6;
 
-      /* "cython_calculation.pyx":111
- *                 mass_different = self.planets[i][1] * current_planet_mass
- *                 current_planet_force = current_planet_force + self.gravitation * \
- *                                        (mass_different / (dist_absolute ** 3)) * dist_vector             # <<<<<<<<<<<<<<
- * 
- *         cdef numpy.ndarray current_planet_acceleration = (current_planet_force / current_planet_mass)
- */
-      __pyx_t_6 = pow(__pyx_v_dist_absolute, 3.0);
-      if (unlikely(__pyx_t_6 == 0)) {
-        PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-        __PYX_ERR(0, 111, __pyx_L1_error)
-      }
-
-      /* "cython_calculation.pyx":110
+      /* "cython_calculation.pyx":120
  *                 dist_vector = self.dist_vec(numpy.array(self.planets[i][3], dtype=numpy.float64), current_planet_pos)
  *                 mass_different = self.planets[i][1] * current_planet_mass
  *                 current_planet_force = current_planet_force + self.gravitation * \             # <<<<<<<<<<<<<<
  *                                        (mass_different / (dist_absolute ** 3)) * dist_vector
  * 
  */
-      __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->gravitation * (__pyx_v_mass_different / __pyx_t_6))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
+      __pyx_t_1 = PyFloat_FromDouble((__pyx_v_self->gravitation * (__pyx_v_mass_different / pow(__pyx_v_dist_absolute, 3.0)))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 120, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
 
-      /* "cython_calculation.pyx":111
+      /* "cython_calculation.pyx":121
  *                 mass_different = self.planets[i][1] * current_planet_mass
  *                 current_planet_force = current_planet_force + self.gravitation * \
  *                                        (mass_different / (dist_absolute ** 3)) * dist_vector             # <<<<<<<<<<<<<<
  * 
  *         cdef numpy.ndarray current_planet_acceleration = (current_planet_force / current_planet_mass)
  */
-      __pyx_t_4 = PyNumber_Multiply(__pyx_t_1, ((PyObject *)__pyx_v_dist_vector)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 111, __pyx_L1_error)
+      __pyx_t_4 = PyNumber_Multiply(__pyx_t_1, ((PyObject *)__pyx_v_dist_vector)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 121, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "cython_calculation.pyx":110
+      /* "cython_calculation.pyx":120
  *                 dist_vector = self.dist_vec(numpy.array(self.planets[i][3], dtype=numpy.float64), current_planet_pos)
  *                 mass_different = self.planets[i][1] * current_planet_mass
  *                 current_planet_force = current_planet_force + self.gravitation * \             # <<<<<<<<<<<<<<
  *                                        (mass_different / (dist_absolute ** 3)) * dist_vector
  * 
  */
-      __pyx_t_1 = PyNumber_Add(((PyObject *)__pyx_v_current_planet_force), __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
+      __pyx_t_1 = PyNumber_Add(((PyObject *)__pyx_v_current_planet_force), __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 120, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 110, __pyx_L1_error)
+      if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 120, __pyx_L1_error)
       __Pyx_DECREF_SET(__pyx_v_current_planet_force, ((PyArrayObject *)__pyx_t_1));
       __pyx_t_1 = 0;
 
-      /* "cython_calculation.pyx":106
+      /* "cython_calculation.pyx":116
  * 
  *         for i in self.amount_of_planets_list:
  *             if i != planet_index:             # <<<<<<<<<<<<<<
@@ -3948,8 +4018,8 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_accelerati
  */
     }
 
-    /* "cython_calculation.pyx":105
- *         cdef int i
+    /* "cython_calculation.pyx":115
+ *         cdef int i = 0
  * 
  *         for i in self.amount_of_planets_list:             # <<<<<<<<<<<<<<
  *             if i != planet_index:
@@ -3958,23 +4028,23 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_accelerati
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cython_calculation.pyx":113
+  /* "cython_calculation.pyx":123
  *                                        (mass_different / (dist_absolute ** 3)) * dist_vector
  * 
  *         cdef numpy.ndarray current_planet_acceleration = (current_planet_force / current_planet_mass)             # <<<<<<<<<<<<<<
  * 
  *         return current_planet_acceleration
  */
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_current_planet_mass); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 113, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_current_planet_mass); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyNumber_Divide(((PyObject *)__pyx_v_current_planet_force), __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyNumber_Divide(((PyObject *)__pyx_v_current_planet_force), __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 113, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 123, __pyx_L1_error)
   __pyx_v_current_planet_acceleration = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cython_calculation.pyx":115
+  /* "cython_calculation.pyx":125
  *         cdef numpy.ndarray current_planet_acceleration = (current_planet_force / current_planet_mass)
  * 
  *         return current_planet_acceleration             # <<<<<<<<<<<<<<
@@ -3986,9 +4056,9 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_accelerati
   __pyx_r = __pyx_v_current_planet_acceleration;
   goto __pyx_L0;
 
-  /* "cython_calculation.pyx":90
+  /* "cython_calculation.pyx":100
  *         return dist_vec
- * 
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef numpy.ndarray calc_acceleration(self, int planet_index):             # <<<<<<<<<<<<<<
  *         """
  *         Calculate the acceleration of planet1
@@ -4014,11 +4084,11 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_accelerati
   return __pyx_r;
 }
 
-/* "cython_calculation.pyx":117
+/* "cython_calculation.pyx":127
  *         return current_planet_acceleration
  * 
  *     cdef double total_mass(self):             # <<<<<<<<<<<<<<
- *         cdef int i
+ *         cdef int i = 0
  *         cdef double total_mass = 0
  */
 
@@ -4036,17 +4106,26 @@ static double __pyx_f_18cython_calculation_11Calculation_total_mass(struct __pyx
   double __pyx_t_7;
   __Pyx_RefNannySetupContext("total_mass", 0);
 
-  /* "cython_calculation.pyx":119
+  /* "cython_calculation.pyx":128
+ * 
  *     cdef double total_mass(self):
- *         cdef int i
+ *         cdef int i = 0             # <<<<<<<<<<<<<<
+ *         cdef double total_mass = 0
+ *         for i in self.amount_of_planets_list:
+ */
+  __pyx_v_i = 0;
+
+  /* "cython_calculation.pyx":129
+ *     cdef double total_mass(self):
+ *         cdef int i = 0
  *         cdef double total_mass = 0             # <<<<<<<<<<<<<<
  *         for i in self.amount_of_planets_list:
  *             total_mass = total_mass + self.planets[i][1]
  */
   __pyx_v_total_mass = 0.0;
 
-  /* "cython_calculation.pyx":120
- *         cdef int i
+  /* "cython_calculation.pyx":130
+ *         cdef int i = 0
  *         cdef double total_mass = 0
  *         for i in self.amount_of_planets_list:             # <<<<<<<<<<<<<<
  *             total_mass = total_mass + self.planets[i][1]
@@ -4054,46 +4133,46 @@ static double __pyx_f_18cython_calculation_11Calculation_total_mass(struct __pyx
  */
   if (unlikely(__pyx_v_self->amount_of_planets_list == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 120, __pyx_L1_error)
+    __PYX_ERR(0, 130, __pyx_L1_error)
   }
   __pyx_t_1 = __pyx_v_self->amount_of_planets_list; __Pyx_INCREF(__pyx_t_1); __pyx_t_2 = 0;
   for (;;) {
     if (__pyx_t_2 >= PyList_GET_SIZE(__pyx_t_1)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_3); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 120, __pyx_L1_error)
+    __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_3); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 130, __pyx_L1_error)
     #else
-    __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 120, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     #endif
-    __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 120, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 130, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_i = __pyx_t_4;
 
-    /* "cython_calculation.pyx":121
+    /* "cython_calculation.pyx":131
  *         cdef double total_mass = 0
  *         for i in self.amount_of_planets_list:
  *             total_mass = total_mass + self.planets[i][1]             # <<<<<<<<<<<<<<
  * 
  *         return total_mass
  */
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_total_mass); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 121, __pyx_L1_error)
+    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_total_mass); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 131, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     if (unlikely(__pyx_v_self->planets == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 121, __pyx_L1_error)
+      __PYX_ERR(0, 131, __pyx_L1_error)
     }
-    __pyx_t_5 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 121, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 131, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = PyNumber_Add(__pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 121, __pyx_L1_error)
+    __pyx_t_6 = PyNumber_Add(__pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 131, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_6); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 121, __pyx_L1_error)
+    __pyx_t_7 = __pyx_PyFloat_AsDouble(__pyx_t_6); if (unlikely((__pyx_t_7 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 131, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_v_total_mass = __pyx_t_7;
 
-    /* "cython_calculation.pyx":120
- *         cdef int i
+    /* "cython_calculation.pyx":130
+ *         cdef int i = 0
  *         cdef double total_mass = 0
  *         for i in self.amount_of_planets_list:             # <<<<<<<<<<<<<<
  *             total_mass = total_mass + self.planets[i][1]
@@ -4102,21 +4181,21 @@ static double __pyx_f_18cython_calculation_11Calculation_total_mass(struct __pyx
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cython_calculation.pyx":123
+  /* "cython_calculation.pyx":133
  *             total_mass = total_mass + self.planets[i][1]
  * 
  *         return total_mass             # <<<<<<<<<<<<<<
- * 
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef double abs_velocity(self, double total_mass, int current_planet):
  */
   __pyx_r = __pyx_v_total_mass;
   goto __pyx_L0;
 
-  /* "cython_calculation.pyx":117
+  /* "cython_calculation.pyx":127
  *         return current_planet_acceleration
  * 
  *     cdef double total_mass(self):             # <<<<<<<<<<<<<<
- *         cdef int i
+ *         cdef int i = 0
  *         cdef double total_mass = 0
  */
 
@@ -4133,9 +4212,9 @@ static double __pyx_f_18cython_calculation_11Calculation_total_mass(struct __pyx
   return __pyx_r;
 }
 
-/* "cython_calculation.pyx":125
+/* "cython_calculation.pyx":135
  *         return total_mass
- * 
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef double abs_velocity(self, double total_mass, int current_planet):             # <<<<<<<<<<<<<<
  *         """
  *         Calculate the velocity of the current_planet
@@ -4155,120 +4234,115 @@ static double __pyx_f_18cython_calculation_11Calculation_abs_velocity(struct __p
   double __pyx_t_6;
   __Pyx_RefNannySetupContext("abs_velocity", 0);
 
-  /* "cython_calculation.pyx":133
+  /* "cython_calculation.pyx":143
  *         """
  *         cdef numpy.ndarray current_planet_pos \
  *             = numpy.array(self.planets[current_planet][3], dtype=numpy.float64)             # <<<<<<<<<<<<<<
  * 
  *         cdef double distance_abs = self.dist_abs(current_planet_pos, self.mass_focus_without_planet_x(current_planet))
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (unlikely(__pyx_v_self->planets == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 133, __pyx_L1_error)
+    __PYX_ERR(0, 143, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_current_planet), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_current_planet), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_5) < 0) __PYX_ERR(0, 133, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_5) < 0) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 133, __pyx_L1_error)
+  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 143, __pyx_L1_error)
   __pyx_v_current_planet_pos = ((PyArrayObject *)__pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "cython_calculation.pyx":135
+  /* "cython_calculation.pyx":145
  *             = numpy.array(self.planets[current_planet][3], dtype=numpy.float64)
  * 
  *         cdef double distance_abs = self.dist_abs(current_planet_pos, self.mass_focus_without_planet_x(current_planet))             # <<<<<<<<<<<<<<
  * 
  *         cdef double velocity = ((total_mass - self.planets[current_planet][1]) / total_mass) \
  */
-  __pyx_t_5 = ((PyObject *)((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->mass_focus_without_planet_x(__pyx_v_self, __pyx_v_current_planet)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_5 = ((PyObject *)((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->mass_focus_without_planet_x(__pyx_v_self, __pyx_v_current_planet)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_v_distance_abs = ((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->dist_abs(__pyx_v_self, __pyx_v_current_planet_pos, ((PyArrayObject *)__pyx_t_5));
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "cython_calculation.pyx":137
+  /* "cython_calculation.pyx":147
  *         cdef double distance_abs = self.dist_abs(current_planet_pos, self.mass_focus_without_planet_x(current_planet))
  * 
  *         cdef double velocity = ((total_mass - self.planets[current_planet][1]) / total_mass) \             # <<<<<<<<<<<<<<
  *                               * sqrt(((self.gravitation * total_mass) / distance_abs))
  * 
  */
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_total_mass); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_total_mass); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 147, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (unlikely(__pyx_v_self->planets == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 137, __pyx_L1_error)
+    __PYX_ERR(0, 147, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_current_planet), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_current_planet), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 147, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyNumber_Subtract(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Subtract(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 147, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_total_mass); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_total_mass); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 147, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 147, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cython_calculation.pyx":138
+  /* "cython_calculation.pyx":148
  * 
  *         cdef double velocity = ((total_mass - self.planets[current_planet][1]) / total_mass) \
  *                               * sqrt(((self.gravitation * total_mass) / distance_abs))             # <<<<<<<<<<<<<<
  * 
  *         return velocity
  */
-  __pyx_t_6 = (__pyx_v_self->gravitation * __pyx_v_total_mass);
-  if (unlikely(__pyx_v_distance_abs == 0)) {
-    PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 138, __pyx_L1_error)
-  }
-  __pyx_t_1 = PyFloat_FromDouble(sqrt((__pyx_t_6 / __pyx_v_distance_abs))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(sqrt(((__pyx_v_self->gravitation * __pyx_v_total_mass) / __pyx_v_distance_abs))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyNumber_Multiply(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Multiply(__pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 148, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 148, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_velocity = __pyx_t_6;
 
-  /* "cython_calculation.pyx":140
+  /* "cython_calculation.pyx":150
  *                               * sqrt(((self.gravitation * total_mass) / distance_abs))
  * 
  *         return velocity             # <<<<<<<<<<<<<<
  * 
- *     cdef numpy.ndarray velocity_direction(self, int current_planet):
+ *     @cython.optimize.unpack_method_calls(True)
  */
   __pyx_r = __pyx_v_velocity;
   goto __pyx_L0;
 
-  /* "cython_calculation.pyx":125
+  /* "cython_calculation.pyx":135
  *         return total_mass
- * 
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef double abs_velocity(self, double total_mass, int current_planet):             # <<<<<<<<<<<<<<
  *         """
  *         Calculate the velocity of the current_planet
@@ -4289,9 +4363,9 @@ static double __pyx_f_18cython_calculation_11Calculation_abs_velocity(struct __p
   return __pyx_r;
 }
 
-/* "cython_calculation.pyx":142
- *         return velocity
+/* "cython_calculation.pyx":153
  * 
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef numpy.ndarray velocity_direction(self, int current_planet):             # <<<<<<<<<<<<<<
  *         """
  *         Calculate the velocity_direction in Z-direction
@@ -4316,107 +4390,107 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_velocity_direct
   double __pyx_t_8;
   __Pyx_RefNannySetupContext("velocity_direction", 0);
 
-  /* "cython_calculation.pyx":149
+  /* "cython_calculation.pyx":160
  *         """
  *         cdef numpy.ndarray distance_vec \
  *             = self.dist_vec(numpy.array((self.planets[current_planet][3]), dtype=numpy.float64),             # <<<<<<<<<<<<<<
  *                             (numpy.array(self.mass_focus_without_planet_x(current_planet), dtype=numpy.float64)))
  *         cdef numpy.ndarray z_direction = numpy.array([0, 0, 1], dtype=numpy.float64)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (unlikely(__pyx_v_self->planets == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 149, __pyx_L1_error)
+    __PYX_ERR(0, 160, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_current_planet), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_current_planet), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_5) < 0) __PYX_ERR(0, 149, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_5) < 0) __PYX_ERR(0, 160, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 149, __pyx_L1_error)
+  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 160, __pyx_L1_error)
 
-  /* "cython_calculation.pyx":150
+  /* "cython_calculation.pyx":161
  *         cdef numpy.ndarray distance_vec \
  *             = self.dist_vec(numpy.array((self.planets[current_planet][3]), dtype=numpy.float64),
  *                             (numpy.array(self.mass_focus_without_planet_x(current_planet), dtype=numpy.float64)))             # <<<<<<<<<<<<<<
  *         cdef numpy.ndarray z_direction = numpy.array([0, 0, 1], dtype=numpy.float64)
  *         cdef numpy.ndarray velocity_direction = numpy.cross(distance_vec, z_direction)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->mass_focus_without_planet_x(__pyx_v_self, __pyx_v_current_planet)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->mass_focus_without_planet_x(__pyx_v_self, __pyx_v_current_planet)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float64); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float64); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_6) < 0) __PYX_ERR(0, 150, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_6) < 0) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 150, __pyx_L1_error)
+  if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 161, __pyx_L1_error)
 
-  /* "cython_calculation.pyx":149
+  /* "cython_calculation.pyx":160
  *         """
  *         cdef numpy.ndarray distance_vec \
  *             = self.dist_vec(numpy.array((self.planets[current_planet][3]), dtype=numpy.float64),             # <<<<<<<<<<<<<<
  *                             (numpy.array(self.mass_focus_without_planet_x(current_planet), dtype=numpy.float64)))
  *         cdef numpy.ndarray z_direction = numpy.array([0, 0, 1], dtype=numpy.float64)
  */
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->dist_vec(__pyx_v_self, ((PyArrayObject *)__pyx_t_5), ((PyArrayObject *)__pyx_t_6))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->dist_vec(__pyx_v_self, ((PyArrayObject *)__pyx_t_5), ((PyArrayObject *)__pyx_t_6))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_v_distance_vec = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cython_calculation.pyx":151
+  /* "cython_calculation.pyx":162
  *             = self.dist_vec(numpy.array((self.planets[current_planet][3]), dtype=numpy.float64),
  *                             (numpy.array(self.mass_focus_without_planet_x(current_planet), dtype=numpy.float64)))
  *         cdef numpy.ndarray z_direction = numpy.array([0, 0, 1], dtype=numpy.float64)             # <<<<<<<<<<<<<<
  *         cdef numpy.ndarray velocity_direction = numpy.cross(distance_vec, z_direction)
  *         cdef double velocity_direction_abs = numpy.linalg.norm(velocity_direction)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_array); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyList_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
@@ -4427,39 +4501,39 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_velocity_direct
   __Pyx_INCREF(__pyx_int_1);
   __Pyx_GIVEREF(__pyx_int_1);
   PyList_SET_ITEM(__pyx_t_1, 2, __pyx_int_1);
-  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float64); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float64); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_3) < 0) __PYX_ERR(0, 151, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_3) < 0) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 151, __pyx_L1_error)
+  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 162, __pyx_L1_error)
   __pyx_v_z_direction = ((PyArrayObject *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "cython_calculation.pyx":152
+  /* "cython_calculation.pyx":163
  *                             (numpy.array(self.mass_focus_without_planet_x(current_planet), dtype=numpy.float64)))
  *         cdef numpy.ndarray z_direction = numpy.array([0, 0, 1], dtype=numpy.float64)
  *         cdef numpy.ndarray velocity_direction = numpy.cross(distance_vec, z_direction)             # <<<<<<<<<<<<<<
  *         cdef double velocity_direction_abs = numpy.linalg.norm(velocity_direction)
  *         cdef double abs_velocity = self.abs_velocity(self.total_mass(), current_planet)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 163, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_cross); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 152, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_cross); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 163, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -4477,7 +4551,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_velocity_direct
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_5)) {
     PyObject *__pyx_temp[3] = {__pyx_t_1, ((PyObject *)__pyx_v_distance_vec), ((PyObject *)__pyx_v_z_direction)};
-    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 152, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 163, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_GOTREF(__pyx_t_3);
   } else
@@ -4485,13 +4559,13 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_velocity_direct
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
     PyObject *__pyx_temp[3] = {__pyx_t_1, ((PyObject *)__pyx_v_distance_vec), ((PyObject *)__pyx_v_z_direction)};
-    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 152, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 163, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_GOTREF(__pyx_t_3);
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 152, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 163, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_1) {
       __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1); __pyx_t_1 = NULL;
@@ -4502,28 +4576,28 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_velocity_direct
     __Pyx_INCREF(((PyObject *)__pyx_v_z_direction));
     __Pyx_GIVEREF(((PyObject *)__pyx_v_z_direction));
     PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_7, ((PyObject *)__pyx_v_z_direction));
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 152, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 163, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 152, __pyx_L1_error)
+  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 163, __pyx_L1_error)
   __pyx_v_velocity_direction = ((PyArrayObject *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "cython_calculation.pyx":153
+  /* "cython_calculation.pyx":164
  *         cdef numpy.ndarray z_direction = numpy.array([0, 0, 1], dtype=numpy.float64)
  *         cdef numpy.ndarray velocity_direction = numpy.cross(distance_vec, z_direction)
  *         cdef double velocity_direction_abs = numpy.linalg.norm(velocity_direction)             # <<<<<<<<<<<<<<
  *         cdef double abs_velocity = self.abs_velocity(self.total_mass(), current_planet)
  *         cdef numpy.ndarray velocity = (velocity_direction / velocity_direction_abs) * \
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_numpy); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_numpy); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 164, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_linalg); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_linalg); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 164, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_norm); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_norm); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 164, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_6 = NULL;
@@ -4538,14 +4612,14 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_velocity_direct
   }
   __pyx_t_3 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_6, ((PyObject *)__pyx_v_velocity_direction)) : __Pyx_PyObject_CallOneArg(__pyx_t_5, ((PyObject *)__pyx_v_velocity_direction));
   __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 153, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 164, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_8 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_8 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 153, __pyx_L1_error)
+  __pyx_t_8 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_8 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 164, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_velocity_direction_abs = __pyx_t_8;
 
-  /* "cython_calculation.pyx":154
+  /* "cython_calculation.pyx":165
  *         cdef numpy.ndarray velocity_direction = numpy.cross(distance_vec, z_direction)
  *         cdef double velocity_direction_abs = numpy.linalg.norm(velocity_direction)
  *         cdef double abs_velocity = self.abs_velocity(self.total_mass(), current_planet)             # <<<<<<<<<<<<<<
@@ -4554,59 +4628,59 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_velocity_direct
  */
   __pyx_v_abs_velocity = ((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->abs_velocity(__pyx_v_self, ((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->total_mass(__pyx_v_self), __pyx_v_current_planet);
 
-  /* "cython_calculation.pyx":155
+  /* "cython_calculation.pyx":166
  *         cdef double velocity_direction_abs = numpy.linalg.norm(velocity_direction)
  *         cdef double abs_velocity = self.abs_velocity(self.total_mass(), current_planet)
  *         cdef numpy.ndarray velocity = (velocity_direction / velocity_direction_abs) * \             # <<<<<<<<<<<<<<
  *                                                                abs_velocity
  * 
  */
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_velocity_direction_abs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 155, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_velocity_direction_abs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyNumber_Divide(((PyObject *)__pyx_v_velocity_direction), __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 155, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyNumber_Divide(((PyObject *)__pyx_v_velocity_direction), __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cython_calculation.pyx":156
+  /* "cython_calculation.pyx":167
  *         cdef double abs_velocity = self.abs_velocity(self.total_mass(), current_planet)
  *         cdef numpy.ndarray velocity = (velocity_direction / velocity_direction_abs) * \
  *                                                                abs_velocity             # <<<<<<<<<<<<<<
  * 
  *         return velocity
  */
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_abs_velocity); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_abs_velocity); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 167, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "cython_calculation.pyx":155
+  /* "cython_calculation.pyx":166
  *         cdef double velocity_direction_abs = numpy.linalg.norm(velocity_direction)
  *         cdef double abs_velocity = self.abs_velocity(self.total_mass(), current_planet)
  *         cdef numpy.ndarray velocity = (velocity_direction / velocity_direction_abs) * \             # <<<<<<<<<<<<<<
  *                                                                abs_velocity
  * 
  */
-  __pyx_t_6 = PyNumber_Multiply(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 155, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Multiply(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 155, __pyx_L1_error)
+  if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 166, __pyx_L1_error)
   __pyx_v_velocity = ((PyArrayObject *)__pyx_t_6);
   __pyx_t_6 = 0;
 
-  /* "cython_calculation.pyx":158
+  /* "cython_calculation.pyx":169
  *                                                                abs_velocity
  * 
  *         return velocity             # <<<<<<<<<<<<<<
  * 
- *     cdef numpy.ndarray mass_focus_without_planet_x(self, int planet_index):
+ *     @cython.optimize.unpack_method_calls(True)
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
   __Pyx_INCREF(((PyObject *)__pyx_v_velocity));
   __pyx_r = __pyx_v_velocity;
   goto __pyx_L0;
 
-  /* "cython_calculation.pyx":142
- *         return velocity
+  /* "cython_calculation.pyx":153
  * 
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef numpy.ndarray velocity_direction(self, int current_planet):             # <<<<<<<<<<<<<<
  *         """
  *         Calculate the velocity_direction in Z-direction
@@ -4632,9 +4706,9 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_velocity_direct
   return __pyx_r;
 }
 
-/* "cython_calculation.pyx":160
- *         return velocity
+/* "cython_calculation.pyx":172
  * 
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef numpy.ndarray mass_focus_without_planet_x(self, int planet_index):             # <<<<<<<<<<<<<<
  *         """
  *         the mass focus without the planet(l)
@@ -4653,65 +4727,73 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_mass_focus_with
   Py_ssize_t __pyx_t_5;
   int __pyx_t_6;
   int __pyx_t_7;
-  double __pyx_t_8;
-  PyObject *__pyx_t_9 = NULL;
+  PyObject *__pyx_t_8 = NULL;
   __Pyx_RefNannySetupContext("mass_focus_without_planet_x", 0);
 
-  /* "cython_calculation.pyx":166
+  /* "cython_calculation.pyx":178
  *         :return: a mass num
  *         """
  *         cdef numpy.ndarray sum_mass_pos = numpy.empty(3, dtype=numpy.float64)             # <<<<<<<<<<<<<<
- *         cdef int i
+ *         cdef int i = 0
  *         for i in self.amount_of_planets_list:
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 166, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 166, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 166, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 166, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float64); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 166, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float64); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 166, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple_, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 166, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple_, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 166, __pyx_L1_error)
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 178, __pyx_L1_error)
   __pyx_v_sum_mass_pos = ((PyArrayObject *)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "cython_calculation.pyx":168
+  /* "cython_calculation.pyx":179
+ *         """
  *         cdef numpy.ndarray sum_mass_pos = numpy.empty(3, dtype=numpy.float64)
- *         cdef int i
+ *         cdef int i = 0             # <<<<<<<<<<<<<<
+ *         for i in self.amount_of_planets_list:
+ *             if i != planet_index:
+ */
+  __pyx_v_i = 0;
+
+  /* "cython_calculation.pyx":180
+ *         cdef numpy.ndarray sum_mass_pos = numpy.empty(3, dtype=numpy.float64)
+ *         cdef int i = 0
  *         for i in self.amount_of_planets_list:             # <<<<<<<<<<<<<<
  *             if i != planet_index:
  *                 sum_mass_pos = sum_mass_pos + self.planets[i][1] * self.planets[i][3]
  */
   if (unlikely(__pyx_v_self->amount_of_planets_list == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 168, __pyx_L1_error)
+    __PYX_ERR(0, 180, __pyx_L1_error)
   }
   __pyx_t_4 = __pyx_v_self->amount_of_planets_list; __Pyx_INCREF(__pyx_t_4); __pyx_t_5 = 0;
   for (;;) {
     if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_4)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_1 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __pyx_t_1 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 180, __pyx_L1_error)
     #else
-    __pyx_t_1 = PySequence_ITEM(__pyx_t_4, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __pyx_t_1 = PySequence_ITEM(__pyx_t_4, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 180, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     #endif
-    __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 168, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 180, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_i = __pyx_t_6;
 
-    /* "cython_calculation.pyx":169
- *         cdef int i
+    /* "cython_calculation.pyx":181
+ *         cdef int i = 0
  *         for i in self.amount_of_planets_list:
  *             if i != planet_index:             # <<<<<<<<<<<<<<
  *                 sum_mass_pos = sum_mass_pos + self.planets[i][1] * self.planets[i][3]
@@ -4720,7 +4802,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_mass_focus_with
     __pyx_t_7 = ((__pyx_v_i != __pyx_v_planet_index) != 0);
     if (__pyx_t_7) {
 
-      /* "cython_calculation.pyx":170
+      /* "cython_calculation.pyx":182
  *         for i in self.amount_of_planets_list:
  *             if i != planet_index:
  *                 sum_mass_pos = sum_mass_pos + self.planets[i][1] * self.planets[i][3]             # <<<<<<<<<<<<<<
@@ -4729,29 +4811,29 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_mass_focus_with
  */
       if (unlikely(__pyx_v_self->planets == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 170, __pyx_L1_error)
+        __PYX_ERR(0, 182, __pyx_L1_error)
       }
-      __pyx_t_1 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 170, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (unlikely(__pyx_v_self->planets == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 170, __pyx_L1_error)
+        __PYX_ERR(0, 182, __pyx_L1_error)
       }
-      __pyx_t_2 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 170, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_i), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 182, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 170, __pyx_L1_error)
+      __pyx_t_3 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 182, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyNumber_Add(((PyObject *)__pyx_v_sum_mass_pos), __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 170, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_Add(((PyObject *)__pyx_v_sum_mass_pos), __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 182, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 170, __pyx_L1_error)
+      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 182, __pyx_L1_error)
       __Pyx_DECREF_SET(__pyx_v_sum_mass_pos, ((PyArrayObject *)__pyx_t_2));
       __pyx_t_2 = 0;
 
-      /* "cython_calculation.pyx":169
- *         cdef int i
+      /* "cython_calculation.pyx":181
+ *         cdef int i = 0
  *         for i in self.amount_of_planets_list:
  *             if i != planet_index:             # <<<<<<<<<<<<<<
  *                 sum_mass_pos = sum_mass_pos + self.planets[i][1] * self.planets[i][3]
@@ -4759,9 +4841,9 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_mass_focus_with
  */
     }
 
-    /* "cython_calculation.pyx":168
+    /* "cython_calculation.pyx":180
  *         cdef numpy.ndarray sum_mass_pos = numpy.empty(3, dtype=numpy.float64)
- *         cdef int i
+ *         cdef int i = 0
  *         for i in self.amount_of_planets_list:             # <<<<<<<<<<<<<<
  *             if i != planet_index:
  *                 sum_mass_pos = sum_mass_pos + self.planets[i][1] * self.planets[i][3]
@@ -4769,52 +4851,47 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_mass_focus_with
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "cython_calculation.pyx":172
+  /* "cython_calculation.pyx":184
  *                 sum_mass_pos = sum_mass_pos + self.planets[i][1] * self.planets[i][3]
  * 
  *         cdef numpy.ndarray mass_focus_without_planet_x = numpy.array(((1 / self.total_mass()) * sum_mass_pos),dtype=numpy.float64)             # <<<<<<<<<<<<<<
  * 
  *         return mass_focus_without_planet_x
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_8 = ((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->total_mass(__pyx_v_self);
-  if (unlikely(__pyx_t_8 == 0)) {
-    PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 172, __pyx_L1_error)
-  }
-  __pyx_t_4 = PyFloat_FromDouble((1.0 / __pyx_t_8)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble((1.0 / ((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->total_mass(__pyx_v_self))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyNumber_Multiply(__pyx_t_4, ((PyObject *)__pyx_v_sum_mass_pos)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Multiply(__pyx_t_4, ((PyObject *)__pyx_v_sum_mass_pos)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3);
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float64); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 172, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_9);
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float64); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_9) < 0) __PYX_ERR(0, 172, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 172, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_9);
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_8) < 0) __PYX_ERR(0, 184, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(((__pyx_t_9) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_9, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 172, __pyx_L1_error)
-  __pyx_v_mass_focus_without_planet_x = ((PyArrayObject *)__pyx_t_9);
-  __pyx_t_9 = 0;
+  if (!(likely(((__pyx_t_8) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_8, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_v_mass_focus_without_planet_x = ((PyArrayObject *)__pyx_t_8);
+  __pyx_t_8 = 0;
 
-  /* "cython_calculation.pyx":174
+  /* "cython_calculation.pyx":186
  *         cdef numpy.ndarray mass_focus_without_planet_x = numpy.array(((1 / self.total_mass()) * sum_mass_pos),dtype=numpy.float64)
  * 
  *         return mass_focus_without_planet_x             # <<<<<<<<<<<<<<
@@ -4826,9 +4903,9 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_mass_focus_with
   __pyx_r = __pyx_v_mass_focus_without_planet_x;
   goto __pyx_L0;
 
-  /* "cython_calculation.pyx":160
- *         return velocity
+  /* "cython_calculation.pyx":172
  * 
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef numpy.ndarray mass_focus_without_planet_x(self, int planet_index):             # <<<<<<<<<<<<<<
  *         """
  *         the mass focus without the planet(l)
@@ -4840,7 +4917,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_mass_focus_with
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_XDECREF(__pyx_t_8);
   __Pyx_AddTraceback("cython_calculation.Calculation.mass_focus_without_planet_x", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
@@ -4852,7 +4929,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_mass_focus_with
 }
 static PyObject *__pyx_gb_18cython_calculation_11Calculation_6generator(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value); /* proto */
 
-/* "cython_calculation.pyx":176
+/* "cython_calculation.pyx":188
  *         return mass_focus_without_planet_x
  * 
  *     def calc_frame_positions(self):             # <<<<<<<<<<<<<<
@@ -4883,7 +4960,7 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_4calc_frame_positio
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_18cython_calculation___pyx_scope_struct__calc_frame_positions *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 176, __pyx_L1_error)
+    __PYX_ERR(0, 188, __pyx_L1_error)
   } else {
     __Pyx_GOTREF(__pyx_cur_scope);
   }
@@ -4891,7 +4968,7 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_4calc_frame_positio
   __Pyx_INCREF((PyObject *)__pyx_cur_scope->__pyx_v_self);
   __Pyx_GIVEREF((PyObject *)__pyx_cur_scope->__pyx_v_self);
   {
-    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_18cython_calculation_11Calculation_6generator, NULL, (PyObject *) __pyx_cur_scope, __pyx_n_s_calc_frame_positions, __pyx_n_s_Calculation_calc_frame_positions, __pyx_n_s_cython_calculation); if (unlikely(!gen)) __PYX_ERR(0, 176, __pyx_L1_error)
+    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_18cython_calculation_11Calculation_6generator, NULL, (PyObject *) __pyx_cur_scope, __pyx_n_s_calc_frame_positions, __pyx_n_s_Calculation_calc_frame_positions, __pyx_n_s_cython_calculation); if (unlikely(!gen)) __PYX_ERR(0, 188, __pyx_L1_error)
     __Pyx_DECREF(__pyx_cur_scope);
     __Pyx_RefNannyFinishContext();
     return (PyObject *) gen;
@@ -4911,233 +4988,261 @@ static PyObject *__pyx_gb_18cython_calculation_11Calculation_6generator(__pyx_Co
 {
   struct __pyx_obj_18cython_calculation___pyx_scope_struct__calc_frame_positions *__pyx_cur_scope = ((struct __pyx_obj_18cython_calculation___pyx_scope_struct__calc_frame_positions *)__pyx_generator->closure);
   PyObject *__pyx_r = NULL;
-  int __pyx_t_1;
+  PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
-  Py_ssize_t __pyx_t_4;
-  PyObject *__pyx_t_5 = NULL;
-  PyObject *__pyx_t_6 = NULL;
-  PyObject *__pyx_t_7 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  int __pyx_t_5;
+  Py_ssize_t __pyx_t_6;
+  long __pyx_t_7;
   long __pyx_t_8;
-  long __pyx_t_9;
-  int __pyx_t_10;
+  int __pyx_t_9;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("calc_frame_positions", 0);
   switch (__pyx_generator->resume_label) {
     case 0: goto __pyx_L3_first_run;
-    case 1: goto __pyx_L9_resume_from_yield;
+    case 1: goto __pyx_L8_resume_from_yield;
     default: /* CPython raises the right error here */
     __Pyx_RefNannyFinishContext();
     return NULL;
   }
   __pyx_L3_first_run:;
-  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 176, __pyx_L1_error)
+  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 188, __pyx_L1_error)
 
-  /* "cython_calculation.pyx":191
- *         cdef numpy.ndarray position_in_frame
- * 
- *         cdef int co = 0             # <<<<<<<<<<<<<<
- *         while co < 1000:
- *             co = co + 1
+  /* "cython_calculation.pyx":199
+ *         # is itself an array with 10 elements, where each of these
+ *         # elements contains 4 values (x, y, z, radius, e.g.)
+ *         cdef int i = 0             # <<<<<<<<<<<<<<
+ *         cdef numpy.ndarray new_pos = numpy.empty(3, dtype=numpy.float64)
+ *         cdef numpy.ndarray position_in_frame = numpy.empty(3, dtype=numpy.float64)
  */
-  __pyx_cur_scope->__pyx_v_co = 0;
+  __pyx_cur_scope->__pyx_v_i = 0;
 
-  /* "cython_calculation.pyx":192
+  /* "cython_calculation.pyx":200
+ *         # elements contains 4 values (x, y, z, radius, e.g.)
+ *         cdef int i = 0
+ *         cdef numpy.ndarray new_pos = numpy.empty(3, dtype=numpy.float64)             # <<<<<<<<<<<<<<
+ *         cdef numpy.ndarray position_in_frame = numpy.empty(3, dtype=numpy.float64)
  * 
- *         cdef int co = 0
- *         while co < 1000:             # <<<<<<<<<<<<<<
- *             co = co + 1
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float64); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 200, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple_, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 200, __pyx_L1_error)
+  __Pyx_GIVEREF(__pyx_t_4);
+  __pyx_cur_scope->__pyx_v_new_pos = ((PyArrayObject *)__pyx_t_4);
+  __pyx_t_4 = 0;
+
+  /* "cython_calculation.pyx":201
+ *         cdef int i = 0
+ *         cdef numpy.ndarray new_pos = numpy.empty(3, dtype=numpy.float64)
+ *         cdef numpy.ndarray position_in_frame = numpy.empty(3, dtype=numpy.float64)             # <<<<<<<<<<<<<<
+ * 
+ *         while self._is_running:
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float64); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_3) < 0) __PYX_ERR(0, 201, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple_, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 201, __pyx_L1_error)
+  __Pyx_GIVEREF(__pyx_t_3);
+  __pyx_cur_scope->__pyx_v_position_in_frame = ((PyArrayObject *)__pyx_t_3);
+  __pyx_t_3 = 0;
+
+  /* "cython_calculation.pyx":203
+ *         cdef numpy.ndarray position_in_frame = numpy.empty(3, dtype=numpy.float64)
+ * 
+ *         while self._is_running:             # <<<<<<<<<<<<<<
  *             # One planet with 4 values (x, y, z, scale)
+ *             positions_in_frame = numpy.zeros((len(self.planets), 4))
  */
   while (1) {
-    __pyx_t_1 = ((__pyx_cur_scope->__pyx_v_co < 0x3E8) != 0);
-    if (!__pyx_t_1) break;
+    __pyx_t_5 = (__pyx_cur_scope->__pyx_v_self->_is_running != 0);
+    if (!__pyx_t_5) break;
 
-    /* "cython_calculation.pyx":193
- *         cdef int co = 0
- *         while co < 1000:
- *             co = co + 1             # <<<<<<<<<<<<<<
+    /* "cython_calculation.pyx":205
+ *         while self._is_running:
  *             # One planet with 4 values (x, y, z, scale)
- *             positions_in_frame = numpy.zeros((len(self.planets), 4), dtype=numpy.float64)
- */
-    __pyx_cur_scope->__pyx_v_co = (__pyx_cur_scope->__pyx_v_co + 1);
-
-    /* "cython_calculation.pyx":195
- *             co = co + 1
- *             # One planet with 4 values (x, y, z, scale)
- *             positions_in_frame = numpy.zeros((len(self.planets), 4), dtype=numpy.float64)             # <<<<<<<<<<<<<<
+ *             positions_in_frame = numpy.zeros((len(self.planets), 4))             # <<<<<<<<<<<<<<
  *             for i in range(positions_in_frame.shape[0]):  # shape[1] contains
- *                 if i != 0:
+ *                 new_pos = self.calc_obj_new_pos(i)  # IDs start from 1
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 195, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 195, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __pyx_cur_scope->__pyx_v_self->planets;
-    __Pyx_INCREF(__pyx_t_2);
-    if (unlikely(__pyx_t_2 == Py_None)) {
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 205, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_4 = __pyx_cur_scope->__pyx_v_self->planets;
+    __Pyx_INCREF(__pyx_t_4);
+    if (unlikely(__pyx_t_4 == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-      __PYX_ERR(0, 195, __pyx_L1_error)
+      __PYX_ERR(0, 205, __pyx_L1_error)
     }
-    __pyx_t_4 = PyList_GET_SIZE(__pyx_t_2); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 195, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyInt_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 195, __pyx_L1_error)
+    __pyx_t_6 = PyList_GET_SIZE(__pyx_t_4); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 205, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_4 = PyInt_FromSsize_t(__pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 205, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 195, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_GIVEREF(__pyx_t_2);
-    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
+    __Pyx_GIVEREF(__pyx_t_4);
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4);
     __Pyx_INCREF(__pyx_int_4);
     __Pyx_GIVEREF(__pyx_int_4);
-    PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_int_4);
-    __pyx_t_2 = 0;
-    __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 195, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_GIVEREF(__pyx_t_5);
-    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_5);
-    __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 195, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_numpy); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 195, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_float64); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 195, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_t_7) < 0) __PYX_ERR(0, 195, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, __pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 195, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_XGOTREF(__pyx_cur_scope->__pyx_v_positions_in_frame);
-    __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_positions_in_frame, __pyx_t_7);
-    __Pyx_GIVEREF(__pyx_t_7);
-    __pyx_t_7 = 0;
-
-    /* "cython_calculation.pyx":196
- *             # One planet with 4 values (x, y, z, scale)
- *             positions_in_frame = numpy.zeros((len(self.planets), 4), dtype=numpy.float64)
- *             for i in range(positions_in_frame.shape[0]):  # shape[1] contains             # <<<<<<<<<<<<<<
- *                 if i != 0:
- *                     new_pos = self.calc_obj_new_pos(i)  # IDs start from 1
- */
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_positions_in_frame, __pyx_n_s_shape); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 196, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_7, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 196, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_8 = __Pyx_PyInt_As_long(__pyx_t_5); if (unlikely((__pyx_t_8 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 196, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_9 = __pyx_t_8;
-    for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
-      __pyx_cur_scope->__pyx_v_i = __pyx_t_10;
-
-      /* "cython_calculation.pyx":197
- *             positions_in_frame = numpy.zeros((len(self.planets), 4), dtype=numpy.float64)
- *             for i in range(positions_in_frame.shape[0]):  # shape[1] contains
- *                 if i != 0:             # <<<<<<<<<<<<<<
- *                     new_pos = self.calc_obj_new_pos(i)  # IDs start from 1
- *                     positions_in_frame[i][0] = new_pos[0]
- */
-      __pyx_t_1 = ((__pyx_cur_scope->__pyx_v_i != 0) != 0);
-      if (__pyx_t_1) {
-
-        /* "cython_calculation.pyx":198
- *             for i in range(positions_in_frame.shape[0]):  # shape[1] contains
- *                 if i != 0:
- *                     new_pos = self.calc_obj_new_pos(i)  # IDs start from 1             # <<<<<<<<<<<<<<
- *                     positions_in_frame[i][0] = new_pos[0]
- *                     positions_in_frame[i][1] = new_pos[1]
- */
-        __pyx_t_5 = ((PyObject *)((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_cur_scope->__pyx_v_self->__pyx_vtab)->calc_obj_new_pos(__pyx_cur_scope->__pyx_v_self, __pyx_cur_scope->__pyx_v_i)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 198, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_5);
-        __Pyx_XGOTREF(((PyObject *)__pyx_cur_scope->__pyx_v_new_pos));
-        __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_new_pos, ((PyArrayObject *)__pyx_t_5));
-        __Pyx_GIVEREF(__pyx_t_5);
-        __pyx_t_5 = 0;
-
-        /* "cython_calculation.pyx":199
- *                 if i != 0:
- *                     new_pos = self.calc_obj_new_pos(i)  # IDs start from 1
- *                     positions_in_frame[i][0] = new_pos[0]             # <<<<<<<<<<<<<<
- *                     positions_in_frame[i][1] = new_pos[1]
- *                     positions_in_frame[i][2] = new_pos[2]
- */
-        __pyx_t_5 = __Pyx_GetItemInt(((PyObject *)__pyx_cur_scope->__pyx_v_new_pos), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 199, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_7 = __Pyx_GetItemInt(__pyx_cur_scope->__pyx_v_positions_in_frame, __pyx_cur_scope->__pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 199, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_7);
-        if (unlikely(__Pyx_SetItemInt(__pyx_t_7, 0, __pyx_t_5, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 199, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-
-        /* "cython_calculation.pyx":200
- *                     new_pos = self.calc_obj_new_pos(i)  # IDs start from 1
- *                     positions_in_frame[i][0] = new_pos[0]
- *                     positions_in_frame[i][1] = new_pos[1]             # <<<<<<<<<<<<<<
- *                     positions_in_frame[i][2] = new_pos[2]
- *                     positions_in_frame[i][3] = self.planets[i][4] # <-- add radius
- */
-        __pyx_t_5 = __Pyx_GetItemInt(((PyObject *)__pyx_cur_scope->__pyx_v_new_pos), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 200, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_7 = __Pyx_GetItemInt(__pyx_cur_scope->__pyx_v_positions_in_frame, __pyx_cur_scope->__pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 200, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_7);
-        if (unlikely(__Pyx_SetItemInt(__pyx_t_7, 1, __pyx_t_5, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 200, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-
-        /* "cython_calculation.pyx":201
- *                     positions_in_frame[i][0] = new_pos[0]
- *                     positions_in_frame[i][1] = new_pos[1]
- *                     positions_in_frame[i][2] = new_pos[2]             # <<<<<<<<<<<<<<
- *                     positions_in_frame[i][3] = self.planets[i][4] # <-- add radius
- *             yield positions_in_frame
- */
-        __pyx_t_5 = __Pyx_GetItemInt(((PyObject *)__pyx_cur_scope->__pyx_v_new_pos), 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 201, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_7 = __Pyx_GetItemInt(__pyx_cur_scope->__pyx_v_positions_in_frame, __pyx_cur_scope->__pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 201, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_7);
-        if (unlikely(__Pyx_SetItemInt(__pyx_t_7, 2, __pyx_t_5, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 201, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-
-        /* "cython_calculation.pyx":202
- *                     positions_in_frame[i][1] = new_pos[1]
- *                     positions_in_frame[i][2] = new_pos[2]
- *                     positions_in_frame[i][3] = self.planets[i][4] # <-- add radius             # <<<<<<<<<<<<<<
- *             yield positions_in_frame
- * 
- */
-        if (unlikely(__pyx_cur_scope->__pyx_v_self->planets == Py_None)) {
-          PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 202, __pyx_L1_error)
-        }
-        __pyx_t_5 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_cur_scope->__pyx_v_self->planets, __pyx_cur_scope->__pyx_v_i), 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 202, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_7 = __Pyx_GetItemInt(__pyx_cur_scope->__pyx_v_positions_in_frame, __pyx_cur_scope->__pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 202, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_7);
-        if (unlikely(__Pyx_SetItemInt(__pyx_t_7, 3, __pyx_t_5, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 202, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-
-        /* "cython_calculation.pyx":197
- *             positions_in_frame = numpy.zeros((len(self.planets), 4), dtype=numpy.float64)
- *             for i in range(positions_in_frame.shape[0]):  # shape[1] contains
- *                 if i != 0:             # <<<<<<<<<<<<<<
- *                     new_pos = self.calc_obj_new_pos(i)  # IDs start from 1
- *                     positions_in_frame[i][0] = new_pos[0]
- */
+    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_int_4);
+    __pyx_t_4 = 0;
+    __pyx_t_4 = NULL;
+    if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
+      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_1);
+      if (likely(__pyx_t_4)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+        __Pyx_INCREF(__pyx_t_4);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_1, function);
       }
     }
+    __pyx_t_3 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_4, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2);
+    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 205, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_XGOTREF(__pyx_cur_scope->__pyx_v_positions_in_frame);
+    __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_positions_in_frame, __pyx_t_3);
+    __Pyx_GIVEREF(__pyx_t_3);
+    __pyx_t_3 = 0;
 
-    /* "cython_calculation.pyx":203
- *                     positions_in_frame[i][2] = new_pos[2]
- *                     positions_in_frame[i][3] = self.planets[i][4] # <-- add radius
+    /* "cython_calculation.pyx":206
+ *             # One planet with 4 values (x, y, z, scale)
+ *             positions_in_frame = numpy.zeros((len(self.planets), 4))
+ *             for i in range(positions_in_frame.shape[0]):  # shape[1] contains             # <<<<<<<<<<<<<<
+ *                 new_pos = self.calc_obj_new_pos(i)  # IDs start from 1
+ *                 positions_in_frame[i][0] = new_pos[0]
+ */
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_positions_in_frame, __pyx_n_s_shape); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 206, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __pyx_t_7 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_7 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 206, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_8 = __pyx_t_7;
+    for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
+      __pyx_cur_scope->__pyx_v_i = __pyx_t_9;
+
+      /* "cython_calculation.pyx":207
+ *             positions_in_frame = numpy.zeros((len(self.planets), 4))
+ *             for i in range(positions_in_frame.shape[0]):  # shape[1] contains
+ *                 new_pos = self.calc_obj_new_pos(i)  # IDs start from 1             # <<<<<<<<<<<<<<
+ *                 positions_in_frame[i][0] = new_pos[0]
+ *                 positions_in_frame[i][1] = new_pos[1]
+ */
+      __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_cur_scope->__pyx_v_self->__pyx_vtab)->calc_obj_new_pos(__pyx_cur_scope->__pyx_v_self, __pyx_cur_scope->__pyx_v_i)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_GOTREF(((PyObject *)__pyx_cur_scope->__pyx_v_new_pos));
+      __Pyx_DECREF_SET(__pyx_cur_scope->__pyx_v_new_pos, ((PyArrayObject *)__pyx_t_1));
+      __Pyx_GIVEREF(__pyx_t_1);
+      __pyx_t_1 = 0;
+
+      /* "cython_calculation.pyx":208
+ *             for i in range(positions_in_frame.shape[0]):  # shape[1] contains
+ *                 new_pos = self.calc_obj_new_pos(i)  # IDs start from 1
+ *                 positions_in_frame[i][0] = new_pos[0]             # <<<<<<<<<<<<<<
+ *                 positions_in_frame[i][1] = new_pos[1]
+ *                 positions_in_frame[i][2] = new_pos[2]
+ */
+      __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_cur_scope->__pyx_v_new_pos), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 208, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_3 = __Pyx_GetItemInt(__pyx_cur_scope->__pyx_v_positions_in_frame, __pyx_cur_scope->__pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 208, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      if (unlikely(__Pyx_SetItemInt(__pyx_t_3, 0, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 208, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+      /* "cython_calculation.pyx":209
+ *                 new_pos = self.calc_obj_new_pos(i)  # IDs start from 1
+ *                 positions_in_frame[i][0] = new_pos[0]
+ *                 positions_in_frame[i][1] = new_pos[1]             # <<<<<<<<<<<<<<
+ *                 positions_in_frame[i][2] = new_pos[2]
+ *                 positions_in_frame[i][3] = self.planets[i][4] # <-- add radius
+ */
+      __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_cur_scope->__pyx_v_new_pos), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_3 = __Pyx_GetItemInt(__pyx_cur_scope->__pyx_v_positions_in_frame, __pyx_cur_scope->__pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 209, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      if (unlikely(__Pyx_SetItemInt(__pyx_t_3, 1, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 209, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+      /* "cython_calculation.pyx":210
+ *                 positions_in_frame[i][0] = new_pos[0]
+ *                 positions_in_frame[i][1] = new_pos[1]
+ *                 positions_in_frame[i][2] = new_pos[2]             # <<<<<<<<<<<<<<
+ *                 positions_in_frame[i][3] = self.planets[i][4] # <-- add radius
+ *             yield positions_in_frame
+ */
+      __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_cur_scope->__pyx_v_new_pos), 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 210, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_3 = __Pyx_GetItemInt(__pyx_cur_scope->__pyx_v_positions_in_frame, __pyx_cur_scope->__pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 210, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      if (unlikely(__Pyx_SetItemInt(__pyx_t_3, 2, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 210, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+      /* "cython_calculation.pyx":211
+ *                 positions_in_frame[i][1] = new_pos[1]
+ *                 positions_in_frame[i][2] = new_pos[2]
+ *                 positions_in_frame[i][3] = self.planets[i][4] # <-- add radius             # <<<<<<<<<<<<<<
+ *             yield positions_in_frame
+ * 
+ */
+      if (unlikely(__pyx_cur_scope->__pyx_v_self->planets == Py_None)) {
+        PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+        __PYX_ERR(0, 211, __pyx_L1_error)
+      }
+      __pyx_t_1 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_cur_scope->__pyx_v_self->planets, __pyx_cur_scope->__pyx_v_i), 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 211, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_3 = __Pyx_GetItemInt(__pyx_cur_scope->__pyx_v_positions_in_frame, __pyx_cur_scope->__pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      if (unlikely(__Pyx_SetItemInt(__pyx_t_3, 3, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 211, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    }
+
+    /* "cython_calculation.pyx":212
+ *                 positions_in_frame[i][2] = new_pos[2]
+ *                 positions_in_frame[i][3] = self.planets[i][4] # <-- add radius
  *             yield positions_in_frame             # <<<<<<<<<<<<<<
  * 
- *     cdef numpy.ndarray calc_obj_new_pos(self, int current_planet):
+ *     @cython.optimize.unpack_method_calls(True)
  */
     __Pyx_INCREF(__pyx_cur_scope->__pyx_v_positions_in_frame);
     __pyx_r = __pyx_cur_scope->__pyx_v_positions_in_frame;
@@ -5147,12 +5252,12 @@ static PyObject *__pyx_gb_18cython_calculation_11Calculation_6generator(__pyx_Co
     /* return from generator, yielding value */
     __pyx_generator->resume_label = 1;
     return __pyx_r;
-    __pyx_L9_resume_from_yield:;
-    if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 203, __pyx_L1_error)
+    __pyx_L8_resume_from_yield:;
+    if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 212, __pyx_L1_error)
   }
   CYTHON_MAYBE_UNUSED_VAR(__pyx_cur_scope);
 
-  /* "cython_calculation.pyx":176
+  /* "cython_calculation.pyx":188
  *         return mass_focus_without_planet_x
  * 
  *     def calc_frame_positions(self):             # <<<<<<<<<<<<<<
@@ -5164,11 +5269,10 @@ static PyObject *__pyx_gb_18cython_calculation_11Calculation_6generator(__pyx_Co
   PyErr_SetNone(PyExc_StopIteration);
   goto __pyx_L0;
   __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_XDECREF(__pyx_t_4);
   __Pyx_AddTraceback("calc_frame_positions", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_r); __pyx_r = 0;
@@ -5181,9 +5285,9 @@ static PyObject *__pyx_gb_18cython_calculation_11Calculation_6generator(__pyx_Co
   return __pyx_r;
 }
 
-/* "cython_calculation.pyx":205
- *             yield positions_in_frame
+/* "cython_calculation.pyx":215
  * 
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef numpy.ndarray calc_obj_new_pos(self, int current_planet):             # <<<<<<<<<<<<<<
  *         """
  *         calculate the single planet
@@ -5205,19 +5309,19 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_obj_new_po
   PyObject *__pyx_t_7 = NULL;
   __Pyx_RefNannySetupContext("calc_obj_new_pos", 0);
 
-  /* "cython_calculation.pyx":212
+  /* "cython_calculation.pyx":222
  *         """
  * 
  *         cdef numpy.ndarray current_planet_acceleration = self.calc_acceleration(current_planet)             # <<<<<<<<<<<<<<
  *         cdef numpy.ndarray current_planet_velocity = self.planets[current_planet][5]
  *         cdef int d_t = self.delta_t
  */
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->calc_acceleration(__pyx_v_self, __pyx_v_current_planet)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->calc_acceleration(__pyx_v_self, __pyx_v_current_planet)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_current_planet_acceleration = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cython_calculation.pyx":213
+  /* "cython_calculation.pyx":223
  * 
  *         cdef numpy.ndarray current_planet_acceleration = self.calc_acceleration(current_planet)
  *         cdef numpy.ndarray current_planet_velocity = self.planets[current_planet][5]             # <<<<<<<<<<<<<<
@@ -5226,15 +5330,15 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_obj_new_po
  */
   if (unlikely(__pyx_v_self->planets == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 213, __pyx_L1_error)
+    __PYX_ERR(0, 223, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_current_planet), 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_current_planet), 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 213, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 223, __pyx_L1_error)
   __pyx_v_current_planet_velocity = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cython_calculation.pyx":214
+  /* "cython_calculation.pyx":224
  *         cdef numpy.ndarray current_planet_acceleration = self.calc_acceleration(current_planet)
  *         cdef numpy.ndarray current_planet_velocity = self.planets[current_planet][5]
  *         cdef int d_t = self.delta_t             # <<<<<<<<<<<<<<
@@ -5244,7 +5348,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_obj_new_po
   __pyx_t_2 = __pyx_v_self->delta_t;
   __pyx_v_d_t = __pyx_t_2;
 
-  /* "cython_calculation.pyx":216
+  /* "cython_calculation.pyx":226
  *         cdef int d_t = self.delta_t
  * 
  *         cdef numpy.ndarray new_pos = self.planets[current_planet][3] + \             # <<<<<<<<<<<<<<
@@ -5253,24 +5357,24 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_obj_new_po
  */
   if (unlikely(__pyx_v_self->planets == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 216, __pyx_L1_error)
+    __PYX_ERR(0, 226, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_current_planet), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_current_planet), 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "cython_calculation.pyx":217
+  /* "cython_calculation.pyx":227
  * 
  *         cdef numpy.ndarray new_pos = self.planets[current_planet][3] + \
  *                                      numpy.multiply(d_t, current_planet_velocity) + \             # <<<<<<<<<<<<<<
  *                                      numpy.multiply(((d_t ** 2) / 2), current_planet_acceleration)
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 227, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_multiply); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_multiply); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 227, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_d_t); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_d_t); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 227, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_6 = NULL;
   __pyx_t_2 = 0;
@@ -5287,7 +5391,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_obj_new_po
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_5)) {
     PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_4, ((PyObject *)__pyx_v_current_planet_velocity)};
-    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 217, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 227, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -5296,14 +5400,14 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_obj_new_po
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
     PyObject *__pyx_temp[3] = {__pyx_t_6, __pyx_t_4, ((PyObject *)__pyx_v_current_planet_velocity)};
-    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 217, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 227, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else
   #endif
   {
-    __pyx_t_7 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 217, __pyx_L1_error)
+    __pyx_t_7 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 227, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     if (__pyx_t_6) {
       __Pyx_GIVEREF(__pyx_t_6); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_6); __pyx_t_6 = NULL;
@@ -5314,37 +5418,37 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_obj_new_po
     __Pyx_GIVEREF(((PyObject *)__pyx_v_current_planet_velocity));
     PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_2, ((PyObject *)__pyx_v_current_planet_velocity));
     __pyx_t_4 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 217, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 227, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "cython_calculation.pyx":216
+  /* "cython_calculation.pyx":226
  *         cdef int d_t = self.delta_t
  * 
  *         cdef numpy.ndarray new_pos = self.planets[current_planet][3] + \             # <<<<<<<<<<<<<<
  *                                      numpy.multiply(d_t, current_planet_velocity) + \
  *                                      numpy.multiply(((d_t ** 2) / 2), current_planet_acceleration)
  */
-  __pyx_t_5 = PyNumber_Add(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Add(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cython_calculation.pyx":218
+  /* "cython_calculation.pyx":228
  *         cdef numpy.ndarray new_pos = self.planets[current_planet][3] + \
  *                                      numpy.multiply(d_t, current_planet_velocity) + \
  *                                      numpy.multiply(((d_t ** 2) / 2), current_planet_acceleration)             # <<<<<<<<<<<<<<
  * 
  *         self.planets[current_planet][3] = new_pos
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 218, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_multiply); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 218, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_multiply); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_From_long(__Pyx_div_long(__Pyx_pow_long(((long)__pyx_v_d_t), 2), 2)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 218, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_long((__Pyx_pow_long(((long)__pyx_v_d_t), 2) / 2)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_4 = NULL;
   __pyx_t_2 = 0;
@@ -5361,7 +5465,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_obj_new_po
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_7)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_t_1, ((PyObject *)__pyx_v_current_planet_acceleration)};
-    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 218, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 228, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5370,14 +5474,14 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_obj_new_po
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_t_1, ((PyObject *)__pyx_v_current_planet_acceleration)};
-    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 218, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 228, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 218, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 228, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -5388,28 +5492,28 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_obj_new_po
     __Pyx_GIVEREF(((PyObject *)__pyx_v_current_planet_acceleration));
     PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_2, ((PyObject *)__pyx_v_current_planet_acceleration));
     __pyx_t_1 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 218, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 228, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "cython_calculation.pyx":217
+  /* "cython_calculation.pyx":227
  * 
  *         cdef numpy.ndarray new_pos = self.planets[current_planet][3] + \
  *                                      numpy.multiply(d_t, current_planet_velocity) + \             # <<<<<<<<<<<<<<
  *                                      numpy.multiply(((d_t ** 2) / 2), current_planet_acceleration)
  * 
  */
-  __pyx_t_7 = PyNumber_Add(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_t_7 = PyNumber_Add(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 227, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(((__pyx_t_7) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_7, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 217, __pyx_L1_error)
+  if (!(likely(((__pyx_t_7) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_7, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 227, __pyx_L1_error)
   __pyx_v_new_pos = ((PyArrayObject *)__pyx_t_7);
   __pyx_t_7 = 0;
 
-  /* "cython_calculation.pyx":220
+  /* "cython_calculation.pyx":230
  *                                      numpy.multiply(((d_t ** 2) / 2), current_planet_acceleration)
  * 
  *         self.planets[current_planet][3] = new_pos             # <<<<<<<<<<<<<<
@@ -5418,11 +5522,11 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_obj_new_po
  */
   if (unlikely(__pyx_v_self->planets == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 220, __pyx_L1_error)
+    __PYX_ERR(0, 230, __pyx_L1_error)
   }
-  if (unlikely(__Pyx_SetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_current_planet), 3, ((PyObject *)__pyx_v_new_pos), long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 220, __pyx_L1_error)
+  if (unlikely(__Pyx_SetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_current_planet), 3, ((PyObject *)__pyx_v_new_pos), long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 230, __pyx_L1_error)
 
-  /* "cython_calculation.pyx":222
+  /* "cython_calculation.pyx":232
  *         self.planets[current_planet][3] = new_pos
  *         self.planets[current_planet][5] \
  *             = self.planets[current_planet][5] + d_t * current_planet_acceleration             # <<<<<<<<<<<<<<
@@ -5431,21 +5535,21 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_obj_new_po
  */
   if (unlikely(__pyx_v_self->planets == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 222, __pyx_L1_error)
+    __PYX_ERR(0, 232, __pyx_L1_error)
   }
-  __pyx_t_7 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_current_planet), 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 222, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_GetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_current_planet), 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_d_t); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 222, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_d_t); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_3, ((PyObject *)__pyx_v_current_planet_acceleration)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 222, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Multiply(__pyx_t_3, ((PyObject *)__pyx_v_current_planet_acceleration)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Add(__pyx_t_7, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 222, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Add(__pyx_t_7, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "cython_calculation.pyx":221
+  /* "cython_calculation.pyx":231
  * 
  *         self.planets[current_planet][3] = new_pos
  *         self.planets[current_planet][5] \             # <<<<<<<<<<<<<<
@@ -5454,12 +5558,12 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_obj_new_po
  */
   if (unlikely(__pyx_v_self->planets == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 221, __pyx_L1_error)
+    __PYX_ERR(0, 231, __pyx_L1_error)
   }
-  if (unlikely(__Pyx_SetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_current_planet), 5, __pyx_t_3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 221, __pyx_L1_error)
+  if (unlikely(__Pyx_SetItemInt(PyList_GET_ITEM(__pyx_v_self->planets, __pyx_v_current_planet), 5, __pyx_t_3, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cython_calculation.pyx":224
+  /* "cython_calculation.pyx":234
  *             = self.planets[current_planet][5] + d_t * current_planet_acceleration
  * 
  *         return new_pos             # <<<<<<<<<<<<<<
@@ -5471,9 +5575,9 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_obj_new_po
   __pyx_r = __pyx_v_new_pos;
   goto __pyx_L0;
 
-  /* "cython_calculation.pyx":205
- *             yield positions_in_frame
+  /* "cython_calculation.pyx":215
  * 
+ *     @cython.optimize.unpack_method_calls(True)
  *     cdef numpy.ndarray calc_obj_new_pos(self, int current_planet):             # <<<<<<<<<<<<<<
  *         """
  *         calculate the single planet
@@ -5498,7 +5602,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_11Calculation_calc_obj_new_po
   return __pyx_r;
 }
 
-/* "cython_calculation.pyx":226
+/* "cython_calculation.pyx":236
  *         return new_pos
  * 
  *     cpdef stop(self):             # <<<<<<<<<<<<<<
@@ -5525,7 +5629,7 @@ static PyObject *__pyx_f_18cython_calculation_11Calculation_stop(struct __pyx_ob
     else {
       PY_UINT64_T type_dict_guard = (likely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dict)) ? __PYX_GET_DICT_VERSION(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dict) : 0;
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_stop); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_stop); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 236, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_18cython_calculation_11Calculation_8stop)) {
         __Pyx_XDECREF(__pyx_r);
@@ -5542,7 +5646,7 @@ static PyObject *__pyx_f_18cython_calculation_11Calculation_stop(struct __pyx_ob
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 226, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 236, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_r = __pyx_t_2;
@@ -5563,14 +5667,16 @@ static PyObject *__pyx_f_18cython_calculation_11Calculation_stop(struct __pyx_ob
     #endif
   }
 
-  /* "cython_calculation.pyx":228
+  /* "cython_calculation.pyx":238
  *     cpdef stop(self):
  *         """ Stops the calculation of new frames """
  *         self._is_running = False             # <<<<<<<<<<<<<<
+ * 
+ *     cpdef profile(self, int num):
  */
   __pyx_v_self->_is_running = 0;
 
-  /* "cython_calculation.pyx":226
+  /* "cython_calculation.pyx":236
  *         return new_pos
  * 
  *     cpdef stop(self):             # <<<<<<<<<<<<<<
@@ -5614,7 +5720,7 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_7stop(struct __pyx_
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("stop", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_18cython_calculation_11Calculation_stop(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_18cython_calculation_11Calculation_stop(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 236, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5624,6 +5730,171 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_7stop(struct __pyx_
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_AddTraceback("cython_calculation.Calculation.stop", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cython_calculation.pyx":240
+ *         self._is_running = False
+ * 
+ *     cpdef profile(self, int num):             # <<<<<<<<<<<<<<
+ *         cdef int i
+ *         for i in range(num):
+ */
+
+static PyObject *__pyx_pw_18cython_calculation_11Calculation_10profile(PyObject *__pyx_v_self, PyObject *__pyx_arg_num); /*proto*/
+static PyObject *__pyx_f_18cython_calculation_11Calculation_profile(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self, int __pyx_v_num, int __pyx_skip_dispatch) {
+  CYTHON_UNUSED int __pyx_v_i;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
+  int __pyx_t_6;
+  int __pyx_t_7;
+  int __pyx_t_8;
+  __Pyx_RefNannySetupContext("profile", 0);
+  /* Check if called by wrapper */
+  if (unlikely(__pyx_skip_dispatch)) ;
+  /* Check if overridden in Python */
+  else if (unlikely((Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0) || (Py_TYPE(((PyObject *)__pyx_v_self))->tp_flags & (Py_TPFLAGS_IS_ABSTRACT | Py_TPFLAGS_HEAPTYPE)))) {
+    #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_PYTYPE_LOOKUP
+    static PY_UINT64_T tp_dict_version = 0, obj_dict_version = 0;
+    if (likely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dict && tp_dict_version == __PYX_GET_DICT_VERSION(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dict) && (!Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset || obj_dict_version == __PYX_GET_DICT_VERSION(_PyObject_GetDictPtr(((PyObject *)__pyx_v_self))))));
+    else {
+      PY_UINT64_T type_dict_guard = (likely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dict)) ? __PYX_GET_DICT_VERSION(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dict) : 0;
+      #endif
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_profile); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_18cython_calculation_11Calculation_10profile)) {
+        __Pyx_XDECREF(__pyx_r);
+        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_num); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 240, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        __Pyx_INCREF(__pyx_t_1);
+        __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
+        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
+          __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
+          if (likely(__pyx_t_5)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+            __Pyx_INCREF(__pyx_t_5);
+            __Pyx_INCREF(function);
+            __Pyx_DECREF_SET(__pyx_t_4, function);
+          }
+        }
+        __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
+        __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        __pyx_r = __pyx_t_2;
+        __pyx_t_2 = 0;
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        goto __pyx_L0;
+      }
+      #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_PYTYPE_LOOKUP
+      tp_dict_version = likely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dict) ? __PYX_GET_DICT_VERSION(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dict) : 0;
+      obj_dict_version = likely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset) ? __PYX_GET_DICT_VERSION(_PyObject_GetDictPtr(((PyObject *)__pyx_v_self))) : 0;
+      if (unlikely(type_dict_guard != tp_dict_version)) {
+        tp_dict_version = obj_dict_version = 0;
+      }
+      #endif
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_PYTYPE_LOOKUP
+    }
+    #endif
+  }
+
+  /* "cython_calculation.pyx":242
+ *     cpdef profile(self, int num):
+ *         cdef int i
+ *         for i in range(num):             # <<<<<<<<<<<<<<
+ *             self.calc_obj_new_pos(5)
+ */
+  __pyx_t_6 = __pyx_v_num;
+  __pyx_t_7 = __pyx_t_6;
+  for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
+    __pyx_v_i = __pyx_t_8;
+
+    /* "cython_calculation.pyx":243
+ *         cdef int i
+ *         for i in range(num):
+ *             self.calc_obj_new_pos(5)             # <<<<<<<<<<<<<<
+ */
+    __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_18cython_calculation_Calculation *)__pyx_v_self->__pyx_vtab)->calc_obj_new_pos(__pyx_v_self, 5)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 243, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  }
+
+  /* "cython_calculation.pyx":240
+ *         self._is_running = False
+ * 
+ *     cpdef profile(self, int num):             # <<<<<<<<<<<<<<
+ *         cdef int i
+ *         for i in range(num):
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_AddTraceback("cython_calculation.Calculation.profile", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_18cython_calculation_11Calculation_10profile(PyObject *__pyx_v_self, PyObject *__pyx_arg_num); /*proto*/
+static PyObject *__pyx_pw_18cython_calculation_11Calculation_10profile(PyObject *__pyx_v_self, PyObject *__pyx_arg_num) {
+  int __pyx_v_num;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("profile (wrapper)", 0);
+  assert(__pyx_arg_num); {
+    __pyx_v_num = __Pyx_PyInt_As_int(__pyx_arg_num); if (unlikely((__pyx_v_num == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 240, __pyx_L3_error)
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("cython_calculation.Calculation.profile", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_18cython_calculation_11Calculation_9profile(((struct __pyx_obj_18cython_calculation_Calculation *)__pyx_v_self), ((int)__pyx_v_num));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_18cython_calculation_11Calculation_9profile(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self, int __pyx_v_num) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("profile", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_18cython_calculation_11Calculation_profile(__pyx_v_self, __pyx_v_num, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("cython_calculation.Calculation.profile", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5714,19 +5985,19 @@ static int __pyx_pf_18cython_calculation_11Calculation_11_is_running_2__set__(st
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_18cython_calculation_11Calculation_10__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_18cython_calculation_11Calculation_10__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_18cython_calculation_11Calculation_12__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_18cython_calculation_11Calculation_12__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_18cython_calculation_11Calculation_9__reduce_cython__(((struct __pyx_obj_18cython_calculation_Calculation *)__pyx_v_self));
+  __pyx_r = __pyx_pf_18cython_calculation_11Calculation_11__reduce_cython__(((struct __pyx_obj_18cython_calculation_Calculation *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_18cython_calculation_11Calculation_9__reduce_cython__(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self) {
+static PyObject *__pyx_pf_18cython_calculation_11Calculation_11__reduce_cython__(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -5987,19 +6258,19 @@ static PyObject *__pyx_pf_18cython_calculation_11Calculation_9__reduce_cython__(
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_18cython_calculation_11Calculation_12__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_18cython_calculation_11Calculation_12__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_18cython_calculation_11Calculation_14__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_18cython_calculation_11Calculation_14__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_18cython_calculation_11Calculation_11__setstate_cython__(((struct __pyx_obj_18cython_calculation_Calculation *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_18cython_calculation_11Calculation_13__setstate_cython__(((struct __pyx_obj_18cython_calculation_Calculation *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_18cython_calculation_11Calculation_11__setstate_cython__(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_18cython_calculation_11Calculation_13__setstate_cython__(struct __pyx_obj_18cython_calculation_Calculation *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -8956,8 +9227,9 @@ static PyMethodDef __pyx_methods_18cython_calculation_Calculation[] = {
   {"open_json", (PyCFunction)__pyx_pw_18cython_calculation_11Calculation_3open_json, METH_NOARGS, __pyx_doc_18cython_calculation_11Calculation_2open_json},
   {"calc_frame_positions", (PyCFunction)__pyx_pw_18cython_calculation_11Calculation_5calc_frame_positions, METH_NOARGS, __pyx_doc_18cython_calculation_11Calculation_4calc_frame_positions},
   {"stop", (PyCFunction)__pyx_pw_18cython_calculation_11Calculation_8stop, METH_NOARGS, __pyx_doc_18cython_calculation_11Calculation_7stop},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_18cython_calculation_11Calculation_10__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_18cython_calculation_11Calculation_12__setstate_cython__, METH_O, 0},
+  {"profile", (PyCFunction)__pyx_pw_18cython_calculation_11Calculation_10profile, METH_O, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_18cython_calculation_11Calculation_12__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_18cython_calculation_11Calculation_14__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
@@ -9242,6 +9514,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_path, __pyx_k_path, sizeof(__pyx_k_path), 0, 0, 1, 1},
   {&__pyx_n_s_pickle, __pyx_k_pickle, sizeof(__pyx_k_pickle), 0, 0, 1, 1},
   {&__pyx_n_s_print, __pyx_k_print, sizeof(__pyx_k_print), 0, 0, 1, 1},
+  {&__pyx_n_s_profile, __pyx_k_profile, sizeof(__pyx_k_profile), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_PickleError, __pyx_k_pyx_PickleError, sizeof(__pyx_k_pyx_PickleError), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_checksum, __pyx_k_pyx_checksum, sizeof(__pyx_k_pyx_checksum), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_result, __pyx_k_pyx_result, sizeof(__pyx_k_pyx_result), 0, 0, 1, 1},
@@ -9271,7 +9544,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 33, __pyx_L1_error)
-  __pyx_builtin_open = __Pyx_GetBuiltinName(__pyx_n_s_open); if (!__pyx_builtin_open) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_builtin_open = __Pyx_GetBuiltinName(__pyx_n_s_open); if (!__pyx_builtin_open) __PYX_ERR(0, 82, __pyx_L1_error)
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(2, 272, __pyx_L1_error)
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(2, 856, __pyx_L1_error)
   __pyx_builtin_ImportError = __Pyx_GetBuiltinName(__pyx_n_s_ImportError); if (!__pyx_builtin_ImportError) __PYX_ERR(2, 1038, __pyx_L1_error)
@@ -9284,36 +9557,36 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "cython_calculation.pyx":50
+  /* "cython_calculation.pyx":58
  *         If we load a random_planet_....json
  *         """
  *         cdef numpy.ndarray velocity = numpy.zeros(3, dtype=numpy.float64)             # <<<<<<<<<<<<<<
  *         if "random" in json_path:
  *             print("{:20}, {:62}, {:26}".format("Name", "Velocity", "Position"))
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_int_3); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_int_3); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "cython_calculation.pyx":52
+  /* "cython_calculation.pyx":60
  *         cdef numpy.ndarray velocity = numpy.zeros(3, dtype=numpy.float64)
  *         if "random" in json_path:
  *             print("{:20}, {:62}, {:26}".format("Name", "Velocity", "Position"))             # <<<<<<<<<<<<<<
  *             print("\n")
  *             for i in self.amount_of_planets_list:
  */
-  __pyx_tuple__2 = PyTuple_Pack(3, __pyx_n_s_Name, __pyx_n_s_Velocity, __pyx_n_s_Position); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_tuple__2 = PyTuple_Pack(3, __pyx_n_s_Name, __pyx_n_s_Velocity, __pyx_n_s_Position); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "cython_calculation.pyx":74
+  /* "cython_calculation.pyx":82
  *         current_dir = path.dirname(__file__)
  *         upper_dir = path.realpath(path.join(current_dir, ".."))
  *         with open(path.join(upper_dir, self.json_path)) as f:             # <<<<<<<<<<<<<<
  *             planet_dict = json.load(f)
  *         return planet_dict
  */
-  __pyx_tuple__5 = PyTuple_Pack(3, Py_None, Py_None, Py_None); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(3, Py_None, Py_None, Py_None); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
 
@@ -9470,6 +9743,7 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_vtable_18cython_calculation_Calculation.mass_focus_without_planet_x = (PyArrayObject *(*)(struct __pyx_obj_18cython_calculation_Calculation *, int))__pyx_f_18cython_calculation_11Calculation_mass_focus_without_planet_x;
   __pyx_vtable_18cython_calculation_Calculation.calc_obj_new_pos = (PyArrayObject *(*)(struct __pyx_obj_18cython_calculation_Calculation *, int))__pyx_f_18cython_calculation_11Calculation_calc_obj_new_pos;
   __pyx_vtable_18cython_calculation_Calculation.stop = (PyObject *(*)(struct __pyx_obj_18cython_calculation_Calculation *, int __pyx_skip_dispatch))__pyx_f_18cython_calculation_11Calculation_stop;
+  __pyx_vtable_18cython_calculation_Calculation.profile = (PyObject *(*)(struct __pyx_obj_18cython_calculation_Calculation *, int, int __pyx_skip_dispatch))__pyx_f_18cython_calculation_11Calculation_profile;
   if (PyType_Ready(&__pyx_type_18cython_calculation_Calculation) < 0) __PYX_ERR(0, 17, __pyx_L1_error)
   __pyx_type_18cython_calculation_Calculation.tp_print = 0;
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_18cython_calculation_Calculation.tp_dictoffset && __pyx_type_18cython_calculation_Calculation.tp_getattro == PyObject_GenericGetAttr)) {
@@ -9479,7 +9753,7 @@ static int __Pyx_modinit_type_init_code(void) {
   if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Calculation, (PyObject *)&__pyx_type_18cython_calculation_Calculation) < 0) __PYX_ERR(0, 17, __pyx_L1_error)
   if (__Pyx_setup_reduce((PyObject*)&__pyx_type_18cython_calculation_Calculation) < 0) __PYX_ERR(0, 17, __pyx_L1_error)
   __pyx_ptype_18cython_calculation_Calculation = &__pyx_type_18cython_calculation_Calculation;
-  if (PyType_Ready(&__pyx_type_18cython_calculation___pyx_scope_struct__calc_frame_positions) < 0) __PYX_ERR(0, 176, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_18cython_calculation___pyx_scope_struct__calc_frame_positions) < 0) __PYX_ERR(0, 188, __pyx_L1_error)
   __pyx_type_18cython_calculation___pyx_scope_struct__calc_frame_positions.tp_print = 0;
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_18cython_calculation___pyx_scope_struct__calc_frame_positions.tp_dictoffset && __pyx_type_18cython_calculation___pyx_scope_struct__calc_frame_positions.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_18cython_calculation___pyx_scope_struct__calc_frame_positions.tp_getattro = __Pyx_PyObject_GenericGetAttrNoDict;
@@ -9745,7 +10019,7 @@ if (!__Pyx_RefNanny) {
   #endif
 
   /* "cython_calculation.pyx":3
- * #cython: boundscheck=False, wraparound=False, nonecheck=False
+ * #cython: boundscheck=False, wraparound=False, nonecheck=False, cdivision=True,
  * 
  * import json             # <<<<<<<<<<<<<<
  * from os import path
@@ -9794,7 +10068,7 @@ if (!__Pyx_RefNanny) {
  * import numpy
  * from scipy.constants import G             # <<<<<<<<<<<<<<
  * 
- * 
+ * cimport cython
  */
   __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -9836,7 +10110,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "cython_calculation.pyx":1
- * #cython: boundscheck=False, wraparound=False, nonecheck=False             # <<<<<<<<<<<<<<
+ * #cython: boundscheck=False, wraparound=False, nonecheck=False, cdivision=True,             # <<<<<<<<<<<<<<
  * 
  * import json
  */
@@ -11079,14 +11353,6 @@ static void __Pyx_WriteUnraisable(const char *name, CYTHON_UNUSED int clineno,
     if (nogil)
         PyGILState_Release(state);
 #endif
-}
-
-/* None */
-static CYTHON_INLINE long __Pyx_div_long(long a, long b) {
-    long q = a / b;
-    long r = a - q*b;
-    q -= ((r != 0) & ((r ^ b) < 0));
-    return q;
 }
 
 /* PyErrExceptionMatches */

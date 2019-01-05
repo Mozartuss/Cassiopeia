@@ -10,7 +10,8 @@ Cython.Compiler.Options.annotate = True
 ext_modules = [Extension(
     name="cython_calculation",
     sources=["cython_calculation.pyx"],
-    extra_compile_args=["-ffast-math"])]
+    extra_compile_args=["-ffast-math"],
+    define_macros=[('CYTHON_TRACE', '1')])]
 
 setup(
     name='cython_calculation',

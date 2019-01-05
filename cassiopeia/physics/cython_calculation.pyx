@@ -1,11 +1,11 @@
-#cython: boundscheck=False, wraparound=False, nonecheck=False
+#cython: boundscheck=False, wraparound=False, nonecheck=False, cdivision=True,
 
 import json
 from os import path
 import numpy
 from scipy.constants import G
 
-
+cimport cython
 cimport numpy
 from libc.math cimport sqrt
 
@@ -47,6 +47,8 @@ cdef class Calculation:
                     item = item * 10 ** 24
                 if key == "Pos":
                     item = numpy.array(item, dtype=numpy.float64)
+                if key == "Velocity":
+                    item = numpy.array(item, dtype=numpy.float64)
                 temp.append(item)
             self.planets[i] = temp
 
@@ -81,18 +83,20 @@ cdef class Calculation:
             planet_dict = json.load(f)
         return planet_dict
 
+    @cython.optimize.unpack_method_calls(True)
     cdef double dist_abs(self, numpy.ndarray planet_1, numpy.ndarray planet_2):
         cdef double dist_abs = sqrt(((planet_1[0] - planet_2[0]) ** 2)
-                                   + ((planet_1[1] - planet_2[1]) ** 2)
-                                   + ((planet_1[2] - planet_2[2]) ** 2))
+                                    + ((planet_1[1] - planet_2[1]) ** 2)
+                                    + ((planet_1[2] - planet_2[2]) ** 2))
 
         return dist_abs
 
+    @cython.optimize.unpack_method_calls(True)
     cdef numpy.ndarray dist_vec(self, numpy.ndarray planet_1, numpy.ndarray planet_2):
         cdef numpy.ndarray dist_vec = planet_1 - planet_2
 
         return dist_vec
-
+    @cython.optimize.unpack_method_calls(True)
     cdef numpy.ndarray calc_acceleration(self, int planet_index):
         """
         Calculate the acceleration of planet1
@@ -104,9 +108,9 @@ cdef class Calculation:
 
         cdef numpy.ndarray current_planet_force = numpy.empty(3, dtype=numpy.float64)
         cdef numpy.ndarray dist_vector = numpy.empty(3, dtype=numpy.float64)
-        cdef double dist_absolute
-        cdef double mass_different
-        cdef int i
+        cdef double dist_absolute = 0
+        cdef double mass_different = 0
+        cdef int i = 0
 
         for i in self.amount_of_planets_list:
             if i != planet_index:
@@ -121,13 +125,13 @@ cdef class Calculation:
         return current_planet_acceleration
 
     cdef double total_mass(self):
-        cdef int i
+        cdef int i = 0
         cdef double total_mass = 0
         for i in self.amount_of_planets_list:
             total_mass = total_mass + self.planets[i][1]
 
         return total_mass
-
+    @cython.optimize.unpack_method_calls(True)
     cdef double abs_velocity(self, double total_mass, int current_planet):
         """
         Calculate the velocity of the current_planet
@@ -141,10 +145,11 @@ cdef class Calculation:
         cdef double distance_abs = self.dist_abs(current_planet_pos, self.mass_focus_without_planet_x(current_planet))
 
         cdef double velocity = ((total_mass - self.planets[current_planet][1]) / total_mass) \
-                              * sqrt(((self.gravitation * total_mass) / distance_abs))
+                               * sqrt(((self.gravitation * total_mass) / distance_abs))
 
         return velocity
 
+    @cython.optimize.unpack_method_calls(True)
     cdef numpy.ndarray velocity_direction(self, int current_planet):
         """
         Calculate the velocity_direction in Z-direction
@@ -159,10 +164,11 @@ cdef class Calculation:
         cdef double velocity_direction_abs = numpy.linalg.norm(velocity_direction)
         cdef double abs_velocity = self.abs_velocity(self.total_mass(), current_planet)
         cdef numpy.ndarray velocity = (velocity_direction / velocity_direction_abs) * \
-                                                               abs_velocity
+                                      abs_velocity
 
         return velocity
 
+    @cython.optimize.unpack_method_calls(True)
     cdef numpy.ndarray mass_focus_without_planet_x(self, int planet_index):
         """
         the mass focus without the planet(l)
@@ -170,12 +176,13 @@ cdef class Calculation:
         :return: a mass num
         """
         cdef numpy.ndarray sum_mass_pos = numpy.empty(3, dtype=numpy.float64)
-        cdef int i
+        cdef int i = 0
         for i in self.amount_of_planets_list:
             if i != planet_index:
                 sum_mass_pos = sum_mass_pos + self.planets[i][1] * self.planets[i][3]
 
-        cdef numpy.ndarray mass_focus_without_planet_x = numpy.array(((1 / self.total_mass()) * sum_mass_pos),dtype=numpy.float64)
+        cdef numpy.ndarray mass_focus_without_planet_x = numpy.array(((1 / self.total_mass()) * sum_mass_pos),
+                                                                     dtype=numpy.float64)
 
         return mass_focus_without_planet_x
 
@@ -190,24 +197,22 @@ cdef class Calculation:
         # with 100 elements, where each of those 100 elements
         # is itself an array with 10 elements, where each of these
         # elements contains 4 values (x, y, z, radius, e.g.)
-        cdef int i
-        cdef numpy.ndarray new_pos
-        cdef numpy.ndarray position_in_frame
+        cdef int planet = 0
+        cdef numpy.ndarray new_pos = numpy.empty(3, dtype=numpy.float64)
+        cdef numpy.ndarray position_in_frame = numpy.empty(3, dtype=numpy.float64)
 
-        cdef int co = 0
-        while co < 1000:
-            co = co + 1
+        while self._is_running:
             # One planet with 4 values (x, y, z, scale)
-            positions_in_frame = numpy.zeros((len(self.planets), 4), dtype=numpy.float64)
-            for i in range(positions_in_frame.shape[0]):  # shape[1] contains
-                if i != 0:
-                    new_pos = self.calc_obj_new_pos(i)  # IDs start from 1
-                    positions_in_frame[i][0] = new_pos[0]
-                    positions_in_frame[i][1] = new_pos[1]
-                    positions_in_frame[i][2] = new_pos[2]
-                    positions_in_frame[i][3] = self.planets[i][4] # <-- add radius
+            positions_in_frame = numpy.zeros((len(self.planets), 4))
+            for planet in range(positions_in_frame.shape[0]):  # shape[1] contains
+                new_pos = self.calc_obj_new_pos(planet)  # IDs start from 1
+                positions_in_frame[planet][0] = new_pos[0]
+                positions_in_frame[planet][1] = new_pos[1]
+                positions_in_frame[planet][2] = new_pos[2]
+                positions_in_frame[planet][3] = self.planets[planet][4]  # <-- add radius
             yield positions_in_frame
 
+    @cython.optimize.unpack_method_calls(True)
     cdef numpy.ndarray calc_obj_new_pos(self, int current_planet):
         """
         calculate the single planet

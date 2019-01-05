@@ -42,7 +42,7 @@ _LIGHT_POSITION = (2, 2, 3)
 _CAMERA_POSITION = [0, 0, 2]
 _SCALE_FACTOR = 1
 _CAMER_MOTION_STEPSIZE = 0.05
-X_INDEX, Y_INDEX, Z_INDEX = 0, 1, 2
+X_INDEX, Y_INDEX, Z_INDEX, RADIUS = 0, 1, 2, 3
 
 
 class GalaxyRenderer:
@@ -137,13 +137,10 @@ class GalaxyRenderer:
         self.mouse_interactor.apply_transformation()
         for body_index in range(self.bodies.shape[0]):
             body = self.bodies[body_index] * _SCALE_FACTOR
+            rad = self.bodies[body_index][RADIUS] / 1000
             GL.glPushMatrix()
             GL.glTranslatef(body[X_INDEX], body[Y_INDEX], body[Z_INDEX])
-            if body_index == 0:
-                GL.glScalef(0.03, 0.03, 0.03)  # body[3] can be used
-            else:
-                # TODO Größe in Abhängigkeit vom Radius
-                GL.glScalef(0.01, 0.01, 0.01)
+            GL.glScalef(rad, rad, rad)
             GL.glCallList(self.sphere)
             GL.glPopMatrix()
         GLUT.glutSwapBuffers()

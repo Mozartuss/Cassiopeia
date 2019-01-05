@@ -50,7 +50,7 @@ class SetupGalaxy:
         planet_system = [{
             "ID": 0,
             "Name": "Black_hole",
-            "Radius": 100,
+            "Radius": self.max_planet_radius * 2,
             "Pos": [
                 0.0,
                 0.0,
