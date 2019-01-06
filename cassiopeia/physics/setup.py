@@ -7,11 +7,13 @@ from Cython.Distutils import build_ext
 
 Cython.Compiler.Options.annotate = True
 
+
 ext_modules = [Extension(
     name="cython_calculation",
     sources=["cython_calculation.pyx"],
-    extra_compile_args=["-ffast-math"],
-    define_macros=[('CYTHON_TRACE', '1')])]
+    libraries=["m"],
+    extra_compile_args=["-O3", "-ffast-math", "-march=native", "-fopenmp"],
+    extra_link_args=['-fopenmp'])]
 
 setup(
     name='cython_calculation',
