@@ -99,4 +99,17 @@ cdef class InitPlanets:
         return velocity
 
     cpdef get_planets_list(self):
-        return self.planets
+        cdef int planet_index = 0
+        planet_list = numpy.zeros((len(self.planets), 8))
+        for planet_index in range(planet_list.shape[0]):
+            pos = self.planets[planet_index][3]
+            velo = self.planets[planet_index][5]
+            planet_list[planet_index][0] = pos[0]                           # <- X
+            planet_list[planet_index][1] = pos[1]                           # <- Y
+            planet_list[planet_index][2] = pos[2]                           # <- Z
+            planet_list[planet_index][3] = self.planets[planet_index][4]    # <- Radius
+            planet_list[planet_index][4] = velo[0]                          # <- X Velocity
+            planet_list[planet_index][5] = velo[1]                          # <- Y Velocity
+            planet_list[planet_index][6] = velo[2]                          # <- Z Velocity
+            planet_list[planet_index][7] = self.planets[planet_index][1]    # <- Mass
+        return planet_list

@@ -20,10 +20,11 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 # or open http://www.fsf.org/licensing/licenses/gpl.html
 #
+import numpy
 import sys
 import time
 
-from physics.cython_calculation import calc_frame_positions, stop_calc
+from physics.cython_calculation import calc_frame_positions
 from physics.init_planets import InitPlanets
 from rendering.simulation_constants import END_MESSAGE
 
@@ -43,6 +44,7 @@ def startup(sim_pipe, json_path, delta_t, debug_mode=False):
             :param debug_mode:
             :param json_path:
     """
+    __is_running = True
     if debug_mode:
         try:
             import ptvsd
@@ -58,16 +60,18 @@ def startup(sim_pipe, json_path, delta_t, debug_mode=False):
     # Rendering will scale the big Coordinates to fit into the -1/1-room
     calc = InitPlanets(json_path, delta_t)
     planets = calc.get_planets_list()
-    for frame in calc_frame_positions(planets, delta_t):
-        # Send the scale-factor, so that the positions are in viewport
-        if frame.max() != 0:
-            sim_pipe.send(1 / frame.max())
-            # Send the positions of the frame
-        sim_pipe.send(frame)
+    while __is_running:
+        planets = calc_frame_positions(planets, delta_t)
+        scale = numpy.zeros((len(planets), 4))
+        for i in range(len(planets)):
+            scale[i] = planets[i][...,:4]
+        if scale.max() != 0:
+            sim_pipe.send(1 / scale.max())
+        sim_pipe.send(planets)
         if sim_pipe.poll():
             msg = sim_pipe.recv()
             if isinstance(msg, str) and msg == END_MESSAGE:
                 print("Stopping calculations...")
-                stop_calc()
+                __is_running = False
         time.sleep(1 / __FPS)
     sys.exit(0)

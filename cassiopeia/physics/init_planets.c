@@ -1789,6 +1789,7 @@ static const char __pyx_k_enter[] = "__enter__";
 static const char __pyx_k_items[] = "items";
 static const char __pyx_k_numpy[] = "numpy";
 static const char __pyx_k_range[] = "range";
+static const char __pyx_k_shape[] = "shape";
 static const char __pyx_k_zeros[] = "zeros";
 static const char __pyx_k_append[] = "append";
 static const char __pyx_k_import[] = "__import__";
@@ -1902,6 +1903,7 @@ static PyObject *__pyx_n_s_reduce_ex;
 static PyObject *__pyx_n_s_scipy_constants;
 static PyObject *__pyx_n_s_setstate;
 static PyObject *__pyx_n_s_setstate_cython;
+static PyObject *__pyx_n_s_shape;
 static PyObject *__pyx_kp_s_stringsource;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_kp_u_unknown_dtype_code_in_numpy_pxd;
@@ -1920,6 +1922,7 @@ static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
 static PyObject *__pyx_int_2;
 static PyObject *__pyx_int_3;
+static PyObject *__pyx_int_8;
 static PyObject *__pyx_int_81389870;
 static PyObject *__pyx_int_1000000000000000000000000;
 static PyObject *__pyx_tuple_;
@@ -3747,17 +3750,26 @@ static PyArrayObject *__pyx_f_12init_planets_11InitPlanets_velocity_direction(st
  *         return velocity
  * 
  *     cpdef get_planets_list(self):             # <<<<<<<<<<<<<<
- *         return self.planets
+ *         cdef int planet_index = 0
+ *         planet_list = numpy.zeros((len(self.planets), 8))
  */
 
 static PyObject *__pyx_pw_12init_planets_11InitPlanets_5get_planets_list(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
 static PyObject *__pyx_f_12init_planets_11InitPlanets_get_planets_list(struct __pyx_obj_12init_planets_InitPlanets *__pyx_v_self, int __pyx_skip_dispatch) {
+  int __pyx_v_planet_index;
+  PyObject *__pyx_v_planet_list = NULL;
+  PyObject *__pyx_v_pos = NULL;
+  PyObject *__pyx_v_velo = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
+  Py_ssize_t __pyx_t_5;
+  long __pyx_t_6;
+  long __pyx_t_7;
+  int __pyx_t_8;
   __Pyx_RefNannySetupContext("get_planets_list", 0);
   /* Check if called by wrapper */
   if (unlikely(__pyx_skip_dispatch)) ;
@@ -3810,18 +3822,267 @@ static PyObject *__pyx_f_12init_planets_11InitPlanets_get_planets_list(struct __
   /* "init_planets.pyx":102
  * 
  *     cpdef get_planets_list(self):
- *         return self.planets             # <<<<<<<<<<<<<<
+ *         cdef int planet_index = 0             # <<<<<<<<<<<<<<
+ *         planet_list = numpy.zeros((len(self.planets), 8))
+ *         for planet_index in range(planet_list.shape[0]):
+ */
+  __pyx_v_planet_index = 0;
+
+  /* "init_planets.pyx":103
+ *     cpdef get_planets_list(self):
+ *         cdef int planet_index = 0
+ *         planet_list = numpy.zeros((len(self.planets), 8))             # <<<<<<<<<<<<<<
+ *         for planet_index in range(planet_list.shape[0]):
+ *             pos = self.planets[planet_index][3]
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 103, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __pyx_v_self->planets;
+  __Pyx_INCREF(__pyx_t_2);
+  if (unlikely(__pyx_t_2 == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
+    __PYX_ERR(0, 103, __pyx_L1_error)
+  }
+  __pyx_t_5 = PyList_GET_SIZE(__pyx_t_2); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 103, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyInt_FromSsize_t(__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 103, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2);
+  __Pyx_INCREF(__pyx_int_8);
+  __Pyx_GIVEREF(__pyx_int_8);
+  PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_int_8);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_v_planet_list = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "init_planets.pyx":104
+ *         cdef int planet_index = 0
+ *         planet_list = numpy.zeros((len(self.planets), 8))
+ *         for planet_index in range(planet_list.shape[0]):             # <<<<<<<<<<<<<<
+ *             pos = self.planets[planet_index][3]
+ *             velo = self.planets[planet_index][5]
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_planet_list, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_6 = __Pyx_PyInt_As_long(__pyx_t_3); if (unlikely((__pyx_t_6 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 104, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_7 = __pyx_t_6;
+  for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
+    __pyx_v_planet_index = __pyx_t_8;
+
+    /* "init_planets.pyx":105
+ *         planet_list = numpy.zeros((len(self.planets), 8))
+ *         for planet_index in range(planet_list.shape[0]):
+ *             pos = self.planets[planet_index][3]             # <<<<<<<<<<<<<<
+ *             velo = self.planets[planet_index][5]
+ *             planet_list[planet_index][0] = pos[0]                           # <- X
+ */
+    if (unlikely(__pyx_v_self->planets == Py_None)) {
+      PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+      __PYX_ERR(0, 105, __pyx_L1_error)
+    }
+    __pyx_t_3 = __Pyx_GetItemInt_List(__pyx_v_self->planets, __pyx_v_planet_index, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 105, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_3, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_pos, __pyx_t_1);
+    __pyx_t_1 = 0;
+
+    /* "init_planets.pyx":106
+ *         for planet_index in range(planet_list.shape[0]):
+ *             pos = self.planets[planet_index][3]
+ *             velo = self.planets[planet_index][5]             # <<<<<<<<<<<<<<
+ *             planet_list[planet_index][0] = pos[0]                           # <- X
+ *             planet_list[planet_index][1] = pos[1]                           # <- Y
+ */
+    if (unlikely(__pyx_v_self->planets == Py_None)) {
+      PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+      __PYX_ERR(0, 106, __pyx_L1_error)
+    }
+    __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_self->planets, __pyx_v_planet_index, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 106, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_1, 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 106, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_velo, __pyx_t_3);
+    __pyx_t_3 = 0;
+
+    /* "init_planets.pyx":107
+ *             pos = self.planets[planet_index][3]
+ *             velo = self.planets[planet_index][5]
+ *             planet_list[planet_index][0] = pos[0]                           # <- X             # <<<<<<<<<<<<<<
+ *             planet_list[planet_index][1] = pos[1]                           # <- Y
+ *             planet_list[planet_index][2] = pos[2]                           # <- Z
+ */
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_pos, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_planet_list, __pyx_v_planet_index, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (unlikely(__Pyx_SetItemInt(__pyx_t_1, 0, __pyx_t_3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1) < 0)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+    /* "init_planets.pyx":108
+ *             velo = self.planets[planet_index][5]
+ *             planet_list[planet_index][0] = pos[0]                           # <- X
+ *             planet_list[planet_index][1] = pos[1]                           # <- Y             # <<<<<<<<<<<<<<
+ *             planet_list[planet_index][2] = pos[2]                           # <- Z
+ *             planet_list[planet_index][3] = self.planets[planet_index][4]    # <- Radius
+ */
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_pos, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 108, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_planet_list, __pyx_v_planet_index, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (unlikely(__Pyx_SetItemInt(__pyx_t_1, 1, __pyx_t_3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1) < 0)) __PYX_ERR(0, 108, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+    /* "init_planets.pyx":109
+ *             planet_list[planet_index][0] = pos[0]                           # <- X
+ *             planet_list[planet_index][1] = pos[1]                           # <- Y
+ *             planet_list[planet_index][2] = pos[2]                           # <- Z             # <<<<<<<<<<<<<<
+ *             planet_list[planet_index][3] = self.planets[planet_index][4]    # <- Radius
+ *             planet_list[planet_index][4] = velo[0]                          # <- X Velocity
+ */
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_pos, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 109, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_planet_list, __pyx_v_planet_index, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (unlikely(__Pyx_SetItemInt(__pyx_t_1, 2, __pyx_t_3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1) < 0)) __PYX_ERR(0, 109, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+    /* "init_planets.pyx":110
+ *             planet_list[planet_index][1] = pos[1]                           # <- Y
+ *             planet_list[planet_index][2] = pos[2]                           # <- Z
+ *             planet_list[planet_index][3] = self.planets[planet_index][4]    # <- Radius             # <<<<<<<<<<<<<<
+ *             planet_list[planet_index][4] = velo[0]                          # <- X Velocity
+ *             planet_list[planet_index][5] = velo[1]                          # <- Y Velocity
+ */
+    if (unlikely(__pyx_v_self->planets == Py_None)) {
+      PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+      __PYX_ERR(0, 110, __pyx_L1_error)
+    }
+    __pyx_t_3 = __Pyx_GetItemInt_List(__pyx_v_self->planets, __pyx_v_planet_index, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 110, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_3, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_planet_list, __pyx_v_planet_index, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 110, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    if (unlikely(__Pyx_SetItemInt(__pyx_t_3, 3, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1) < 0)) __PYX_ERR(0, 110, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "init_planets.pyx":111
+ *             planet_list[planet_index][2] = pos[2]                           # <- Z
+ *             planet_list[planet_index][3] = self.planets[planet_index][4]    # <- Radius
+ *             planet_list[planet_index][4] = velo[0]                          # <- X Velocity             # <<<<<<<<<<<<<<
+ *             planet_list[planet_index][5] = velo[1]                          # <- Y Velocity
+ *             planet_list[planet_index][6] = velo[2]                          # <- Z Velocity
+ */
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_velo, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_planet_list, __pyx_v_planet_index, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    if (unlikely(__Pyx_SetItemInt(__pyx_t_3, 4, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1) < 0)) __PYX_ERR(0, 111, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "init_planets.pyx":112
+ *             planet_list[planet_index][3] = self.planets[planet_index][4]    # <- Radius
+ *             planet_list[planet_index][4] = velo[0]                          # <- X Velocity
+ *             planet_list[planet_index][5] = velo[1]                          # <- Y Velocity             # <<<<<<<<<<<<<<
+ *             planet_list[planet_index][6] = velo[2]                          # <- Z Velocity
+ *             planet_list[planet_index][7] = self.planets[planet_index][1]    # <- Mass
+ */
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_velo, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_planet_list, __pyx_v_planet_index, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    if (unlikely(__Pyx_SetItemInt(__pyx_t_3, 5, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1) < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "init_planets.pyx":113
+ *             planet_list[planet_index][4] = velo[0]                          # <- X Velocity
+ *             planet_list[planet_index][5] = velo[1]                          # <- Y Velocity
+ *             planet_list[planet_index][6] = velo[2]                          # <- Z Velocity             # <<<<<<<<<<<<<<
+ *             planet_list[planet_index][7] = self.planets[planet_index][1]    # <- Mass
+ *         return planet_list
+ */
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_velo, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_planet_list, __pyx_v_planet_index, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 113, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    if (unlikely(__Pyx_SetItemInt(__pyx_t_3, 6, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1) < 0)) __PYX_ERR(0, 113, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "init_planets.pyx":114
+ *             planet_list[planet_index][5] = velo[1]                          # <- Y Velocity
+ *             planet_list[planet_index][6] = velo[2]                          # <- Z Velocity
+ *             planet_list[planet_index][7] = self.planets[planet_index][1]    # <- Mass             # <<<<<<<<<<<<<<
+ *         return planet_list
+ */
+    if (unlikely(__pyx_v_self->planets == Py_None)) {
+      PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+      __PYX_ERR(0, 114, __pyx_L1_error)
+    }
+    __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_self->planets, __pyx_v_planet_index, int, 1, __Pyx_PyInt_From_int, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 114, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_planet_list, __pyx_v_planet_index, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (unlikely(__Pyx_SetItemInt(__pyx_t_1, 7, __pyx_t_3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1) < 0)) __PYX_ERR(0, 114, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  }
+
+  /* "init_planets.pyx":115
+ *             planet_list[planet_index][6] = velo[2]                          # <- Z Velocity
+ *             planet_list[planet_index][7] = self.planets[planet_index][1]    # <- Mass
+ *         return planet_list             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_INCREF(__pyx_v_self->planets);
-  __pyx_r = __pyx_v_self->planets;
+  __Pyx_INCREF(__pyx_v_planet_list);
+  __pyx_r = __pyx_v_planet_list;
   goto __pyx_L0;
 
   /* "init_planets.pyx":101
  *         return velocity
  * 
  *     cpdef get_planets_list(self):             # <<<<<<<<<<<<<<
- *         return self.planets
+ *         cdef int planet_index = 0
+ *         planet_list = numpy.zeros((len(self.planets), 8))
  */
 
   /* function exit code */
@@ -3833,6 +4094,9 @@ static PyObject *__pyx_f_12init_planets_11InitPlanets_get_planets_list(struct __
   __Pyx_AddTraceback("init_planets.InitPlanets.get_planets_list", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_planet_list);
+  __Pyx_XDECREF(__pyx_v_pos);
+  __Pyx_XDECREF(__pyx_v_velo);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -7281,6 +7545,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_scipy_constants, __pyx_k_scipy_constants, sizeof(__pyx_k_scipy_constants), 0, 0, 1, 1},
   {&__pyx_n_s_setstate, __pyx_k_setstate, sizeof(__pyx_k_setstate), 0, 0, 1, 1},
   {&__pyx_n_s_setstate_cython, __pyx_k_setstate_cython, sizeof(__pyx_k_setstate_cython), 0, 0, 1, 1},
+  {&__pyx_n_s_shape, __pyx_k_shape, sizeof(__pyx_k_shape), 0, 0, 1, 1},
   {&__pyx_kp_s_stringsource, __pyx_k_stringsource, sizeof(__pyx_k_stringsource), 0, 0, 1, 0},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_kp_u_unknown_dtype_code_in_numpy_pxd, __pyx_k_unknown_dtype_code_in_numpy_pxd, sizeof(__pyx_k_unknown_dtype_code_in_numpy_pxd), 0, 1, 0, 0},
@@ -7424,6 +7689,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
   __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_2 = PyInt_FromLong(2); if (unlikely(!__pyx_int_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_3 = PyInt_FromLong(3); if (unlikely(!__pyx_int_3)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_8 = PyInt_FromLong(8); if (unlikely(!__pyx_int_8)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_81389870 = PyInt_FromLong(81389870L); if (unlikely(!__pyx_int_81389870)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_1000000000000000000000000 = PyInt_FromString((char *)"1000000000000000000000000", 0, 0); if (unlikely(!__pyx_int_1000000000000000000000000)) __PYX_ERR(0, 1, __pyx_L1_error)
   return 0;
