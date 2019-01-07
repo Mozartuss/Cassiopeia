@@ -23,7 +23,8 @@
 import sys
 import time
 
-from physics.cython_calculation import Calculation
+from physics.cython_calculation import calc_frame_positions, stop_calc
+from physics.init_planets import InitPlanets
 from rendering.simulation_constants import END_MESSAGE
 
 __FPS = 60
@@ -55,8 +56,9 @@ def startup(sim_pipe, json_path, delta_t, debug_mode=False):
     # set the dimensions according to our values
     # this will place the planets in our view-range
     # Rendering will scale the big Coordinates to fit into the -1/1-room
-    calc = Calculation(json_path, delta_t)
-    for frame in calc.calc_frame_positions():
+    calc = InitPlanets(json_path, delta_t)
+    planets = calc.get_planets_list()
+    for frame in calc_frame_positions(planets, delta_t):
         # Send the scale-factor, so that the positions are in viewport
         if frame.max() != 0:
             sim_pipe.send(1 / frame.max())
@@ -66,6 +68,6 @@ def startup(sim_pipe, json_path, delta_t, debug_mode=False):
             msg = sim_pipe.recv()
             if isinstance(msg, str) and msg == END_MESSAGE:
                 print("Stopping calculations...")
-                calc.stop()
+                stop_calc()
         time.sleep(1 / __FPS)
     sys.exit(0)
