@@ -1,12 +1,14 @@
 [
   {
-    "Name": "Sun",
+    "ID": 0,
     "Mass": 1989100,
+    "Name": "Sun",
     "Pos": [
       0.0,
       0.0,
       0.0
     ],
+    "Radius": 40,
     "Velocity": [
       0.0,
       0.0,
@@ -14,13 +16,15 @@
     ]
   },
   {
-    "Name": "Mercury",
+    "ID": 1,
     "Mass": 0.33011,
+    "Name": "Mercury",
     "Pos": [
       57900000000,
       0.0,
       0.0
     ],
+    "Radius": 10,
     "Velocity": [
       0.0,
       -47360,
@@ -28,13 +32,15 @@
     ]
   },
   {
-    "Name": "Venus",
+    "ID": 2,
     "Mass": 4.8675,
+    "Name": "Venus",
     "Pos": [
       108200000000,
       0.0,
       0.0
     ],
+    "Radius": 12,
     "Velocity": [
       0.0,
       -35020,
@@ -42,13 +48,15 @@
     ]
   },
   {
-    "Name": "Earth",
+    "ID": 3,
     "Mass": 5.9732,
+    "Name": "Earth",
     "Pos": [
       149600000000,
       0.0,
       0.0
     ],
+    "Radius": 14,
     "Velocity": [
       0.0,
       -29780,
@@ -56,13 +64,15 @@
     ]
   },
   {
-    "Name": "Mars",
+    "ID": 4,
     "Mass": 0.64171,
+    "Name": "Mars",
     "Pos": [
       227900000000,
       0.0,
       0.0
     ],
+    "Radius": 16,
     "Velocity": [
       0.0,
       -24070,
@@ -70,13 +80,15 @@
     ]
   },
   {
-    "Name": "Jupiter",
+    "ID": 5,
     "Mass": 1898.19,
+    "Name": "Jupiter",
     "Pos": [
       778600000000,
       0.0,
       0.0
     ],
+    "Radius": 25,
     "Velocity": [
       0.0,
       -13060,
@@ -84,13 +96,15 @@
     ]
   },
   {
-    "Name": "Saturn",
+    "ID": 6,
     "Mass": 568.34,
+    "Name": "Saturn",
     "Pos": [
       1433500000000,
       0.0,
       0.0
     ],
+    "Radius": 24,
     "Velocity": [
       0.0,
       -9680,
@@ -98,13 +112,15 @@
     ]
   },
   {
-    "Name": "Uranus",
+    "ID": 7,
     "Mass": 86.813,
+    "Name": "Uranus",
     "Pos": [
       2872500000000,
       0.0,
       0.0
     ],
+    "Radius": 20,
     "Velocity": [
       0.0,
       -6800,
@@ -112,13 +128,15 @@
     ]
   },
   {
-    "Name": "Neptune",
+    "ID": 8,
     "Mass": 102.413,
+    "Name": "Neptune",
     "Pos": [
       4495000000000,
       0.0,
       0.0
     ],
+    "Radius": 18,
     "Velocity": [
       0.0,
       -5430,
