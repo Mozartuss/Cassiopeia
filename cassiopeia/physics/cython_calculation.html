@@ -397,40 +397,20 @@ body.cython { font-family: courier; font-size: 12; }
 <pre class="cython line score-0">&#xA0;<span class="">14</span>: <span class="nd">@cython</span><span class="o">.</span><span class="n">wraparound</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">15</span>: <span class="nd">@cython</span><span class="o">.</span><span class="n">boundscheck</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">16</span>: <span class="nd">@cython</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">unpack_method_calls</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span></pre>
-<pre class="cython line score-60" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">17</span>: <span class="k">cpdef</span> <span class="kt">numpy</span>.<span class="kt">ndarray</span>[<span class="nf">DTYPE_t</span><span class="p">,</span><span class="nf">ndim</span><span class="o">=</span><span class="mf">2</span><span class="p">]</span> <span class="n">calc_frame_positions</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">[</span><span class="n">DTYPE_t</span><span class="p">,</span><span class="n">ndim</span><span class="o">=</span><span class="mf">2</span><span class="p">]</span> <span class="n">planets</span><span class="p">,</span> <span class="nb">int</span> <span class="n">delta_t</span><span class="p">):</span></pre>
-<pre class='cython code score-60 '>static PyObject *__pyx_pw_18cython_calculation_1calc_frame_positions(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+<pre class="cython line score-40" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">17</span>: <span class="k">cpdef</span> <span class="kt">numpy</span>.<span class="kt">ndarray</span> <span class="nf">calc_frame_positions</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="n">planets</span><span class="p">,</span> <span class="nb">int</span> <span class="n">delta_t</span><span class="p">):</span></pre>
+<pre class='cython code score-40 '>static PyObject *__pyx_pw_18cython_calculation_1calc_frame_positions(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyArrayObject *__pyx_f_18cython_calculation_calc_frame_positions(PyArrayObject *__pyx_v_planets, int __pyx_v_delta_t, CYTHON_UNUSED int __pyx_skip_dispatch) {
   int __pyx_v_planet_index;
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_planets;
-  __Pyx_Buffer __pyx_pybuffer_planets;
   PyArrayObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("calc_frame_positions", 0);
-  __pyx_pybuffer_planets.pybuffer.buf = NULL;
-  __pyx_pybuffer_planets.refcount = 0;
-  __pyx_pybuffernd_planets.data = NULL;
-  __pyx_pybuffernd_planets.rcbuffer = &amp;__pyx_pybuffer_planets;
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(<span class='pyx_c_api'>__Pyx_GetBufferAndValidate</span>(&amp;__pyx_pybuffernd_planets.rcbuffer-&gt;pybuffer, (PyObject*)__pyx_v_planets, &amp;__Pyx_TypeInfo_nn___pyx_t_18cython_calculation_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) <span class='error_goto'>__PYX_ERR(0, 17, __pyx_L1_error)</span>
-  }
-  __pyx_pybuffernd_planets.diminfo[0].strides = __pyx_pybuffernd_planets.rcbuffer-&gt;pybuffer.strides[0]; __pyx_pybuffernd_planets.diminfo[0].shape = __pyx_pybuffernd_planets.rcbuffer-&gt;pybuffer.shape[0]; __pyx_pybuffernd_planets.diminfo[1].strides = __pyx_pybuffernd_planets.rcbuffer-&gt;pybuffer.strides[1]; __pyx_pybuffernd_planets.diminfo[1].shape = __pyx_pybuffernd_planets.rcbuffer-&gt;pybuffer.shape[1];
 /* … */
   /* function exit code */
   __pyx_L1_error:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_4);
-  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
-    __Pyx_PyThreadState_declare
-    __Pyx_PyThreadState_assign
-    <span class='pyx_c_api'>__Pyx_ErrFetch</span>(&amp;__pyx_type, &amp;__pyx_value, &amp;__pyx_tb);
-    <span class='pyx_c_api'>__Pyx_SafeReleaseBuffer</span>(&amp;__pyx_pybuffernd_planets.rcbuffer-&gt;pybuffer);
-  <span class='pyx_c_api'>__Pyx_ErrRestore</span>(__pyx_type, __pyx_value, __pyx_tb);}
   <span class='pyx_c_api'>__Pyx_AddTraceback</span>("cython_calculation.calc_frame_positions", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
-  goto __pyx_L2;
   __pyx_L0:;
-  <span class='pyx_c_api'>__Pyx_SafeReleaseBuffer</span>(&amp;__pyx_pybuffernd_planets.rcbuffer-&gt;pybuffer);
-  __pyx_L2:;
   <span class='refnanny'>__Pyx_XGIVEREF</span>((PyObject *)__pyx_r);
   <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
   return __pyx_r;
@@ -503,20 +483,9 @@ static PyObject *__pyx_pw_18cython_calculation_1calc_frame_positions(PyObject *_
 }
 
 static PyObject *__pyx_pf_18cython_calculation_calc_frame_positions(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_planets, int __pyx_v_delta_t) {
-  __Pyx_LocalBuf_ND __pyx_pybuffernd_planets;
-  __Pyx_Buffer __pyx_pybuffer_planets;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("calc_frame_positions", 0);
-  __pyx_pybuffer_planets.pybuffer.buf = NULL;
-  __pyx_pybuffer_planets.refcount = 0;
-  __pyx_pybuffernd_planets.data = NULL;
-  __pyx_pybuffernd_planets.rcbuffer = &amp;__pyx_pybuffer_planets;
-  {
-    __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(<span class='pyx_c_api'>__Pyx_GetBufferAndValidate</span>(&amp;__pyx_pybuffernd_planets.rcbuffer-&gt;pybuffer, (PyObject*)__pyx_v_planets, &amp;__Pyx_TypeInfo_nn___pyx_t_18cython_calculation_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) <span class='error_goto'>__PYX_ERR(0, 17, __pyx_L1_error)</span>
-  }
-  __pyx_pybuffernd_planets.diminfo[0].strides = __pyx_pybuffernd_planets.rcbuffer-&gt;pybuffer.strides[0]; __pyx_pybuffernd_planets.diminfo[0].shape = __pyx_pybuffernd_planets.rcbuffer-&gt;pybuffer.shape[0]; __pyx_pybuffernd_planets.diminfo[1].strides = __pyx_pybuffernd_planets.rcbuffer-&gt;pybuffer.strides[1]; __pyx_pybuffernd_planets.diminfo[1].shape = __pyx_pybuffernd_planets.rcbuffer-&gt;pybuffer.shape[1];
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
   __pyx_t_1 = ((PyObject *)__pyx_f_18cython_calculation_calc_frame_positions(__pyx_v_planets, __pyx_v_delta_t, 0));<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
@@ -527,18 +496,9 @@ static PyObject *__pyx_pf_18cython_calculation_calc_frame_positions(CYTHON_UNUSE
   /* function exit code */
   __pyx_L1_error:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
-  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
-    __Pyx_PyThreadState_declare
-    __Pyx_PyThreadState_assign
-    <span class='pyx_c_api'>__Pyx_ErrFetch</span>(&amp;__pyx_type, &amp;__pyx_value, &amp;__pyx_tb);
-    <span class='pyx_c_api'>__Pyx_SafeReleaseBuffer</span>(&amp;__pyx_pybuffernd_planets.rcbuffer-&gt;pybuffer);
-  <span class='pyx_c_api'>__Pyx_ErrRestore</span>(__pyx_type, __pyx_value, __pyx_tb);}
   <span class='pyx_c_api'>__Pyx_AddTraceback</span>("cython_calculation.calc_frame_positions", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
-  goto __pyx_L2;
   __pyx_L0:;
-  <span class='pyx_c_api'>__Pyx_SafeReleaseBuffer</span>(&amp;__pyx_pybuffernd_planets.rcbuffer-&gt;pybuffer);
-  __pyx_L2:;
   <span class='refnanny'>__Pyx_XGIVEREF</span>(__pyx_r);
   <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
   return __pyx_r;
@@ -551,7 +511,7 @@ static PyObject *__pyx_pf_18cython_calculation_calc_frame_positions(CYTHON_UNUSE
   for (__pyx_t_3 = 0; __pyx_t_3 &lt; __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_planet_index = __pyx_t_3;
 </pre><pre class="cython line score-3" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">20</span>:         <span class="n">planets</span><span class="p">[</span><span class="n">planet_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">calc_obj_new_pos</span><span class="p">(</span><span class="n">planet_index</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">,</span> <span class="n">planets</span><span class="p">)</span></pre>
-<pre class='cython code score-3 '>    __pyx_t_4 = ((PyObject *)__pyx_f_18cython_calculation_calc_obj_new_pos(__pyx_v_planet_index, __pyx_v_delta_t, ((PyArrayObject *)__pyx_v_planets)));<span class='error_goto'> if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 20, __pyx_L1_error)</span>
+<pre class='cython code score-3 '>    __pyx_t_4 = ((PyObject *)__pyx_f_18cython_calculation_calc_obj_new_pos(__pyx_v_planet_index, __pyx_v_delta_t, __pyx_v_planets));<span class='error_goto'> if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 20, __pyx_L1_error)</span>
     <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_4);
     if (unlikely(<span class='pyx_c_api'>__Pyx_SetItemInt</span>(((PyObject *)__pyx_v_planets), __pyx_v_planet_index, __pyx_t_4, int, 1, __Pyx_PyInt_From_int, 0, 0, 0) &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 20, __pyx_L1_error)</span>
     <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_4); __pyx_t_4 = 0;
@@ -559,7 +519,7 @@ static PyObject *__pyx_pf_18cython_calculation_calc_frame_positions(CYTHON_UNUSE
 </pre><pre class="cython line score-2" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">21</span>:     <span class="k">return</span> <span class="n">planets</span></pre>
 <pre class='cython code score-2 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(((PyObject *)__pyx_r));
   <span class='pyx_macro_api'>__Pyx_INCREF</span>(((PyObject *)__pyx_v_planets));
-  __pyx_r = ((PyArrayObject *)__pyx_v_planets);
+  __pyx_r = __pyx_v_planets;
   goto __pyx_L0;
 </pre><pre class="cython line score-0">&#xA0;<span class="">22</span>: </pre>
 <pre class="cython line score-0">&#xA0;<span class="">23</span>: </pre>
@@ -568,7 +528,7 @@ static PyObject *__pyx_pf_18cython_calculation_calc_frame_positions(CYTHON_UNUSE
 <pre class="cython line score-0">&#xA0;<span class="">26</span>: <span class="nd">@cython</span><span class="o">.</span><span class="n">wraparound</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">27</span>: <span class="nd">@cython</span><span class="o">.</span><span class="n">boundscheck</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">28</span>: <span class="nd">@cython</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">unpack_method_calls</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span></pre>
-<pre class="cython line score-6" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">29</span>: <span class="k">cdef</span> <span class="kt">numpy</span>.<span class="kt">ndarray</span>[<span class="nf">DTYPE_t</span><span class="p">,</span><span class="nf">ndim</span><span class="o">=</span><span class="mf">1</span><span class="p">]</span> <span class="n">calc_obj_new_pos</span><span class="p">(</span><span class="nb">int</span> <span class="n">current_planet</span><span class="p">,</span> <span class="nb">int</span> <span class="n">delta_t</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="n">planets_array</span><span class="p">):</span></pre>
+<pre class="cython line score-6" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">29</span>: <span class="k">cdef</span> <span class="kt">numpy</span>.<span class="kt">ndarray</span> <span class="nf">calc_obj_new_pos</span><span class="p">(</span><span class="nb">int</span> <span class="n">current_planet</span><span class="p">,</span> <span class="nb">int</span> <span class="n">delta_t</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span> <span class="n">planets_array</span><span class="p">):</span></pre>
 <pre class='cython code score-6 '>static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_current_planet, int __pyx_v_delta_t, PyArrayObject *__pyx_v_planets_array) {
   int __pyx_v_i;
   int __pyx_v_d_t;

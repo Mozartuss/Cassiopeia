@@ -64,7 +64,7 @@ def startup(sim_pipe, json_path, delta_t, debug_mode=False):
         planets = calc_frame_positions(planets, delta_t)
         scale = numpy.zeros((len(planets), 4))
         for i in range(len(planets)):
-            scale[i] = planets[i][...,:4]
+            scale[i] = planets[i][..., :4]
         if scale.max() != 0:
             sim_pipe.send(1 / scale.max())
         sim_pipe.send(planets)
