@@ -24,7 +24,8 @@ import numpy
 import sys
 import time
 
-from physics.cython_calculation import calc_frame_positions
+import physics.multi_processing as pmp
+#from physics.cython_calculation import calc_frame_positions
 from physics.init_planets import InitPlanets
 from rendering.simulation_constants import END_MESSAGE
 
@@ -61,7 +62,7 @@ def startup(sim_pipe, json_path, delta_t, debug_mode=False):
     calc = InitPlanets(json_path, delta_t)
     planets = calc.get_planets_list()
     while __is_running:
-        planets = calc_frame_positions(planets, delta_t)
+        planets = pmp.calc_universe(planets, delta_t)
         scale = numpy.zeros((len(planets), 4))
         for i in range(len(planets)):
             scale[i] = planets[i][..., :4]

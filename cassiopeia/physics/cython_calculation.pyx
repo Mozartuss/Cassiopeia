@@ -26,7 +26,7 @@ cpdef numpy.ndarray calc_frame_positions(numpy.ndarray planets, int delta_t):
 @cython.wraparound(False)
 @cython.boundscheck(False)
 @cython.optimize.unpack_method_calls(True)
-cdef numpy.ndarray calc_obj_new_pos(int current_planet, int delta_t, numpy.ndarray planets_array):
+cpdef numpy.ndarray calc_obj_new_pos(int current_planet, int delta_t, numpy.ndarray planets_array):
     cdef int i = 0
     cdef int d_t = delta_t
     cdef double planet_mass_i = 0
