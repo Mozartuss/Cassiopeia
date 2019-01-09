@@ -1,0 +1,229 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>physics package &#8212; Cassiopeia  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="physics-package">
+<h1>physics package<a class="headerlink" href="#physics-package" title="Permalink to this headline">Â¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">Â¶</a></h2>
+</div>
+<div class="section" id="module-physics.calculation">
+<span id="physics-calculation-module"></span><h2>physics.calculation module<a class="headerlink" href="#module-physics.calculation" title="Permalink to this headline">Â¶</a></h2>
+<p>The Calculation part</p>
+<dl class="class">
+<dt id="physics.calculation.Calculation">
+<em class="property">class </em><code class="descclassname">physics.calculation.</code><code class="descname">Calculation</code><span class="sig-paren">(</span><em>json_path</em>, <em>delta_t</em><span class="sig-paren">)</span><a class="headerlink" href="#physics.calculation.Calculation" title="Permalink to this definition">Â¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The whole calculation</p>
+<dl class="method">
+<dt id="physics.calculation.Calculation.abs_velocity">
+<code class="descname">abs_velocity</code><span class="sig-paren">(</span><em>total_mass</em>, <em>current_planet</em><span class="sig-paren">)</span><a class="headerlink" href="#physics.calculation.Calculation.abs_velocity" title="Permalink to this definition">Â¶</a></dt>
+<dd><p>Calculate the velocity of the current_planet
+:param total_mass: the total mass of the solar-system
+:param current_planet: the planet which velocity the method calculate
+:return: the velocity of teh current_planet</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="physics.calculation.Calculation.calc_acceleration">
+<code class="descname">calc_acceleration</code><span class="sig-paren">(</span><em>planet_index</em><span class="sig-paren">)</span><a class="headerlink" href="#physics.calculation.Calculation.calc_acceleration" title="Permalink to this definition">Â¶</a></dt>
+<dd><p>Calculate the acceleration of planet1
+:param planet_index: the current planet
+:return: a acceleration vector</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="physics.calculation.Calculation.calc_frame_positions">
+<code class="descname">calc_frame_positions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#physics.calculation.Calculation.calc_frame_positions" title="Permalink to this definition">Â¶</a></dt>
+<dd><p>call the calc_obj_new_pos as often steps said
+:return: an list of all position vectors of calc_obj_new_pos</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="physics.calculation.Calculation.calc_obj_new_pos">
+<code class="descname">calc_obj_new_pos</code><span class="sig-paren">(</span><em>current_planet</em><span class="sig-paren">)</span><a class="headerlink" href="#physics.calculation.Calculation.calc_obj_new_pos" title="Permalink to this definition">Â¶</a></dt>
+<dd><p>calculate the single planet
+:param current_planet: the planet we want to calculate
+:return: a new position vector</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="physics.calculation.Calculation.dist">
+<em class="property">static </em><code class="descname">dist</code><span class="sig-paren">(</span><em>planet_1</em>, <em>planet_2</em><span class="sig-paren">)</span><a class="headerlink" href="#physics.calculation.Calculation.dist" title="Permalink to this definition">Â¶</a></dt>
+<dd><p>Calculate the distance between two vectors
+:param planet_1: the position of the planet2
+:param planet_2: the position ot the planet1
+:return: the distance as vector and as absolute value</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dist</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="go">(6.928203230275509, array([-4, -4, -4]))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="physics.calculation.Calculation.gravitation">
+<code class="descname">gravitation</code><em class="property"> = None</em><a class="headerlink" href="#physics.calculation.Calculation.gravitation" title="Permalink to this definition">Â¶</a></dt>
+<dd><p>Multiply 20^24 to the Mass of each planet</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="physics.calculation.Calculation.mass_focus">
+<code class="descname">mass_focus</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#physics.calculation.Calculation.mass_focus" title="Permalink to this definition">Â¶</a></dt>
+<dd><p>the total mass focus <strong>not used now</strong>
+:return: a mass num</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="physics.calculation.Calculation.mass_focus_without_planet_x">
+<code class="descname">mass_focus_without_planet_x</code><span class="sig-paren">(</span><em>planet_index</em><span class="sig-paren">)</span><a class="headerlink" href="#physics.calculation.Calculation.mass_focus_without_planet_x" title="Permalink to this definition">Â¶</a></dt>
+<dd><p>the mass focus without the planet(l) ** not used now**
+:param planet_index: the planet we didnât want to calc
+:return: a mass num</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="physics.calculation.Calculation.open_json">
+<code class="descname">open_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#physics.calculation.Calculation.open_json" title="Permalink to this definition">Â¶</a></dt>
+<dd><p>The open_json load the json data from the src directory
+:return: A dictionary of the planet data</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="physics.calculation.Calculation.stop">
+<code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#physics.calculation.Calculation.stop" title="Permalink to this definition">Â¶</a></dt>
+<dd><p>Stops the calculation of new frames</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="physics.calculation.Calculation.total_mass">
+<code class="descname">total_mass</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#physics.calculation.Calculation.total_mass" title="Permalink to this definition">Â¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="physics.calculation.Calculation.velocity_direction">
+<code class="descname">velocity_direction</code><span class="sig-paren">(</span><em>current_planet</em><span class="sig-paren">)</span><a class="headerlink" href="#physics.calculation.Calculation.velocity_direction" title="Permalink to this definition">Â¶</a></dt>
+<dd><p>Calculate the velocity_direction in Z-direction
+:param current_planet:
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="physics.calculation.dist">
+<code class="descclassname">physics.calculation.</code><code class="descname">dist</code><span class="sig-paren">(</span><em>planet_1</em>, <em>planet_2</em><span class="sig-paren">)</span><a class="headerlink" href="#physics.calculation.dist" title="Permalink to this definition">Â¶</a></dt>
+<dd><p>Calculate the distance between two vectors
+:param planet_1: the position of the planet2
+:param planet_2: the position ot the planet1
+:return: the distance as vector and as absolute value</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dist</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="go">(6.928203230275509, array([-4, -4, -4]))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="physics-cython-calculation-module">
+<h2>physics.cython_calculation module<a class="headerlink" href="#physics-cython-calculation-module" title="Permalink to this headline">Â¶</a></h2>
+</div>
+<div class="section" id="physics-init-planets-module">
+<h2>physics.init_planets module<a class="headerlink" href="#physics-init-planets-module" title="Permalink to this headline">Â¶</a></h2>
+</div>
+<div class="section" id="physics-multi-processing-module">
+<h2>physics.multi_processing module<a class="headerlink" href="#physics-multi-processing-module" title="Permalink to this headline">Â¶</a></h2>
+</div>
+<div class="section" id="physics-setup-module">
+<h2>physics.setup module<a class="headerlink" href="#physics-setup-module" title="Permalink to this headline">Â¶</a></h2>
+</div>
+<div class="section" id="module-physics">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-physics" title="Permalink to this headline">Â¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Cassiopeia</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, beni, lukas, dejan, patrick, hanne.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+      |
+      <a href="_sources/physics.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
