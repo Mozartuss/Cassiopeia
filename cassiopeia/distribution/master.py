@@ -12,7 +12,7 @@ class Master():
         self.nr_of_workers = 4
 
     def create_argument_list(self):
-        result_list = numpy.zeros((len(self.planets), 8))
+        result_list = []
         index = -1
 
         step_size = int(len(self.planets) / self.nr_of_workers)
@@ -22,10 +22,10 @@ class Master():
         self.job_queue.join()
 
         while not self.result_queue.empty():
-            for result in self.result_queue.get():
-                index = index + 1
-                result_list[index] = result
-            print("[create_argument_list] (result_list)", result_list)
+            index = index +1
+            if index < len(result_list):
+                result_list[index] = self.result_queue.get()
+        print(result_list)
 
         return result_list
 

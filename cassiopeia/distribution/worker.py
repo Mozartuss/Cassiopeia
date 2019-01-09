@@ -18,7 +18,7 @@ def __worker_function(job_queue, result_queue):
                 print("Rad: ", planet_pos[3], "Pos: ", planet_pos[0], planet_pos[1], planet_pos[2])
                 result.append(planet_pos)
 
-        result_queue.put(result)
+        result_queue.put(*result)
         job_queue.task_done()
         print("Task Done")
 
