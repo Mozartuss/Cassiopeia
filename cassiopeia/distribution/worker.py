@@ -28,5 +28,5 @@ if __name__ == "__main__":
     TaskManager.register('get_result_queue')
     manager = TaskManager(address=(server_ip, server_socket), authkey = b'secret')
     manager.connect()
-    nr_of_processes = __start_workers(m)
+    nr_of_processes = __start_workers(manager)
     print(nr_of_processes, 'workers started')
