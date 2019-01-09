@@ -1,13 +1,14 @@
 from __future__ import print_function
-from multiprocessing import cpu_count, Process
-from taskManager import TaskManager
 from sys import argv, path
 path.append("..")
+from multiprocessing import cpu_count, Process
+from physics.cython_calculation import calc_obj_new_pos
+from taskManager import TaskManager
 from physics.multi_processing import calc_universe
 def __worker_function(job_queue, result_queue):
     while True:
         task = job_queue.get()
-        result = calc_universe(*task)
+        result = calc_obj_new_pos(*task) # []
         result_queue.put(result)
         job_queue.task_done()
 

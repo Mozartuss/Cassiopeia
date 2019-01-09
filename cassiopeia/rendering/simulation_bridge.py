@@ -62,9 +62,9 @@ def startup(sim_pipe, json_path, delta_t, debug_mode=False):
     # Rendering will scale the big Coordinates to fit into the -1/1-room
     calc = InitPlanets(json_path, delta_t)
     planets = calc.get_planets_list()
-    master= Master(planets, delta_t)
     while __is_running:
-        planets = master.result_queue.get()
+        master= Master(planets, delta_t)
+        planets =  master.create_argument_list()
         scale = numpy.zeros((len(planets), 4))
         for i in range(len(planets)):
             scale[i] = planets[i][..., :4]
