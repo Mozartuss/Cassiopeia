@@ -60,6 +60,10 @@ class CassiopeiaUi(QtWidgets.QMainWindow):
         self.hsPlanetMinMass.valueChanged.connect(self.on_hs_pminm_change)
 
     def on_start(self):
+        """
+        Calls start of simulation, decides if with already existing json
+        template of planets or current data.
+        """
         delta_t = self.hsStep.value()
         if self.cbTemplate.isChecked():
             index = self.cmbTemplate.currentIndex()
@@ -119,6 +123,9 @@ class CassiopeiaUi(QtWidgets.QMainWindow):
         pass
 
     def initialize_simulation(self):
+        """
+        Gets values vom GUI and hands them down to simulation intialization.
+        """
         print("Initialize simulation")
         params = self.get_parameters()
         self.entry_point.initialize_simulation(params)
