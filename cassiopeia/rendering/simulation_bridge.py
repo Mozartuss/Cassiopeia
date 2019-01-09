@@ -28,6 +28,7 @@ import physics.multi_processing as pmp
 #from physics.cython_calculation import calc_frame_positions
 from physics.init_planets import InitPlanets
 from rendering.simulation_constants import END_MESSAGE
+from distribution.master import Master
 
 __FPS = 60
 __DELTA_ALPHA = 0.01
@@ -61,8 +62,9 @@ def startup(sim_pipe, json_path, delta_t, debug_mode=False):
     # Rendering will scale the big Coordinates to fit into the -1/1-room
     calc = InitPlanets(json_path, delta_t)
     planets = calc.get_planets_list()
+    master= Master(planets, delta_t)
     while __is_running:
-        planets = pmp.calc_universe(planets, delta_t)
+        planets = master.result_queue.get()
         scale = numpy.zeros((len(planets), 4))
         for i in range(len(planets)):
             scale[i] = planets[i][..., :4]

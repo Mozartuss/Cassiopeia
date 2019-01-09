@@ -1,0 +1,32 @@
+from __future__ import print_function
+from multiprocessing import cpu_count, Process
+from taskManager import TaskManager
+from sys import argv, path
+path.append("..")
+from physics.multi_processing import calc_universe
+def __worker_function(job_queue, result_queue):
+    while True:
+        task = job_queue.get()
+        result = calc_universe(*task)
+        result_queue.put(result)
+        job_queue.task_done()
+
+def __start_workers(manager):
+    job_queue, result_queue = manager.get_job_queue(), manager.get_result_queue()
+    nr_of_processes = cpu_count()
+    processes = [Process(target = __worker_function,
+                args = (job_queue, result_queue))
+                for i in range(nr_of_processes)]
+    
+    for p in processes:
+        p.start()
+    return nr_of_processes
+
+if __name__ == "__main__":
+    server_ip, server_socket = argv[1], int(argv[2])
+    TaskManager.register('get_job_queue')
+    TaskManager.register('get_result_queue')
+    manager = TaskManager(address=(server_ip, server_socket), authkey = b'secret')
+    manager.connect()
+    nr_of_processes = __start_workers(m)
+    print(nr_of_processes, 'workers started')
