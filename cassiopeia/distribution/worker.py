@@ -7,8 +7,11 @@ from taskManager import TaskManager
 from physics.multi_processing import calc_universe
 def __worker_function(job_queue, result_queue):
     while True:
-        task = job_queue.get()
-        result = calc_obj_new_pos(*task) # []
+        i, nr_of_planets, delta_t, planets = job_queue.get()
+        result = []
+        for planet_index in range(nr_of_planets):
+            planet_pos = calc_obj_new_pos(i+planet_index, delta_t, planets)
+            result.append(planet_pos)
         result_queue.put(result)
         job_queue.task_done()
 
