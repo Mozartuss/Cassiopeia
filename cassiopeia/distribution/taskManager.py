@@ -10,7 +10,7 @@ class TaskManager(BaseManager):
 
 if __name__ == '__main__':
     from sys import argv, exit
-    master_socket = 5001
+    master_socket = 5003
     task_queue = JoinableQueue()
     result_queue = Queue()
     TaskManager.register('get_job_queue', 

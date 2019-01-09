@@ -14,8 +14,8 @@ class Master():
         result_list = numpy.zeros((len(self.planets), 8))
         index = -1        
 
-        step_size = len(self.planets)/self.nr_of_workers
-        for i in range(len(self.planets), steps=step_size):
+        step_size = int(len(self.planets)/self.nr_of_workers)
+        for i in range(len(self.planets), step_size):
             self.job_queue.put((i, step_size, self.delta_t, self.planets))
         self.job_queue.join()
         
@@ -28,7 +28,7 @@ class Master():
     
     def start_manager(self):
         server_ip = "127.0.0.1"
-        server_socket = 5001
+        server_socket = 5003
         TaskManager.register('get_job_queue')
         TaskManager.register('get_result_queue')
         manager = TaskManager(address=(server_ip, server_socket), authkey = b'secret')
