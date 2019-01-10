@@ -3,7 +3,7 @@ from sys import argv, path
 
 path.append("..")
 from multiprocessing import cpu_count, Process
-from physics.cython_calculation import calc_obj_new_pos
+from physics.cython_calculation import calc_planet_positions
 from taskManager import TaskManager
 from physics.multi_processing import calc_universe
 
@@ -14,14 +14,11 @@ def __worker_function(job_queue, result_queue):
         result = []
         for planet_index in range(nr_of_planets):
             if i + planet_index < len(planets):
-                planet_pos = calc_obj_new_pos(i + planet_index, delta_t, planets)
-                print("Rad: ", planet_pos[3], "Pos: ", planet_pos[0], planet_pos[1], planet_pos[2])
+                planet_pos = calc_planet_positions(i + planet_index, delta_t, planets)
                 result.append(planet_pos)
 
-        result_queue.put(*result)
+        result_queue.put(result)
         job_queue.task_done()
-        print("Task Done")
-
 
 def __start_workers(manager):
     job_queue, result_queue = manager.get_job_queue(), manager.get_result_queue()

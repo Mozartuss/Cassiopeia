@@ -1,5 +1,5 @@
 import multiprocessing
-from physics.cython_calculation import calc_obj_new_pos
+from physics.cython_calculation import calc_planet_positions
 #import physics.cython_calculation as cc
 nrOfCores = multiprocessing.cpu_count()
 process_list = []
@@ -10,7 +10,7 @@ resultQueue = multiprocessing.Queue()
 def f(qIn, qOut):
     while True:
         planet_index, delta_t, planet_list = qIn.get()
-        result = calc_obj_new_pos(planet_index, delta_t, planet_list)
+        result = calc_planet_positions(planet_index, delta_t, planet_list)
         qOut.put(result)
         qIn.task_done()
 
