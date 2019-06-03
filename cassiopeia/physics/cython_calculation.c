@@ -1181,16 +1181,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject
 /* GetBuiltinName.proto */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name);
 
-/* SetItemInt.proto */
-#define __Pyx_SetItemInt(o, i, v, type, is_signed, to_py_func, is_list, wraparound, boundscheck)\
-    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ?\
-    __Pyx_SetItemInt_Fast(o, (Py_ssize_t)i, v, is_list, wraparound, boundscheck) :\
-    (is_list ? (PyErr_SetString(PyExc_IndexError, "list assignment index out of range"), -1) :\
-               __Pyx_SetItemInt_Generic(o, to_py_func(i), v)))
-static int __Pyx_SetItemInt_Generic(PyObject *o, PyObject *j, PyObject *v);
-static CYTHON_INLINE int __Pyx_SetItemInt_Fast(PyObject *o, Py_ssize_t i, PyObject *v,
-                                               int is_list, int wraparound, int boundscheck);
-
 /* RaiseArgTupleInvalid.proto */
 static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
     Py_ssize_t num_min, Py_ssize_t num_max, Py_ssize_t num_found);
@@ -1230,6 +1220,16 @@ static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Tuple_Fast(PyObject *o, Py_ssize
 static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j);
 static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i,
                                                      int is_list, int wraparound, int boundscheck);
+
+/* SetItemInt.proto */
+#define __Pyx_SetItemInt(o, i, v, type, is_signed, to_py_func, is_list, wraparound, boundscheck)\
+    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ?\
+    __Pyx_SetItemInt_Fast(o, (Py_ssize_t)i, v, is_list, wraparound, boundscheck) :\
+    (is_list ? (PyErr_SetString(PyExc_IndexError, "list assignment index out of range"), -1) :\
+               __Pyx_SetItemInt_Generic(o, to_py_func(i), v)))
+static int __Pyx_SetItemInt_Generic(PyObject *o, PyObject *j, PyObject *v);
+static CYTHON_INLINE int __Pyx_SetItemInt_Fast(PyObject *o, Py_ssize_t i, PyObject *v,
+                                               int is_list, int wraparound, int boundscheck);
 
 /* ExtTypeTest.proto */
 static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type);
@@ -1602,7 +1602,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *, cha
 
 /* Module declarations from 'cython_calculation' */
 static double __pyx_v_18cython_calculation_G;
-static PyArrayObject *__pyx_f_18cython_calculation_calc_frame_positions(PyArrayObject *, int, int __pyx_skip_dispatch); /*proto*/
+static PyArrayObject *__pyx_f_18cython_calculation_calc_planet_positions(int, int, PyArrayObject *, int __pyx_skip_dispatch); /*proto*/
 static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int, int, PyArrayObject *); /*proto*/
 #define __Pyx_MODULE_NAME "cython_calculation"
 extern int __pyx_module_is_main_cython_calculation;
@@ -1622,10 +1622,11 @@ static const char __pyx_k_range[] = "range";
 static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_delta_t[] = "delta_t";
 static const char __pyx_k_float32[] = "float32";
-static const char __pyx_k_planets[] = "planets";
 static const char __pyx_k_ValueError[] = "ValueError";
 static const char __pyx_k_ImportError[] = "ImportError";
 static const char __pyx_k_RuntimeError[] = "RuntimeError";
+static const char __pyx_k_planets_array[] = "planets_array";
+static const char __pyx_k_current_planet[] = "current_planet";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_ndarray_is_not_C_contiguous[] = "ndarray is not C contiguous";
 static const char __pyx_k_numpy_core_multiarray_failed_to[] = "numpy.core.multiarray failed to import";
@@ -1643,6 +1644,7 @@ static PyObject *__pyx_kp_u_Non_native_byte_order_not_suppor;
 static PyObject *__pyx_n_s_RuntimeError;
 static PyObject *__pyx_n_s_ValueError;
 static PyObject *__pyx_n_s_cline_in_traceback;
+static PyObject *__pyx_n_s_current_planet;
 static PyObject *__pyx_n_s_delta_t;
 static PyObject *__pyx_n_s_float32;
 static PyObject *__pyx_n_s_import;
@@ -1653,11 +1655,11 @@ static PyObject *__pyx_kp_u_ndarray_is_not_Fortran_contiguou;
 static PyObject *__pyx_n_s_numpy;
 static PyObject *__pyx_kp_s_numpy_core_multiarray_failed_to;
 static PyObject *__pyx_kp_s_numpy_core_umath_failed_to_impor;
-static PyObject *__pyx_n_s_planets;
+static PyObject *__pyx_n_s_planets_array;
 static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_kp_u_unknown_dtype_code_in_numpy_pxd;
-static PyObject *__pyx_pf_18cython_calculation_calc_frame_positions(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_planets, int __pyx_v_delta_t); /* proto */
+static PyObject *__pyx_pf_18cython_calculation_calc_planet_positions(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_current_planet, int __pyx_v_delta_t, PyArrayObject *__pyx_v_planets_array); /* proto */
 static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info); /* proto */
 static PyObject *__pyx_tuple_;
@@ -1672,80 +1674,44 @@ static PyObject *__pyx_tuple__7;
 /* "cython_calculation.pyx":17
  * @cython.boundscheck(False)
  * @cython.optimize.unpack_method_calls(True)
- * cpdef numpy.ndarray calc_frame_positions(numpy.ndarray planets, int delta_t):             # <<<<<<<<<<<<<<
- *     cdef int planet_index = 0
- *     for planet_index in range(len(planets)):
+ * cpdef numpy.ndarray calc_planet_positions(int current_planet, int delta_t, numpy.ndarray planets_array):             # <<<<<<<<<<<<<<
+ *     return calc_obj_new_pos(current_planet, delta_t, planets_array)
+ * 
  */
 
-static PyObject *__pyx_pw_18cython_calculation_1calc_frame_positions(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyArrayObject *__pyx_f_18cython_calculation_calc_frame_positions(PyArrayObject *__pyx_v_planets, int __pyx_v_delta_t, CYTHON_UNUSED int __pyx_skip_dispatch) {
-  int __pyx_v_planet_index;
+static PyObject *__pyx_pw_18cython_calculation_1calc_planet_positions(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyArrayObject *__pyx_f_18cython_calculation_calc_planet_positions(int __pyx_v_current_planet, int __pyx_v_delta_t, PyArrayObject *__pyx_v_planets_array, CYTHON_UNUSED int __pyx_skip_dispatch) {
   PyArrayObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  Py_ssize_t __pyx_t_1;
-  Py_ssize_t __pyx_t_2;
-  int __pyx_t_3;
-  PyObject *__pyx_t_4 = NULL;
-  __Pyx_RefNannySetupContext("calc_frame_positions", 0);
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("calc_planet_positions", 0);
 
   /* "cython_calculation.pyx":18
  * @cython.optimize.unpack_method_calls(True)
- * cpdef numpy.ndarray calc_frame_positions(numpy.ndarray planets, int delta_t):
- *     cdef int planet_index = 0             # <<<<<<<<<<<<<<
- *     for planet_index in range(len(planets)):
- *         planets[planet_index] = calc_obj_new_pos(planet_index, delta_t, planets)
- */
-  __pyx_v_planet_index = 0;
-
-  /* "cython_calculation.pyx":19
- * cpdef numpy.ndarray calc_frame_positions(numpy.ndarray planets, int delta_t):
- *     cdef int planet_index = 0
- *     for planet_index in range(len(planets)):             # <<<<<<<<<<<<<<
- *         planets[planet_index] = calc_obj_new_pos(planet_index, delta_t, planets)
- *     return planets
- */
-  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_planets)); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 19, __pyx_L1_error)
-  __pyx_t_2 = __pyx_t_1;
-  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
-    __pyx_v_planet_index = __pyx_t_3;
-
-    /* "cython_calculation.pyx":20
- *     cdef int planet_index = 0
- *     for planet_index in range(len(planets)):
- *         planets[planet_index] = calc_obj_new_pos(planet_index, delta_t, planets)             # <<<<<<<<<<<<<<
- *     return planets
- * 
- */
-    __pyx_t_4 = ((PyObject *)__pyx_f_18cython_calculation_calc_obj_new_pos(__pyx_v_planet_index, __pyx_v_delta_t, __pyx_v_planets)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 20, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    if (unlikely(__Pyx_SetItemInt(((PyObject *)__pyx_v_planets), __pyx_v_planet_index, __pyx_t_4, int, 1, __Pyx_PyInt_From_int, 0, 0, 0) < 0)) __PYX_ERR(0, 20, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  }
-
-  /* "cython_calculation.pyx":21
- *     for planet_index in range(len(planets)):
- *         planets[planet_index] = calc_obj_new_pos(planet_index, delta_t, planets)
- *     return planets             # <<<<<<<<<<<<<<
+ * cpdef numpy.ndarray calc_planet_positions(int current_planet, int delta_t, numpy.ndarray planets_array):
+ *     return calc_obj_new_pos(current_planet, delta_t, planets_array)             # <<<<<<<<<<<<<<
  * 
  * 
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __Pyx_INCREF(((PyObject *)__pyx_v_planets));
-  __pyx_r = __pyx_v_planets;
+  __pyx_t_1 = ((PyObject *)__pyx_f_18cython_calculation_calc_obj_new_pos(__pyx_v_current_planet, __pyx_v_delta_t, __pyx_v_planets_array)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = ((PyArrayObject *)__pyx_t_1);
+  __pyx_t_1 = 0;
   goto __pyx_L0;
 
   /* "cython_calculation.pyx":17
  * @cython.boundscheck(False)
  * @cython.optimize.unpack_method_calls(True)
- * cpdef numpy.ndarray calc_frame_positions(numpy.ndarray planets, int delta_t):             # <<<<<<<<<<<<<<
- *     cdef int planet_index = 0
- *     for planet_index in range(len(planets)):
+ * cpdef numpy.ndarray calc_planet_positions(int current_planet, int delta_t, numpy.ndarray planets_array):             # <<<<<<<<<<<<<<
+ *     return calc_obj_new_pos(current_planet, delta_t, planets_array)
+ * 
  */
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("cython_calculation.calc_frame_positions", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("cython_calculation.calc_planet_positions", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF((PyObject *)__pyx_r);
@@ -1754,20 +1720,23 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_frame_positions(PyArrayO
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_18cython_calculation_1calc_frame_positions(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_18cython_calculation_1calc_frame_positions(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyArrayObject *__pyx_v_planets = 0;
+static PyObject *__pyx_pw_18cython_calculation_1calc_planet_positions(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_18cython_calculation_1calc_planet_positions(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  int __pyx_v_current_planet;
   int __pyx_v_delta_t;
+  PyArrayObject *__pyx_v_planets_array = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("calc_frame_positions (wrapper)", 0);
+  __Pyx_RefNannySetupContext("calc_planet_positions (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_planets,&__pyx_n_s_delta_t,0};
-    PyObject* values[2] = {0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_current_planet,&__pyx_n_s_delta_t,&__pyx_n_s_planets_array,0};
+    PyObject* values[3] = {0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
         case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
         CYTHON_FALLTHROUGH;
         case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
@@ -1778,37 +1747,45 @@ static PyObject *__pyx_pw_18cython_calculation_1calc_frame_positions(PyObject *_
       kw_args = PyDict_Size(__pyx_kwds);
       switch (pos_args) {
         case  0:
-        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_planets)) != 0)) kw_args--;
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_current_planet)) != 0)) kw_args--;
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_delta_t)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("calc_frame_positions", 1, 2, 2, 1); __PYX_ERR(0, 17, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("calc_planet_positions", 1, 3, 3, 1); __PYX_ERR(0, 17, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  2:
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_planets_array)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("calc_planet_positions", 1, 3, 3, 2); __PYX_ERR(0, 17, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "calc_frame_positions") < 0)) __PYX_ERR(0, 17, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "calc_planet_positions") < 0)) __PYX_ERR(0, 17, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+      values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_planets = ((PyArrayObject *)values[0]);
+    __pyx_v_current_planet = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_current_planet == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 17, __pyx_L3_error)
     __pyx_v_delta_t = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_delta_t == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 17, __pyx_L3_error)
+    __pyx_v_planets_array = ((PyArrayObject *)values[2]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("calc_frame_positions", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 17, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("calc_planet_positions", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 17, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cython_calculation.calc_frame_positions", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_calculation.calc_planet_positions", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_planets), __pyx_ptype_5numpy_ndarray, 1, "planets", 0))) __PYX_ERR(0, 17, __pyx_L1_error)
-  __pyx_r = __pyx_pf_18cython_calculation_calc_frame_positions(__pyx_self, __pyx_v_planets, __pyx_v_delta_t);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_planets_array), __pyx_ptype_5numpy_ndarray, 1, "planets_array", 0))) __PYX_ERR(0, 17, __pyx_L1_error)
+  __pyx_r = __pyx_pf_18cython_calculation_calc_planet_positions(__pyx_self, __pyx_v_current_planet, __pyx_v_delta_t, __pyx_v_planets_array);
 
   /* function exit code */
   goto __pyx_L0;
@@ -1819,13 +1796,13 @@ static PyObject *__pyx_pw_18cython_calculation_1calc_frame_positions(PyObject *_
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_18cython_calculation_calc_frame_positions(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_planets, int __pyx_v_delta_t) {
+static PyObject *__pyx_pf_18cython_calculation_calc_planet_positions(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_current_planet, int __pyx_v_delta_t, PyArrayObject *__pyx_v_planets_array) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("calc_frame_positions", 0);
+  __Pyx_RefNannySetupContext("calc_planet_positions", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_18cython_calculation_calc_frame_positions(__pyx_v_planets, __pyx_v_delta_t, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_18cython_calculation_calc_planet_positions(__pyx_v_current_planet, __pyx_v_delta_t, __pyx_v_planets_array, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -1834,7 +1811,7 @@ static PyObject *__pyx_pf_18cython_calculation_calc_frame_positions(CYTHON_UNUSE
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cython_calculation.calc_frame_positions", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_calculation.calc_planet_positions", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -1842,7 +1819,7 @@ static PyObject *__pyx_pf_18cython_calculation_calc_frame_positions(CYTHON_UNUSE
   return __pyx_r;
 }
 
-/* "cython_calculation.pyx":29
+/* "cython_calculation.pyx":26
  * @cython.boundscheck(False)
  * @cython.optimize.unpack_method_calls(True)
  * cdef numpy.ndarray calc_obj_new_pos(int current_planet, int delta_t, numpy.ndarray planets_array):             # <<<<<<<<<<<<<<
@@ -1891,7 +1868,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
   PyObject *__pyx_t_9 = NULL;
   __Pyx_RefNannySetupContext("calc_obj_new_pos", 0);
 
-  /* "cython_calculation.pyx":30
+  /* "cython_calculation.pyx":27
  * @cython.optimize.unpack_method_calls(True)
  * cdef numpy.ndarray calc_obj_new_pos(int current_planet, int delta_t, numpy.ndarray planets_array):
  *     cdef int i = 0             # <<<<<<<<<<<<<<
@@ -1900,7 +1877,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
   __pyx_v_i = 0;
 
-  /* "cython_calculation.pyx":31
+  /* "cython_calculation.pyx":28
  * cdef numpy.ndarray calc_obj_new_pos(int current_planet, int delta_t, numpy.ndarray planets_array):
  *     cdef int i = 0
  *     cdef int d_t = delta_t             # <<<<<<<<<<<<<<
@@ -1909,7 +1886,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
   __pyx_v_d_t = __pyx_v_delta_t;
 
-  /* "cython_calculation.pyx":32
+  /* "cython_calculation.pyx":29
  *     cdef int i = 0
  *     cdef int d_t = delta_t
  *     cdef double planet_mass_i = 0             # <<<<<<<<<<<<<<
@@ -1918,7 +1895,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
   __pyx_v_planet_mass_i = 0.0;
 
-  /* "cython_calculation.pyx":33
+  /* "cython_calculation.pyx":30
  *     cdef int d_t = delta_t
  *     cdef double planet_mass_i = 0
  *     cdef double dist_absolute = 0             # <<<<<<<<<<<<<<
@@ -1927,7 +1904,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
   __pyx_v_dist_absolute = 0.0;
 
-  /* "cython_calculation.pyx":34
+  /* "cython_calculation.pyx":31
  *     cdef double planet_mass_i = 0
  *     cdef double dist_absolute = 0
  *     cdef double planet_pos_i_x = 0             # <<<<<<<<<<<<<<
@@ -1936,7 +1913,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
   __pyx_v_planet_pos_i_x = 0.0;
 
-  /* "cython_calculation.pyx":35
+  /* "cython_calculation.pyx":32
  *     cdef double dist_absolute = 0
  *     cdef double planet_pos_i_x = 0
  *     cdef double planet_pos_i_y = 0             # <<<<<<<<<<<<<<
@@ -1945,7 +1922,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
   __pyx_v_planet_pos_i_y = 0.0;
 
-  /* "cython_calculation.pyx":36
+  /* "cython_calculation.pyx":33
  *     cdef double planet_pos_i_x = 0
  *     cdef double planet_pos_i_y = 0
  *     cdef double planet_pos_i_z = 0             # <<<<<<<<<<<<<<
@@ -1954,7 +1931,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
   __pyx_v_planet_pos_i_z = 0.0;
 
-  /* "cython_calculation.pyx":37
+  /* "cython_calculation.pyx":34
  *     cdef double planet_pos_i_y = 0
  *     cdef double planet_pos_i_z = 0
  *     cdef double mass_different = 0             # <<<<<<<<<<<<<<
@@ -1963,7 +1940,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
   __pyx_v_mass_different = 0.0;
 
-  /* "cython_calculation.pyx":38
+  /* "cython_calculation.pyx":35
  *     cdef double planet_pos_i_z = 0
  *     cdef double mass_different = 0
  *     cdef double current_planet_force_x = 0             # <<<<<<<<<<<<<<
@@ -1972,7 +1949,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
   __pyx_v_current_planet_force_x = 0.0;
 
-  /* "cython_calculation.pyx":39
+  /* "cython_calculation.pyx":36
  *     cdef double mass_different = 0
  *     cdef double current_planet_force_x = 0
  *     cdef double current_planet_force_y = 0             # <<<<<<<<<<<<<<
@@ -1981,7 +1958,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
   __pyx_v_current_planet_force_y = 0.0;
 
-  /* "cython_calculation.pyx":40
+  /* "cython_calculation.pyx":37
  *     cdef double current_planet_force_x = 0
  *     cdef double current_planet_force_y = 0
  *     cdef double current_planet_force_z = 0             # <<<<<<<<<<<<<<
@@ -1990,195 +1967,195 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
   __pyx_v_current_planet_force_z = 0.0;
 
-  /* "cython_calculation.pyx":41
+  /* "cython_calculation.pyx":38
  *     cdef double current_planet_force_y = 0
  *     cdef double current_planet_force_z = 0
  *     cdef double current_planet_pos_x = planets_array[current_planet][0]             # <<<<<<<<<<<<<<
  *     cdef double current_planet_pos_y = planets_array[current_planet][1]
  *     cdef double current_planet_pos_z = planets_array[current_planet][2]
  */
-  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_current_planet_pos_x = __pyx_t_3;
 
-  /* "cython_calculation.pyx":42
+  /* "cython_calculation.pyx":39
  *     cdef double current_planet_force_z = 0
  *     cdef double current_planet_pos_x = planets_array[current_planet][0]
  *     cdef double current_planet_pos_y = planets_array[current_planet][1]             # <<<<<<<<<<<<<<
  *     cdef double current_planet_pos_z = planets_array[current_planet][2]
  *     cdef double current_planet_velocity_x = planets_array[current_planet][4]
  */
-  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_current_planet_pos_y = __pyx_t_3;
 
-  /* "cython_calculation.pyx":43
+  /* "cython_calculation.pyx":40
  *     cdef double current_planet_pos_x = planets_array[current_planet][0]
  *     cdef double current_planet_pos_y = planets_array[current_planet][1]
  *     cdef double current_planet_pos_z = planets_array[current_planet][2]             # <<<<<<<<<<<<<<
  *     cdef double current_planet_velocity_x = planets_array[current_planet][4]
  *     cdef double current_planet_velocity_y = planets_array[current_planet][5]
  */
-  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_current_planet_pos_z = __pyx_t_3;
 
-  /* "cython_calculation.pyx":44
+  /* "cython_calculation.pyx":41
  *     cdef double current_planet_pos_y = planets_array[current_planet][1]
  *     cdef double current_planet_pos_z = planets_array[current_planet][2]
  *     cdef double current_planet_velocity_x = planets_array[current_planet][4]             # <<<<<<<<<<<<<<
  *     cdef double current_planet_velocity_y = planets_array[current_planet][5]
  *     cdef double current_planet_velocity_z = planets_array[current_planet][6]
  */
-  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_current_planet_velocity_x = __pyx_t_3;
 
-  /* "cython_calculation.pyx":45
+  /* "cython_calculation.pyx":42
  *     cdef double current_planet_pos_z = planets_array[current_planet][2]
  *     cdef double current_planet_velocity_x = planets_array[current_planet][4]
  *     cdef double current_planet_velocity_y = planets_array[current_planet][5]             # <<<<<<<<<<<<<<
  *     cdef double current_planet_velocity_z = planets_array[current_planet][6]
  *     cdef double current_planet_mass = planets_array[current_planet][7]
  */
-  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_current_planet_velocity_y = __pyx_t_3;
 
-  /* "cython_calculation.pyx":46
+  /* "cython_calculation.pyx":43
  *     cdef double current_planet_velocity_x = planets_array[current_planet][4]
  *     cdef double current_planet_velocity_y = planets_array[current_planet][5]
  *     cdef double current_planet_velocity_z = planets_array[current_planet][6]             # <<<<<<<<<<<<<<
  *     cdef double current_planet_mass = planets_array[current_planet][7]
  * 
  */
-  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 46, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 6, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 6, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 46, __pyx_L1_error)
+  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_current_planet_velocity_z = __pyx_t_3;
 
-  /* "cython_calculation.pyx":47
+  /* "cython_calculation.pyx":44
  *     cdef double current_planet_velocity_y = planets_array[current_planet][5]
  *     cdef double current_planet_velocity_z = planets_array[current_planet][6]
  *     cdef double current_planet_mass = planets_array[current_planet][7]             # <<<<<<<<<<<<<<
  * 
  *     for i in range(len(planets_array)):
  */
-  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 7, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 7, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_current_planet_mass = __pyx_t_3;
 
-  /* "cython_calculation.pyx":49
+  /* "cython_calculation.pyx":46
  *     cdef double current_planet_mass = planets_array[current_planet][7]
  * 
  *     for i in range(len(planets_array)):             # <<<<<<<<<<<<<<
  *         planet_mass_i = planets_array[i][7]
  *         planet_pos_i_x = planets_array[i][0]
  */
-  __pyx_t_4 = PyObject_Length(((PyObject *)__pyx_v_planets_array)); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_4 = PyObject_Length(((PyObject *)__pyx_v_planets_array)); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 46, __pyx_L1_error)
   __pyx_t_5 = __pyx_t_4;
   for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_5; __pyx_t_6+=1) {
     __pyx_v_i = __pyx_t_6;
 
-    /* "cython_calculation.pyx":50
+    /* "cython_calculation.pyx":47
  * 
  *     for i in range(len(planets_array)):
  *         planet_mass_i = planets_array[i][7]             # <<<<<<<<<<<<<<
  *         planet_pos_i_x = planets_array[i][0]
  *         planet_pos_i_y = planets_array[i][1]
  */
-    __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 50, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 7, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 7, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 50, __pyx_L1_error)
+    __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 47, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_planet_mass_i = __pyx_t_3;
 
-    /* "cython_calculation.pyx":51
+    /* "cython_calculation.pyx":48
  *     for i in range(len(planets_array)):
  *         planet_mass_i = planets_array[i][7]
  *         planet_pos_i_x = planets_array[i][0]             # <<<<<<<<<<<<<<
  *         planet_pos_i_y = planets_array[i][1]
  *         planet_pos_i_z = planets_array[i][2]
  */
-    __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 48, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 51, __pyx_L1_error)
+    __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 48, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_planet_pos_i_x = __pyx_t_3;
 
-    /* "cython_calculation.pyx":52
+    /* "cython_calculation.pyx":49
  *         planet_mass_i = planets_array[i][7]
  *         planet_pos_i_x = planets_array[i][0]
  *         planet_pos_i_y = planets_array[i][1]             # <<<<<<<<<<<<<<
  *         planet_pos_i_z = planets_array[i][2]
  *         if i != current_planet:
  */
-    __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 52, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 52, __pyx_L1_error)
+    __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_1); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 49, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_planet_pos_i_y = __pyx_t_3;
 
-    /* "cython_calculation.pyx":53
+    /* "cython_calculation.pyx":50
  *         planet_pos_i_x = planets_array[i][0]
  *         planet_pos_i_y = planets_array[i][1]
  *         planet_pos_i_z = planets_array[i][2]             # <<<<<<<<<<<<<<
  *         if i != current_planet:
  *             dist_x = planet_pos_i_x - current_planet_pos_x
  */
-    __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 53, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 53, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 50, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 53, __pyx_L1_error)
+    __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 50, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_planet_pos_i_z = __pyx_t_3;
 
-    /* "cython_calculation.pyx":54
+    /* "cython_calculation.pyx":51
  *         planet_pos_i_y = planets_array[i][1]
  *         planet_pos_i_z = planets_array[i][2]
  *         if i != current_planet:             # <<<<<<<<<<<<<<
@@ -2188,7 +2165,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
     __pyx_t_7 = ((__pyx_v_i != __pyx_v_current_planet) != 0);
     if (__pyx_t_7) {
 
-      /* "cython_calculation.pyx":55
+      /* "cython_calculation.pyx":52
  *         planet_pos_i_z = planets_array[i][2]
  *         if i != current_planet:
  *             dist_x = planet_pos_i_x - current_planet_pos_x             # <<<<<<<<<<<<<<
@@ -2197,7 +2174,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
       __pyx_v_dist_x = (__pyx_v_planet_pos_i_x - __pyx_v_current_planet_pos_x);
 
-      /* "cython_calculation.pyx":56
+      /* "cython_calculation.pyx":53
  *         if i != current_planet:
  *             dist_x = planet_pos_i_x - current_planet_pos_x
  *             dist_y = planet_pos_i_y - current_planet_pos_y             # <<<<<<<<<<<<<<
@@ -2206,7 +2183,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
       __pyx_v_dist_y = (__pyx_v_planet_pos_i_y - __pyx_v_current_planet_pos_y);
 
-      /* "cython_calculation.pyx":57
+      /* "cython_calculation.pyx":54
  *             dist_x = planet_pos_i_x - current_planet_pos_x
  *             dist_y = planet_pos_i_y - current_planet_pos_y
  *             dist_z = planet_pos_i_z - current_planet_pos_z             # <<<<<<<<<<<<<<
@@ -2215,7 +2192,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
       __pyx_v_dist_z = (__pyx_v_planet_pos_i_z - __pyx_v_current_planet_pos_z);
 
-      /* "cython_calculation.pyx":58
+      /* "cython_calculation.pyx":55
  *             dist_y = planet_pos_i_y - current_planet_pos_y
  *             dist_z = planet_pos_i_z - current_planet_pos_z
  *             dist_absolute = sqrt((dist_x ** 2)             # <<<<<<<<<<<<<<
@@ -2224,7 +2201,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
       __pyx_v_dist_absolute = sqrt(((pow(__pyx_v_dist_x, 2.0) + pow(__pyx_v_dist_y, 2.0)) + pow(__pyx_v_dist_z, 2.0)));
 
-      /* "cython_calculation.pyx":61
+      /* "cython_calculation.pyx":58
  *                                  + (dist_y ** 2)
  *                                  + (dist_z ** 2))
  *             mass_different = planet_mass_i * current_planet_mass             # <<<<<<<<<<<<<<
@@ -2233,7 +2210,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
       __pyx_v_mass_different = (__pyx_v_planet_mass_i * __pyx_v_current_planet_mass);
 
-      /* "cython_calculation.pyx":63
+      /* "cython_calculation.pyx":60
  *             mass_different = planet_mass_i * current_planet_mass
  * 
  *             current_planet_force_x += (G * (mass_different / (dist_absolute ** 3)) * dist_x)             # <<<<<<<<<<<<<<
@@ -2242,7 +2219,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
       __pyx_v_current_planet_force_x = (__pyx_v_current_planet_force_x + ((__pyx_v_18cython_calculation_G * (__pyx_v_mass_different / pow(__pyx_v_dist_absolute, 3.0))) * __pyx_v_dist_x));
 
-      /* "cython_calculation.pyx":64
+      /* "cython_calculation.pyx":61
  * 
  *             current_planet_force_x += (G * (mass_different / (dist_absolute ** 3)) * dist_x)
  *             current_planet_force_y += (G * (mass_different / (dist_absolute ** 3)) * dist_y)             # <<<<<<<<<<<<<<
@@ -2251,7 +2228,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
       __pyx_v_current_planet_force_y = (__pyx_v_current_planet_force_y + ((__pyx_v_18cython_calculation_G * (__pyx_v_mass_different / pow(__pyx_v_dist_absolute, 3.0))) * __pyx_v_dist_y));
 
-      /* "cython_calculation.pyx":65
+      /* "cython_calculation.pyx":62
  *             current_planet_force_x += (G * (mass_different / (dist_absolute ** 3)) * dist_x)
  *             current_planet_force_y += (G * (mass_different / (dist_absolute ** 3)) * dist_y)
  *             current_planet_force_z += (G * (mass_different / (dist_absolute ** 3)) * dist_z)             # <<<<<<<<<<<<<<
@@ -2260,7 +2237,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
       __pyx_v_current_planet_force_z = (__pyx_v_current_planet_force_z + ((__pyx_v_18cython_calculation_G * (__pyx_v_mass_different / pow(__pyx_v_dist_absolute, 3.0))) * __pyx_v_dist_z));
 
-      /* "cython_calculation.pyx":54
+      /* "cython_calculation.pyx":51
  *         planet_pos_i_y = planets_array[i][1]
  *         planet_pos_i_z = planets_array[i][2]
  *         if i != current_planet:             # <<<<<<<<<<<<<<
@@ -2270,7 +2247,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
     }
   }
 
-  /* "cython_calculation.pyx":67
+  /* "cython_calculation.pyx":64
  *             current_planet_force_z += (G * (mass_different / (dist_absolute ** 3)) * dist_z)
  * 
  *     cdef double current_planet_acceleration_x = (current_planet_force_x / current_planet_mass)             # <<<<<<<<<<<<<<
@@ -2279,7 +2256,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
   __pyx_v_current_planet_acceleration_x = (__pyx_v_current_planet_force_x / __pyx_v_current_planet_mass);
 
-  /* "cython_calculation.pyx":68
+  /* "cython_calculation.pyx":65
  * 
  *     cdef double current_planet_acceleration_x = (current_planet_force_x / current_planet_mass)
  *     cdef double current_planet_acceleration_y = (current_planet_force_y / current_planet_mass)             # <<<<<<<<<<<<<<
@@ -2288,7 +2265,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
   __pyx_v_current_planet_acceleration_y = (__pyx_v_current_planet_force_y / __pyx_v_current_planet_mass);
 
-  /* "cython_calculation.pyx":69
+  /* "cython_calculation.pyx":66
  *     cdef double current_planet_acceleration_x = (current_planet_force_x / current_planet_mass)
  *     cdef double current_planet_acceleration_y = (current_planet_force_y / current_planet_mass)
  *     cdef double current_planet_acceleration_z = (current_planet_force_z / current_planet_mass)             # <<<<<<<<<<<<<<
@@ -2297,7 +2274,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
   __pyx_v_current_planet_acceleration_z = (__pyx_v_current_planet_force_z / __pyx_v_current_planet_mass);
 
-  /* "cython_calculation.pyx":71
+  /* "cython_calculation.pyx":68
  *     cdef double current_planet_acceleration_z = (current_planet_force_z / current_planet_mass)
  * 
  *     cdef double new_pos_x = current_planet_pos_x + \             # <<<<<<<<<<<<<<
@@ -2306,7 +2283,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
   __pyx_v_new_pos_x = (__pyx_v_current_planet_pos_x + ((__pyx_v_d_t * __pyx_v_current_planet_velocity_x) + ((__Pyx_pow_long(((long)__pyx_v_d_t), 2) / 2) * __pyx_v_current_planet_acceleration_x)));
 
-  /* "cython_calculation.pyx":73
+  /* "cython_calculation.pyx":70
  *     cdef double new_pos_x = current_planet_pos_x + \
  *                             (d_t * current_planet_velocity_x + ((d_t ** 2) / 2) * current_planet_acceleration_x)
  *     cdef double new_pos_y = current_planet_pos_y + \             # <<<<<<<<<<<<<<
@@ -2315,7 +2292,7 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
   __pyx_v_new_pos_y = (__pyx_v_current_planet_pos_y + ((__pyx_v_d_t * __pyx_v_current_planet_velocity_y) + ((__Pyx_pow_long(((long)__pyx_v_d_t), 2) / 2) * __pyx_v_current_planet_acceleration_y)));
 
-  /* "cython_calculation.pyx":75
+  /* "cython_calculation.pyx":72
  *     cdef double new_pos_y = current_planet_pos_y + \
  *                             (d_t * current_planet_velocity_y + ((d_t ** 2) / 2) * current_planet_acceleration_y)
  *     cdef double new_pos_z = current_planet_pos_z + \             # <<<<<<<<<<<<<<
@@ -2324,131 +2301,131 @@ static PyArrayObject *__pyx_f_18cython_calculation_calc_obj_new_pos(int __pyx_v_
  */
   __pyx_v_new_pos_z = (__pyx_v_current_planet_pos_z + ((__pyx_v_d_t * __pyx_v_current_planet_velocity_z) + ((__Pyx_pow_long(((long)__pyx_v_d_t), 2) / 2) * __pyx_v_current_planet_acceleration_z)));
 
-  /* "cython_calculation.pyx":78
+  /* "cython_calculation.pyx":75
  *                             (d_t * current_planet_velocity_z + ((d_t ** 2) / 2) * current_planet_acceleration_z)
  * 
  *     planets_array[current_planet][0] = new_pos_x             # <<<<<<<<<<<<<<
  *     planets_array[current_planet][1] = new_pos_y
  *     planets_array[current_planet][2] = new_pos_z
  */
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_new_pos_x); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_new_pos_x); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely(__Pyx_SetItemInt(__pyx_t_1, 0, __pyx_t_2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 78, __pyx_L1_error)
+  if (unlikely(__Pyx_SetItemInt(__pyx_t_1, 0, __pyx_t_2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cython_calculation.pyx":79
+  /* "cython_calculation.pyx":76
  * 
  *     planets_array[current_planet][0] = new_pos_x
  *     planets_array[current_planet][1] = new_pos_y             # <<<<<<<<<<<<<<
  *     planets_array[current_planet][2] = new_pos_z
  *     planets_array[current_planet][4] += d_t * current_planet_acceleration_x
  */
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_new_pos_y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_new_pos_y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely(__Pyx_SetItemInt(__pyx_t_1, 1, __pyx_t_2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 79, __pyx_L1_error)
+  if (unlikely(__Pyx_SetItemInt(__pyx_t_1, 1, __pyx_t_2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cython_calculation.pyx":80
+  /* "cython_calculation.pyx":77
  *     planets_array[current_planet][0] = new_pos_x
  *     planets_array[current_planet][1] = new_pos_y
  *     planets_array[current_planet][2] = new_pos_z             # <<<<<<<<<<<<<<
  *     planets_array[current_planet][4] += d_t * current_planet_acceleration_x
  *     planets_array[current_planet][5] += d_t * current_planet_acceleration_y
  */
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_new_pos_z); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_new_pos_z); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely(__Pyx_SetItemInt(__pyx_t_1, 2, __pyx_t_2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 80, __pyx_L1_error)
+  if (unlikely(__Pyx_SetItemInt(__pyx_t_1, 2, __pyx_t_2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cython_calculation.pyx":81
+  /* "cython_calculation.pyx":78
  *     planets_array[current_planet][1] = new_pos_y
  *     planets_array[current_planet][2] = new_pos_z
  *     planets_array[current_planet][4] += d_t * current_planet_acceleration_x             # <<<<<<<<<<<<<<
  *     planets_array[current_planet][5] += d_t * current_planet_acceleration_y
  *     planets_array[current_planet][6] += d_t * current_planet_acceleration_z
  */
-  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = 4;
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, __pyx_t_4, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, __pyx_t_4, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_8 = PyFloat_FromDouble((__pyx_v_d_t * __pyx_v_current_planet_acceleration_x)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_8 = PyFloat_FromDouble((__pyx_v_d_t * __pyx_v_current_planet_acceleration_x)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_9 = PyNumber_InPlaceAdd(__pyx_t_1, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_9 = PyNumber_InPlaceAdd(__pyx_t_1, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  if (unlikely(__Pyx_SetItemInt(__pyx_t_2, __pyx_t_4, __pyx_t_9, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0) < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (unlikely(__Pyx_SetItemInt(__pyx_t_2, __pyx_t_4, __pyx_t_9, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0) < 0)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cython_calculation.pyx":82
+  /* "cython_calculation.pyx":79
  *     planets_array[current_planet][2] = new_pos_z
  *     planets_array[current_planet][4] += d_t * current_planet_acceleration_x
  *     planets_array[current_planet][5] += d_t * current_planet_acceleration_y             # <<<<<<<<<<<<<<
  *     planets_array[current_planet][6] += d_t * current_planet_acceleration_z
  * 
  */
-  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = 5;
-  __pyx_t_9 = __Pyx_GetItemInt(__pyx_t_2, __pyx_t_4, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_GetItemInt(__pyx_t_2, __pyx_t_4, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_8 = PyFloat_FromDouble((__pyx_v_d_t * __pyx_v_current_planet_acceleration_y)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_8 = PyFloat_FromDouble((__pyx_v_d_t * __pyx_v_current_planet_acceleration_y)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_t_9, __pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_t_9, __pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  if (unlikely(__Pyx_SetItemInt(__pyx_t_2, __pyx_t_4, __pyx_t_1, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0) < 0)) __PYX_ERR(0, 82, __pyx_L1_error)
+  if (unlikely(__Pyx_SetItemInt(__pyx_t_2, __pyx_t_4, __pyx_t_1, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0) < 0)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cython_calculation.pyx":83
+  /* "cython_calculation.pyx":80
  *     planets_array[current_planet][4] += d_t * current_planet_acceleration_x
  *     planets_array[current_planet][5] += d_t * current_planet_acceleration_y
  *     planets_array[current_planet][6] += d_t * current_planet_acceleration_z             # <<<<<<<<<<<<<<
  * 
  *     return planets_array[current_planet]
  */
-  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = 6;
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, __pyx_t_4, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, __pyx_t_4, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_8 = PyFloat_FromDouble((__pyx_v_d_t * __pyx_v_current_planet_acceleration_z)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_8 = PyFloat_FromDouble((__pyx_v_d_t * __pyx_v_current_planet_acceleration_z)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_9 = PyNumber_InPlaceAdd(__pyx_t_1, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_9 = PyNumber_InPlaceAdd(__pyx_t_1, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  if (unlikely(__Pyx_SetItemInt(__pyx_t_2, __pyx_t_4, __pyx_t_9, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0) < 0)) __PYX_ERR(0, 83, __pyx_L1_error)
+  if (unlikely(__Pyx_SetItemInt(__pyx_t_2, __pyx_t_4, __pyx_t_9, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0) < 0)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cython_calculation.pyx":85
+  /* "cython_calculation.pyx":82
  *     planets_array[current_planet][6] += d_t * current_planet_acceleration_z
  * 
  *     return planets_array[current_planet]             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_planets_array), __pyx_v_current_planet, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 85, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 82, __pyx_L1_error)
   __pyx_r = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cython_calculation.pyx":29
+  /* "cython_calculation.pyx":26
  * @cython.boundscheck(False)
  * @cython.optimize.unpack_method_calls(True)
  * cdef numpy.ndarray calc_obj_new_pos(int current_planet, int delta_t, numpy.ndarray planets_array):             # <<<<<<<<<<<<<<
@@ -4889,7 +4866,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
 }
 
 static PyMethodDef __pyx_methods[] = {
-  {"calc_frame_positions", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_18cython_calculation_1calc_frame_positions, METH_VARARGS|METH_KEYWORDS, 0},
+  {"calc_planet_positions", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_18cython_calculation_1calc_planet_positions, METH_VARARGS|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
@@ -4943,6 +4920,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_RuntimeError, __pyx_k_RuntimeError, sizeof(__pyx_k_RuntimeError), 0, 0, 1, 1},
   {&__pyx_n_s_ValueError, __pyx_k_ValueError, sizeof(__pyx_k_ValueError), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
+  {&__pyx_n_s_current_planet, __pyx_k_current_planet, sizeof(__pyx_k_current_planet), 0, 0, 1, 1},
   {&__pyx_n_s_delta_t, __pyx_k_delta_t, sizeof(__pyx_k_delta_t), 0, 0, 1, 1},
   {&__pyx_n_s_float32, __pyx_k_float32, sizeof(__pyx_k_float32), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
@@ -4953,14 +4931,14 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_numpy, __pyx_k_numpy, sizeof(__pyx_k_numpy), 0, 0, 1, 1},
   {&__pyx_kp_s_numpy_core_multiarray_failed_to, __pyx_k_numpy_core_multiarray_failed_to, sizeof(__pyx_k_numpy_core_multiarray_failed_to), 0, 0, 1, 0},
   {&__pyx_kp_s_numpy_core_umath_failed_to_impor, __pyx_k_numpy_core_umath_failed_to_impor, sizeof(__pyx_k_numpy_core_umath_failed_to_impor), 0, 0, 1, 0},
-  {&__pyx_n_s_planets, __pyx_k_planets, sizeof(__pyx_k_planets), 0, 0, 1, 1},
+  {&__pyx_n_s_planets_array, __pyx_k_planets_array, sizeof(__pyx_k_planets_array), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_kp_u_unknown_dtype_code_in_numpy_pxd, __pyx_k_unknown_dtype_code_in_numpy_pxd, sizeof(__pyx_k_unknown_dtype_code_in_numpy_pxd), 0, 1, 0, 0},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 46, __pyx_L1_error)
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(1, 272, __pyx_L1_error)
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(1, 856, __pyx_L1_error)
   __pyx_builtin_ImportError = __Pyx_GetBuiltinName(__pyx_n_s_ImportError); if (!__pyx_builtin_ImportError) __PYX_ERR(1, 1038, __pyx_L1_error)
@@ -5478,55 +5456,6 @@ static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
     return result;
 }
 
-/* SetItemInt */
-static int __Pyx_SetItemInt_Generic(PyObject *o, PyObject *j, PyObject *v) {
-    int r;
-    if (!j) return -1;
-    r = PyObject_SetItem(o, j, v);
-    Py_DECREF(j);
-    return r;
-}
-static CYTHON_INLINE int __Pyx_SetItemInt_Fast(PyObject *o, Py_ssize_t i, PyObject *v, int is_list,
-                                               CYTHON_NCP_UNUSED int wraparound, CYTHON_NCP_UNUSED int boundscheck) {
-#if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS && CYTHON_USE_TYPE_SLOTS
-    if (is_list || PyList_CheckExact(o)) {
-        Py_ssize_t n = (!wraparound) ? i : ((likely(i >= 0)) ? i : i + PyList_GET_SIZE(o));
-        if ((!boundscheck) || likely(__Pyx_is_valid_index(n, PyList_GET_SIZE(o)))) {
-            PyObject* old = PyList_GET_ITEM(o, n);
-            Py_INCREF(v);
-            PyList_SET_ITEM(o, n, v);
-            Py_DECREF(old);
-            return 1;
-        }
-    } else {
-        PySequenceMethods *m = Py_TYPE(o)->tp_as_sequence;
-        if (likely(m && m->sq_ass_item)) {
-            if (wraparound && unlikely(i < 0) && likely(m->sq_length)) {
-                Py_ssize_t l = m->sq_length(o);
-                if (likely(l >= 0)) {
-                    i += l;
-                } else {
-                    if (!PyErr_ExceptionMatches(PyExc_OverflowError))
-                        return -1;
-                    PyErr_Clear();
-                }
-            }
-            return m->sq_ass_item(o, i, v);
-        }
-    }
-#else
-#if CYTHON_COMPILING_IN_PYPY
-    if (is_list || (PySequence_Check(o) && !PyDict_Check(o)))
-#else
-    if (is_list || PySequence_Check(o))
-#endif
-    {
-        return PySequence_SetItem(o, i, v);
-    }
-#endif
-    return __Pyx_SetItemInt_Generic(o, PyInt_FromSsize_t(i), v);
-}
-
 /* RaiseArgTupleInvalid */
 static void __Pyx_RaiseArgtupleInvalid(
     const char* func_name,
@@ -5775,6 +5704,55 @@ static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i, 
     }
 #endif
     return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
+}
+
+/* SetItemInt */
+static int __Pyx_SetItemInt_Generic(PyObject *o, PyObject *j, PyObject *v) {
+    int r;
+    if (!j) return -1;
+    r = PyObject_SetItem(o, j, v);
+    Py_DECREF(j);
+    return r;
+}
+static CYTHON_INLINE int __Pyx_SetItemInt_Fast(PyObject *o, Py_ssize_t i, PyObject *v, int is_list,
+                                               CYTHON_NCP_UNUSED int wraparound, CYTHON_NCP_UNUSED int boundscheck) {
+#if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS && CYTHON_USE_TYPE_SLOTS
+    if (is_list || PyList_CheckExact(o)) {
+        Py_ssize_t n = (!wraparound) ? i : ((likely(i >= 0)) ? i : i + PyList_GET_SIZE(o));
+        if ((!boundscheck) || likely(__Pyx_is_valid_index(n, PyList_GET_SIZE(o)))) {
+            PyObject* old = PyList_GET_ITEM(o, n);
+            Py_INCREF(v);
+            PyList_SET_ITEM(o, n, v);
+            Py_DECREF(old);
+            return 1;
+        }
+    } else {
+        PySequenceMethods *m = Py_TYPE(o)->tp_as_sequence;
+        if (likely(m && m->sq_ass_item)) {
+            if (wraparound && unlikely(i < 0) && likely(m->sq_length)) {
+                Py_ssize_t l = m->sq_length(o);
+                if (likely(l >= 0)) {
+                    i += l;
+                } else {
+                    if (!PyErr_ExceptionMatches(PyExc_OverflowError))
+                        return -1;
+                    PyErr_Clear();
+                }
+            }
+            return m->sq_ass_item(o, i, v);
+        }
+    }
+#else
+#if CYTHON_COMPILING_IN_PYPY
+    if (is_list || (PySequence_Check(o) && !PyDict_Check(o)))
+#else
+    if (is_list || PySequence_Check(o))
+#endif
+    {
+        return PySequence_SetItem(o, i, v);
+    }
+#endif
+    return __Pyx_SetItemInt_Generic(o, PyInt_FromSsize_t(i), v);
 }
 
 /* ExtTypeTest */

@@ -9,12 +9,28 @@ import numpy
 
 X_INDEX, Y_INDEX, Z_INDEX = 0, 1, 2
 
+def dist(planet_1, planet_2):
+        """
+        Calculate the distance between two vectors
+        :param planet_1: the position of the planet2
+        :param planet_2: the position ot the planet1
+        :return: the distance as vector and as absolute value
+
+        >>> dist((1,1,1),(5,5,5))
+        (6.928203230275509, array([-4, -4, -4]))
+        """
+
+        dist_abs = math.sqrt(
+                ((planet_1[0] - planet_2[0]) ** 2) + ((planet_1[1] - planet_2[1]) ** 2) + (
+                        (planet_1[2] - planet_2[2]) ** 2))
+        dist_vec = numpy.array(planet_1) - numpy.array(planet_2)
+
+        return dist_abs, dist_vec
 
 class Calculation:
     """
     The whole calculation
     """
-
     def __init__(self, json_path, delta_t):
         self.delta_t = delta_t
         self.json_path = json_path
@@ -68,14 +84,18 @@ class Calculation:
         :param planet_1: the position of the planet2
         :param planet_2: the position ot the planet1
         :return: the distance as vector and as absolute value
+
+        >>> dist((1,1,1),(5,5,5))
+        (6.928203230275509, array([-4, -4, -4]))
         """
 
         dist_abs = math.sqrt(
-            ((planet_1[0] - planet_2[0]) ** 2) + ((planet_1[1] - planet_2[1]) ** 2) + (
-                    (planet_1[2] - planet_2[2]) ** 2))
+                ((planet_1[0] - planet_2[0]) ** 2) + ((planet_1[1] - planet_2[1]) ** 2) + (
+                        (planet_1[2] - planet_2[2]) ** 2))
         dist_vec = numpy.array(planet_1) - numpy.array(planet_2)
 
         return dist_abs, dist_vec
+
 
     def calc_acceleration(self, planet_index):
         """
@@ -210,3 +230,7 @@ class Calculation:
     def stop(self):
         """ Stops the calculation of new frames """
         self._is_running = False
+
+if __name__ =="__main__":
+    import doctest
+    doctest.testmod()

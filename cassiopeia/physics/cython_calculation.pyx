@@ -14,11 +14,8 @@ cdef double G = 6.67408e-11
 @cython.wraparound(False)
 @cython.boundscheck(False)
 @cython.optimize.unpack_method_calls(True)
-cpdef numpy.ndarray calc_frame_positions(numpy.ndarray planets, int delta_t):
-    cdef int planet_index = 0
-    for planet_index in range(len(planets)):
-        planets[planet_index] = calc_obj_new_pos(planet_index, delta_t, planets)
-    return planets
+cpdef numpy.ndarray calc_planet_positions(int current_planet, int delta_t, numpy.ndarray planets_array):
+    return calc_obj_new_pos(current_planet, delta_t, planets_array)
 
 
 @cython.cdivision(True)
